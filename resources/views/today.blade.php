@@ -76,34 +76,34 @@
         @endforeach
         @foreach($books_tomorrow as $book)
             
-                <h2><a href="/books/{{$book->id}}">{{$book->name}}</a></h2>
-                <table>
-                    @for ($i = 0; $i<($book->a_day); $i++)
-                    @if ($book->max >= $book->finished+$i+1)
-                        <tr>
-                            <th>
-                                {{$book->type->name}}{{$book->finished+$i+1}}
-                            </th>
-                            @if ($book->today_finished == ($book->finished + $i))
-                            <th>
-                                <form action="/today/{{$book->id}}/complete" id="form_{{$book->id}}_complete" method="post">
-                                    @csrf
-                                    <button type="button" onclick="complete({{$book->id}})">complete</button>
-                                </form>
-                            </th>
-                            <th>
-                                <form action="/today/{{$book->id}}/pass" id="form_{{$book->id}}_pass" method="post">
-                                    @csrf
-                                    <button type="button" onclick="pass({{$book->id}})">pass</button>
-                                </form>
-                            </th>
-                            @endif
-                            
-                            
-                        </tr>
-                    @endif
-                    @endfor
-                </table>
+            <h2><a href="/books/{{$book->id}}">{{$book->name}}</a></h2>
+            <table>
+                @for ($i = 0; $i<($book->a_day); $i++)
+                @if ($book->max >= $book->finished+$i+1)
+                    <tr>
+                        <th>
+                            {{$book->type->name}}{{$book->finished+$i+1}}
+                        </th>
+                        @if ($book->today_finished == ($book->finished + $i))
+                        <th>
+                            <form action="/today/{{$book->id}}/complete" id="form_{{$book->id}}_complete" method="post">
+                                @csrf
+                                <button type="button" onclick="complete({{$book->id}})">complete</button>
+                            </form>
+                        </th>
+                        <th>
+                            <form action="/today/{{$book->id}}/pass" id="form_{{$book->id}}_pass" method="post">
+                                @csrf
+                                <button type="button" onclick="pass({{$book->id}})">pass</button>
+                            </form>
+                        </th>
+                        @endif
+                        
+                        
+                    </tr>
+                @endif
+                @endfor
+            </table>
         @endforeach
         </div>
 

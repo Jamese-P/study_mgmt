@@ -10,11 +10,12 @@
 
 <body>
     <h1>Today</h1>
-        @foreach($books as $book)
+        @foreach($books_today as $book)
             <div class='book'>
                 <h2><a href="/books/{{$book->id}}">{{$book->name}}</a></h2>
                 <table>
                     @for ($i = 0; $i<($book->a_day); $i++)
+                    @if ($book->max >= $book->finished+$i+1)
                         <tr>
                             <th>
                                 @if ($book->type_id == 1)
@@ -38,6 +39,7 @@
                                 </th>
                             @endif
                         </tr>
+                    @endif
                     @endfor
                 </table>
             </div>
@@ -45,10 +47,79 @@
         @endforeach
         
     <h1>Tommorow</h1>
-        
-    
+        <div class='book'>
+        @foreach($books_today as $book)
+            @if ($book->intarval_id=='1')
+                <h2><a href="/books/{{$book->id}}">{{$book->name}}</a></h2>
+                <table>
+                    @for ($i = 0; $i<($book->a_day); $i++)
+                        @if ($book->max >= $book->finished+$book->a_day+$i+1)
+                        <tr>
+                            <th>
+                            @if ($book->type_id == 1)
+                                {{$book->type->name}}{{$book->finished+$book->a_day+$i+1}}
+                            @elseif ($book->type_id == 2)
+                                {{$book->finished+$book->a_day+$i+1}}{{$book->type->name}}
+                            @endif
+                            </th>
+                            @if ($book->today_finished == ($book->finished +$book->a_day+ $i))
+                            <th>
+                                <form action="/today/{{$book->id}}/complete" id="form_{{$book->id}}_complete" method="post">
+                                    @csrf
+                                    <button type="button" onclick="complete({{$book->id}})">complete</button>
+                                </form>
+                            </th>
+                            <th>
+                                <form action="/today/{{$book->id}}/pass" id="form_{{$book->id}}_pass" method="post">
+                                    @csrf
+                                    <button type="button" onclick="pass({{$book->id}})">pass</button>
+                                </form>
+                            </th>
+                            @endif
+                        </tr>
+                        @endif
+                    @endfor
+                </table>
+            @endif
+        @endforeach
+        @foreach($books_tomorrow as $book)
+            
+                <h2><a href="/books/{{$book->id}}">{{$book->name}}</a></h2>
+                <table>
+                    @for ($i = 0; $i<($book->a_day); $i++)
+                    @if ($book->max >= $book->finished+$i+1)
+                        <tr>
+                            <th>
+                            @if ($book->type_id == 1)
+                                {{$book->type->name}}{{$book->finished+$i+1}}
+                            @elseif ($book->type_id == 2)
+                                {{$book->finished+$i+1}}{{$book->type->name}}
+                            @endif
+                            </th>
+                            @if ($book->today_finished == ($book->finished + $i))
+                            <th>
+                                <form action="/today/{{$book->id}}/complete" id="form_{{$book->id}}_complete" method="post">
+                                    @csrf
+                                    <button type="button" onclick="complete({{$book->id}})">complete</button>
+                                </form>
+                            </th>
+                            <th>
+                                <form action="/today/{{$book->id}}/pass" id="form_{{$book->id}}_pass" method="post">
+                                    @csrf
+                                    <button type="button" onclick="pass({{$book->id}})">pass</button>
+                                </form>
+                            </th>
+                            @endif
+                            
+                            
+                        </tr>
+                    @endif
+                    @endfor
+                </table>
+        @endforeach
+        </div>
 
-    <a href="/home/calendar">calendar</a>
+    <a href="/">参考書一覧</a>
     <br>
     <a href="/home/create">create</a>
     <br>
@@ -56,8 +127,6 @@
     <br>
     
     
-           
-        
     <script>
         function complete(id){
             'use strict'

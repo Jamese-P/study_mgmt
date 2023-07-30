@@ -15,4 +15,24 @@ class BookController extends Controller
         return view('books.index')->with(['books'=>$book->get()]);
     }
     
+    public function create(Subject $subject,Type $type,Intarval $intarval){
+        return view('books.create')->with(['subjects'=>$subject->get(),
+                                            'types'=>$type->get(),
+                                            'intarvals'=>$intarval->get()]);
+    }
+    
+    public function store(Request $request,Book $book){
+        $input=$request['book'];
+        $book->fill($input);
+        $book->user_id='1';
+        $book->finished='0';
+        $book->today_finished='0';
+        $book->save();
+        return redirect('/books'.$book->id);
+    }
+    
+    public function edit(){
+        
+    }
+    
 }

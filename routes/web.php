@@ -16,7 +16,19 @@ use App\Http\Controllers\TodayController;
 */
 
 Route::get('/', [BookController::class,'index']);
-Route::get('/today', [TodayController::class,'show']);
 
-Route::post('/today/{book}/complete', [TodayController::class,'complete']);
-Route::post('/today/{book}/pass', [TodayController::class,'pass']);
+
+Route::controller(TodayController::class)->group(function(){
+    Route::get('/today','show');
+    Route::post('/today/{book}/complete', 'complete');
+    Route::post('/today/{book}/pass', 'pass');
+});
+
+Route::controller(BookController::class)->group(function(){
+    Route::get('/books','index');
+    Route::get('/books/create', 'create');
+    Route::get('/books/{book}', 'show');
+    Route::post('/books', 'store');
+    Route::put('/books/{book}/edit', 'edit');
+});
+

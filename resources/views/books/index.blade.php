@@ -11,9 +11,9 @@
 <body>
     <h1>home</h1>
 
-    <a href="/home/calendar">calendar</a>
+    <a href="/today">today</a>
     <br>
-    <a href="/home/create">create</a>
+    <a href="/books/create">create</a>
     <br>
     <a href="/label">label</a>
     <br>

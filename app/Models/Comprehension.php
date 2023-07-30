@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Comprehension extends Model
 {
     use HasFactory;
+    
+    public function logs()
+    {
+        return $this->hasMany(Log::class);
+    }
 }

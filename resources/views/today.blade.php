@@ -18,11 +18,7 @@
                     @if ($book->max >= $book->finished+$i+1)
                         <tr>
                             <th>
-                                @if ($book->type_id == 1)
-                                    {{$book->type->name}}{{$book->finished+$i+1}}
-                                @elseif ($book->type_id == 2)
-                                    {{$book->finished+$i+1}}{{$book->type->name}}
-                                @endif
+                                {{$book->type->name}}{{$book->finished+$i+1}}
                             </th>
                             @if ($book->today_finished == ($book->finished + $i))
                                 <th>
@@ -56,11 +52,7 @@
                         @if ($book->max >= $book->finished+$book->a_day+$i+1)
                         <tr>
                             <th>
-                            @if ($book->type_id == 1)
                                 {{$book->type->name}}{{$book->finished+$book->a_day+$i+1}}
-                            @elseif ($book->type_id == 2)
-                                {{$book->finished+$book->a_day+$i+1}}{{$book->type->name}}
-                            @endif
                             </th>
                             @if ($book->today_finished == ($book->finished +$book->a_day+ $i))
                             <th>
@@ -90,11 +82,7 @@
                     @if ($book->max >= $book->finished+$i+1)
                         <tr>
                             <th>
-                            @if ($book->type_id == 1)
                                 {{$book->type->name}}{{$book->finished+$i+1}}
-                            @elseif ($book->type_id == 2)
-                                {{$book->finished+$i+1}}{{$book->type->name}}
-                            @endif
                             </th>
                             @if ($book->today_finished == ($book->finished + $i))
                             <th>

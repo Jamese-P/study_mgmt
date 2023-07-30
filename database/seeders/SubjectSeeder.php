@@ -15,19 +15,19 @@ class SubjectSeeder extends Seeder
      */
     public function run()
     {
-        DB::tabel('subjects')->insert([
+        DB::table('subjects')->insert([
             'name'=>'国語',
             ]);
-        DB::tabel('subjects')->insert([
+        DB::table('subjects')->insert([
             'name'=>'数学',
             ]);
-        DB::tabel('subjects')->insert([
+        DB::table('subjects')->insert([
             'name'=>'英語',
             ]);
-        DB::tabel('subjects')->insert([
+        DB::table('subjects')->insert([
             'name'=>'理科',
             ]);
-        DB::tabel('subjects')->insert([
+        DB::table('subjects')->insert([
             'name'=>'社会',
             ]);
     }

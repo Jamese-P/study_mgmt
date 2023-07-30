@@ -15,13 +15,13 @@ class ComprehensionSeeder extends Seeder
      */
     public function run()
     {
-        DB::tabel('comprehensions')->insert([
+        DB::table('comprehensions')->insert([
             'name'=>'完璧',
             ]);
-        DB::tabel('comprehensions')->insert([
+        DB::table('comprehensions')->insert([
             'name'=>'50%',
             ]);
-        DB::tabel('comprehensions')->insert([
+        DB::table('comprehensions')->insert([
             'name'=>'とき直し',
             ]);
     }

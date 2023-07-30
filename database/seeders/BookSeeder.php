@@ -16,7 +16,7 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        DB::tabel('books')->insert([
+        DB::table('books')->insert([
             'user_id'=>'1',
             'name'=>'青チャート',
             'subject_id'=>'2',

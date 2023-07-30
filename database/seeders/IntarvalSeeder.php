@@ -15,19 +15,19 @@ class IntarvalSeeder extends Seeder
      */
     public function run()
     {
-        DB::tabel('intarvals')->insert([
+        DB::table('intarvals')->insert([
             'name'=>'毎日',
             'days'=>'1'
             ]);
-        DB::tabel('intarvals')->insert([
+        DB::table('intarvals')->insert([
             'name'=>'二日おき',
             'days'=>'2'
             ]);
-        DB::tabel('intarvals')->insert([
+        DB::table('intarvals')->insert([
             'name'=>'三日おき',
             'days'=>'3'
             ]);
-        DB::tabel('intarvals')->insert([
+        DB::table('intarvals')->insert([
             'name'=>'毎週',
             'days'=>'7'
             ]);

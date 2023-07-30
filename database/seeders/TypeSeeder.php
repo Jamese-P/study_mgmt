@@ -15,10 +15,10 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        DB::tabel('types')->insert([
+        DB::table('types')->insert([
             'name'=>'単元',
             ]);
-        DB::tabel('types')->insert([
+        DB::table('types')->insert([
             'name'=>'ページ',
             ]);
     }

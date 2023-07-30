@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('finished');
             $table->integer('today_finished');
             $table->foreignId('intarval_id')->constrained();
-            $table->timestamp('next_learn_at');
+            $table->date('next_learn_at');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate()->nullable();
             $table->softDeletes();

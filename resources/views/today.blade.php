@@ -98,8 +98,6 @@
                             </form>
                         </th>
                         @endif
-                        
-                        
                     </tr>
                 @endif
                 @endfor
@@ -109,11 +107,7 @@
 
     <a href="/">参考書一覧</a>
     <br>
-    <a href="/home/create">create</a>
-    <br>
-    <a href="/label">label</a>
-    <br>
-    
+    <a href="/books/create">create</a>
     
     <script>
         function complete(id){

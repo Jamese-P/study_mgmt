@@ -15,6 +15,11 @@ class BookController extends Controller
         return view('books.index')->with(['books'=>$book->get()]);
     }
     
+    public function show(Book $book){
+        $log=Log::where('book_id',$book->id)->get();
+        return view('books.show')->with(['book'=>$book,'logs'=>$log]);
+    }
+    
     public function create(Subject $subject,Type $type,Intarval $intarval){
         return view('books.create')->with(['subjects'=>$subject->get(),
                                             'types'=>$type->get(),

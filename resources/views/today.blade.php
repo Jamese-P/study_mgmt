@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <h1>期限切れ</h1>
     <h1>Today</h1>
         @foreach($books_today as $book)
             <div class='book'>

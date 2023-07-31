@@ -9,8 +9,6 @@
 </head>
 
 <body>
-    <h1>home</h1>
-
     <a href="/today">today</a>
     <br>
     <a href="/books/create">create</a>
@@ -28,7 +26,6 @@
                 <th>次回予定日</th>
                 <th>一日実施量</th>
                 <th>学習間隔</th>
-                <th></th>
             </tr>
             @foreach($books as $book)
                 <tr>

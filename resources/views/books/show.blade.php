@@ -9,8 +9,13 @@
     </head>
     <body>
         <h1 class="name">{{$book->name}}</h1>
+        <h2 class="subject">{{$book->subject->name}}</h2>
         <h2>進捗率：{{$book->today_finished/$book->max*100}}%</h2>
+        <h2 class="max">終了{{$book->type->name}}:{{$book->max}}</h2>
+        <h2>{{$book->intarval->name}}{{$book->a_day}}{{$book->type->name}}</h2>
+        <h2 class="next_learn_at">次の学習日は{{$book->next_learn_at}}</h2>
         
+        <a href="/books/{{$book->id}}/edit">edit</a>
         <a href="/today">back</a>
         
         <h2>学習履歴</h2>

@@ -20,8 +20,10 @@ Route::get('/', [BookController::class,'index']);
 
 Route::controller(TodayController::class)->group(function(){
     Route::get('/today','show');
-    Route::post('/today/{book}/complete', 'complete');
+    Route::post('/today/{book}/complete', 'complete2');
     Route::post('/today/{book}/pass', 'pass');
+    Route::get('/today/{book}/{unit}/complete', 'complete');
+    Route::post('/today/{book}/{unit}', 'make_log');
 });
 
 Route::controller(BookController::class)->group(function(){

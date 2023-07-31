@@ -18,9 +18,15 @@
                     @for ($i = 0; $i<($book->a_day); $i++)
                     @if ($book->max >= $book->finished+$i+1)
                         <tr>
+                            @if ($book->today_finished == ($book->finished + $i))
+                            <th>
+                                <a href="/today/{{$book->id}}/{{$book->finished + $i+1}}/complete">{{$book->type->name}}{{$book->finished+$i+1}}</a>
+                            </th>
+                            @else
                             <th>
                                 {{$book->type->name}}{{$book->finished+$i+1}}
                             </th>
+                            @endif
                             @if ($book->today_finished == ($book->finished + $i))
                                 <th>
                                     <form action="/today/{{$book->id}}/complete" id="form_{{$book->id}}_complete" method="post">
@@ -52,9 +58,15 @@
                     @for ($i = 0; $i<($book->a_day); $i++)
                         @if ($book->max >= $book->finished+$book->a_day+$i+1)
                         <tr>
+                            @if ($book->today_finished == ($book->finished +$book->a_day+ $i))
+                            <th>
+                                <a href="/today/{{$book->id}}/{{$book->finished +$book->a_day+ $i+1}}/complete">{{$book->type->name}}{{$book->finished+$book->a_day+$i+1}}</a>
+                            </th>
+                            @else
                             <th>
                                 {{$book->type->name}}{{$book->finished+$book->a_day+$i+1}}
                             </th>
+                            @endif
                             @if ($book->today_finished == ($book->finished +$book->a_day+ $i))
                             <th>
                                 <form action="/today/{{$book->id}}/complete" id="form_{{$book->id}}_complete" method="post">
@@ -82,9 +94,15 @@
                 @for ($i = 0; $i<($book->a_day); $i++)
                 @if ($book->max >= $book->finished+$i+1)
                     <tr>
+                        @if ($book->today_finished == ($book->finished + $i))
+                        <th>
+                            <a href="/today/{{$book->id}}/{{$book->finished + $i+1}}/complete">{{$book->type->name}}{{$book->finished+$i+1}}</a>
+                        </th>
+                        @else
                         <th>
                             {{$book->type->name}}{{$book->finished+$i+1}}
                         </th>
+                        @endif
                         @if ($book->today_finished == ($book->finished + $i))
                         <th>
                             <form action="/today/{{$book->id}}/complete" id="form_{{$book->id}}_complete" method="post">

@@ -33,24 +33,11 @@
             @foreach($books as $book)
                 <tr>
                     <div class='book'>
-                        
-                        <!--<th>-->
-                        <!--    <form action="/home/{{$book->id}}/complete" id="form_{{$book->id}}" method="post">-->
-                        <!--        @csrf-->
-                        <!--        @method('PUT')-->
-                        <!--        <button type="button" onclick="completeTask({{$book->id}})">complete</button>-->
-                        <!--    </form>-->
-                        <!--</th>-->
-                        <!--<th>-->
-                        <!--    @if(($book->label_id)!=NULL)-->
-                        <!--    <a href="/label/{{$book->label_id}}">{{$book->label->name}}</a>-->
-                        <!--    @endif-->
-                        <!--</th>-->
                         <th>
                             {{$book->today_finished/$book->max*100}}%
                         </th>
                         <th>
-                            <a href="/index/{{$book->id}}">{{$book->name}}</a>
+                            <a href="/books/{{$book->id}}">{{$book->name}}</a>
                         </th>
                         <th>
                             {{$book->subject->name}}

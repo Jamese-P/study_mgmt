@@ -16,6 +16,9 @@ class ComprehensionSeeder extends Seeder
     public function run()
     {
         DB::table('comprehensions')->insert([
+            'name'=>'--',
+            ]);
+        DB::table('comprehensions')->insert([
             'name'=>'完璧',
             ]);
         DB::table('comprehensions')->insert([

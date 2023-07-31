@@ -24,7 +24,7 @@ class TodayController extends Controller
         $log=new Log();
         $log->book_id=$book->id;
         $log->number=$book->today_finished + 1;
-        $log->comprehension_id='1';
+        $log->comprehension_id='2';
         $log->learned_at=now();
         
         $book->today_finished=$book->today_finished + 1;

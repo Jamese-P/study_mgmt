@@ -26,9 +26,10 @@ Route::controller(TodayController::class)->group(function(){
 
 Route::controller(BookController::class)->group(function(){
     Route::get('/books','index');
+    Route::post('/books', 'store');
     Route::get('/books/create', 'create');
     Route::get('/books/{book}', 'show');
-    Route::post('/books', 'store');
-    Route::put('/books/{book}/edit', 'edit');
+    Route::put('/books/{book}', 'update');
+    Route::get('/books/{book}/edit', 'edit');
 });
 

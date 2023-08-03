@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,10 +15,10 @@ class TypeSeeder extends Seeder
     public function run()
     {
         DB::table('types')->insert([
-            'name'=>'単元',
-            ]);
+            'name' => '単元',
+        ]);
         DB::table('types')->insert([
-            'name'=>'ページ',
-            ]);
+            'name' => 'ページ',
+        ]);
     }
 }

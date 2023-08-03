@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('name',50);
+            $table->string('name', 50);
             $table->foreignId('subject_id')->constrained();
             $table->foreignId('type_id')->constrained();
             $table->integer('max');

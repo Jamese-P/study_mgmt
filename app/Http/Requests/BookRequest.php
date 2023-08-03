@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class BookRequest extends FormRequest
 {
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -15,13 +14,13 @@ class BookRequest extends FormRequest
     public function rules()
     {
         return [
-            'book.name'=>'required|string|max:100',
-            'book.subject_id'=>'required',
-            'book.type_id'=>'required',
-            'book.max'=>'required|gte:1',
-            'book.a_day'=>'required|gte:1',
-            'book.intarval_id'=>'required',
-            'book.next_learn_at'=>'required|date|after:today',
+            'book.name' => 'required|string|max:100',
+            'book.subject_id' => 'required',
+            'book.type_id' => 'required',
+            'book.max' => 'required|gte:1',
+            'book.a_day' => 'required|gte:1',
+            'book.intarval_id' => 'required',
+            'book.next_learn_at' => 'required|date|after:yesterday',
         ];
     }
 }

@@ -26,6 +26,7 @@
                 <th>次回予定日</th>
                 <th>一日実施量</th>
                 <th>学習間隔</th>
+                <th>終了予定日</th>
             </tr>
             @foreach($books as $book)
                 <tr>
@@ -47,6 +48,12 @@
                         </th>
                         <th>
                             {{$book->intarval->name}}
+                        </th>
+                        <th>
+                            @if
+                            
+                            @else
+                            @endif
                         </th>
                         <!--<th>-->
                         <!--    <form action="/home/{{$book->id}}" id="form_{{$book->id}}" method="post">-->

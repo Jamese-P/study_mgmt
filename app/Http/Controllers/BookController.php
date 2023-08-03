@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
@@ -8,9 +10,8 @@ use App\Models\Intarval;
 use App\Models\Log;
 use App\Models\Subject;
 use App\Models\Type;
-use Illuminate\Http\Request;
 
-class BookController extends Controller
+final class BookController extends Controller
 {
     public function index(Book $book)
     {
@@ -51,7 +52,7 @@ class BookController extends Controller
             'intarvals' => $intarval->get()]);
     }
 
-    public function update(Request $request, Book $book)
+    public function update(BookRequest $request, Book $book)
     {
         $input = $request['book'];
         $book->fill($input);

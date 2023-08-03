@@ -14,6 +14,14 @@
         <h2 class="max">終了{{$book->type->name}}:{{$book->max}}</h2>
         <h2>{{$book->intarval->name}}{{$book->a_day}}{{$book->type->name}}</h2>
         <h2 class="next_learn_at">次の学習日は{{$book->next_learn_at}}</h2>
+        <h2>終了予定日：
+            {{(($book->max-$book->finished)/$book->a_day-1)*$book->intarval->days}}
+            @if(($book->max-$book->finished)%$book->a_day==0)
+            {{\Carbon\Carbon::createFromFormat('Y-m-d',$book->next_learn_at)->addDays((($book->max-$book->finished)/$book->a_day-1)*$book->intarval->days)->format('Y-m-d')}}
+            @else
+            {{\Carbon\Carbon::createFromFormat('Y-m-d',$book->next_learn_at)->addDays((($book->max-$book->finished)/$book->a_day)*$book->intarval->days)->format('Y-m-d')}}
+            @endif
+        </h2>
         
         <a href="/books/{{$book->id}}/edit">edit</a>
         <a href="/today">back</a>

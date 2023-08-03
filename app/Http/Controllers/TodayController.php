@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Comprehension;
 use App\Models\Log;
 use Carbon\Carbon;
-use DateTime;
+use DateTimeImmutable;
 use Illuminate\Http\Request;
 
-class TodayController extends Controller
+final class TodayController extends Controller
 {
     public function show()
     {
@@ -28,7 +30,7 @@ class TodayController extends Controller
         $log->book_id = $book->id;
         $log->number = $book->today_finished + 1;
         $log->comprehension_id = '2';
-        $log->learned_at = new DateTime();
+        $log->learned_at = new DateTimeImmutable();
 
         $book->today_finished = $book->today_finished + 1;
 
@@ -55,7 +57,7 @@ class TodayController extends Controller
         $log->fill($input);
         $log->book_id = $book->id;
         $log->number = $unit;
-        $log->learned_at = new DateTime();
+        $log->learned_at = new DateTimeImmutable();
 
         $book->today_finished = $book->today_finished + 1;
 
@@ -71,7 +73,7 @@ class TodayController extends Controller
         $log->book_id = $book->id;
         $log->number = $book->today_finished + 1;
         $log->comprehension_id = '1';
-        $log->passed_at = new DateTime();
+        $log->passed_at = new DateTimeImmutable();
 
         $book->today_finished = $book->today_finished + 1;
 

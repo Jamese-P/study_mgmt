@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
-use DateTime;
+use DateTimeImmutable;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class BookSeeder extends Seeder
+final class BookSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -25,7 +27,7 @@ class BookSeeder extends Seeder
             'finished' => '0',
             'today_finished' => '0',
             'intarval_id' => '1',
-            'next_learn_at' => new DateTime(),
+            'next_learn_at' => new DateTimeImmutable(),
         ]);
 
         DB::table('books')->insert([
@@ -38,7 +40,7 @@ class BookSeeder extends Seeder
             'finished' => '0',
             'today_finished' => '0',
             'intarval_id' => '1',
-            'next_learn_at' => new DateTime('+1 day'),
+            'next_learn_at' => new DateTimeImmutable('+1 day'),
         ]);
     }
 }

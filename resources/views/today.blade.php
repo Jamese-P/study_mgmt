@@ -10,7 +10,7 @@
 
 <body>
     <h1>期限切れ</h1>
-    <h1>Today</h1>
+    <h1>Today {{\Carbon\Carbon::today()->format('Y/m/d')}}</h1>
         @foreach($books_today as $book)
             <div class='book'>
                 <h2><a href="/books/{{$book->id}}">{{$book->name}}</a></h2>
@@ -49,7 +49,7 @@
             
         @endforeach
         
-    <h1>Tommorow</h1>
+    <h1>Tommorow {{\Carbon\Carbon::tomorrow()->format('Y/m/d')}}</h1>
         <div class='book'>
         @foreach($books_today as $book)
             @if ($book->intarval_id=='1')

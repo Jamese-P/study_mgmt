@@ -50,9 +50,10 @@
                             {{$book->intarval->name}}
                         </th>
                         <th>
-                            @if
-                            
+                            @if(($book->max-$book->finished)%$book->a_day==0)
+                            {{\Carbon\Carbon::createFromFormat('Y-m-d',$book->next_learn_at)->addDays((($book->max-$book->finished)/$book->a_day-1)*$book->intarval->days)->format('Y-m-d')}}
                             @else
+                            {{\Carbon\Carbon::createFromFormat('Y-m-d',$book->next_learn_at)->addDays((($book->max-$book->finished)/$book->a_day)*$book->intarval->days)->format('Y-m-d')}}
                             @endif
                         </th>
                         <!--<th>-->

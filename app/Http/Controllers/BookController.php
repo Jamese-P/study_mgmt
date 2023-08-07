@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Intarval;
@@ -15,6 +17,7 @@ final class BookController extends Controller
 {
     public function index(Book $book)
     {
+        //ページを開いた時
         return view('books.index')->with(['books' => $book->get()]);
     }
 
@@ -52,7 +55,7 @@ final class BookController extends Controller
             'intarvals' => $intarval->get()]);
     }
 
-    public function update(BookRequest $request, Book $book)
+    public function update(Request $request, Book $book)
     {
         $input = $request['book'];
         $book->fill($input);

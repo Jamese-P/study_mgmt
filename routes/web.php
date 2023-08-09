@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [BookController::class, 'index']);
+Route::get('/', [TodayController::class, 'show']);
 
 Route::controller(TodayController::class)->group(function () {
     Route::get('/today', 'show');

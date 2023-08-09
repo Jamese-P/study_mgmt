@@ -22,6 +22,7 @@ final class DatabaseSeeder extends Seeder
             SubjectSeeder::class,
             ComprehensionSeeder::class,
             BookSeeder::class,
+            Book_mgmtSeeder::class,
         ]);
     }
 }

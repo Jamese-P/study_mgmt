@@ -16,10 +16,11 @@ class Book extends Model
         'subject_id',
         'type_id',
         'max',
-        'a_day',
-        'intarval_id',
-        'next_learn_at',
     ];
+    
+    public function book_mgmt(){
+        return $this->hasOne(Book_mgmt::class);
+    }
 
     public function logs()
     {

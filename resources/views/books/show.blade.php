@@ -8,28 +8,21 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1 class="name">{{$book->name}}</h1>
-        <h2 class="subject">{{$book->subject->name}}</h2>
-        <h2>進捗率：{{$book->today_finished/$book->max*100}}%</h2>
-        <h2 class="max">終了{{$book->type->name}}:{{$book->max}}</h2>
-        <h2>{{$book->intarval->name}}{{$book->a_day}}{{$book->type->name}}</h2>
-        <h2 class="next_learn_at">次の学習日は{{$book->next_learn_at}}</h2>
-        <h2>終了予定日：
-            {{(($book->max-$book->finished)/$book->a_day-1)*$book->intarval->days}}
-            @if(($book->max-$book->finished)%$book->a_day==0)
-            {{\Carbon\Carbon::createFromFormat('Y-m-d',$book->next_learn_at)->addDays((($book->max-$book->finished)/$book->a_day-1)*$book->intarval->days)->format('Y-m-d')}}
-            @else
-            {{\Carbon\Carbon::createFromFormat('Y-m-d',$book->next_learn_at)->addDays((($book->max-$book->finished)/$book->a_day)*$book->intarval->days)->format('Y-m-d')}}
-            @endif
-        </h2>
+        <h1 class="name">{{$book_mgmt->book->name}}</h1>
+        <h2 class="subject">{{$book_mgmt->book->subject->name}}</h2>
+        <h2>進捗率：{{$book_mgmt->today_finished/$book_mgmt->book->max*100}}%</h2>
+        <h2 class="max">終了{{$book_mgmt->book->type->name}}:{{$book_mgmt->book->max}}</h2>
+        <h2>{{$book_mgmt->intarval->name}}{{$book_mgmt->a_day}}{{$book_mgmt->book->type->name}}</h2>
+        <h2 class="next_learn_at">次の学習日は{{$book_mgmt->next_learn_at}}</h2>
+        <h2 class="end_date">終了予定日：{{$book_mgmt->end_date}}</h2>
         
-        <a href="/books/{{$book->id}}/edit">edit</a>
+        <a href="/books/{{$book_mgmt->book->id}}/edit">edit</a>
         <a href="/today">back</a>
         
         <h2>学習履歴</h2>
         <table border="1" style="border-collapse: collapse">
             <tr>
-                <th>{{$book->type->name}}</th>
+                <th>{{$book_mgmt->book->type->name}}</th>
                 <th>学習日時</th>
                 <th>理解度</th>
                 <th>コメント</th>

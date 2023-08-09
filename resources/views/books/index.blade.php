@@ -28,39 +28,35 @@
                 <th>学習間隔</th>
                 <th>終了予定日</th>
             </tr>
-            @foreach($books as $book)
+            @foreach($book_mgmts as $book_mgmt)
                 <tr>
                     <div class='book'>
                         <th>
-                            {{$book->today_finished/$book->max*100}}%
+                            {{$book_mgmt->book->today_finished/$book_mgmt->book->max*100}}%
                         </th>
                         <th>
-                            <a href="/books/{{$book->id}}">{{$book->name}}</a>
+                            <a href="/books/{{$book_mgmt->book_id}}">{{$book_mgmt->book->name}}</a>
                         </th>
                         <th>
-                            {{$book->subject->name}}
+                            {{$book_mgmt->book->subject->name}}
                         </th>
                         <th>
-                            <div style="color:red">{{$book->next_learn_at}}</div>
+                            <div style="color:red">{{$book_mgmt->next_learn_at}}</div>
                         </th>
                         <th>
-                            {{$book->a_day}}{{$book->type->name}}
+                            {{$book_mgmt->a_day}}{{$book_mgmt->book->type->name}}
                         </th>
                         <th>
-                            {{$book->intarval->name}}
+                            {{$book_mgmt->intarval->name}}
                         </th>
                         <th>
-                            @if(($book->max-$book->finished)%$book->a_day==0)
-                            {{\Carbon\Carbon::createFromFormat('Y-m-d',$book->next_learn_at)->addDays((($book->max-$book->finished)/$book->a_day-1)*$book->intarval->days)->format('Y-m-d')}}
-                            @else
-                            {{\Carbon\Carbon::createFromFormat('Y-m-d',$book->next_learn_at)->addDays((($book->max-$book->finished)/$book->a_day)*$book->intarval->days)->format('Y-m-d')}}
-                            @endif
+                            {{$book_mgmt->end_date}}
                         </th>
                         <!--<th>-->
-                        <!--    <form action="/home/{{$book->id}}" id="form_{{$book->id}}" method="post">-->
+                        <!--    <form action="/home/{{$book_mgmt->id}}" id="form_{{$book_mgmt->id}}" method="post">-->
                         <!--        @csrf-->
                         <!--        @method('DELETE')-->
-                        <!--        <button type="button" onclick="deleteTask({{$book->id}})">delete</button>-->
+                        <!--        <button type="button" onclick="deleteTask({{$book_mgmt->id}})">delete</button>-->
                         <!--    </form>-->
                         <!--</th>-->
                         

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Book_mgmt;
 use App\Models\Comprehension;
 use App\Models\Log;
 use Carbon\Carbon;
@@ -17,9 +18,9 @@ final class TodayController extends Controller
     {
         //'Asia/Tokyo'
         $today = Carbon::today();
-        $book_today = Book::whereDate('next_learn_at', $today)->get();
+        $book_today = Book_mgmt::whereDate('next_learn_at', $today)->get();
         $tomorrow = Carbon::tomorrow();
-        $book_tomorrow = Book::whereDate('next_learn_at', $tomorrow)->get();
+        $book_tomorrow = Book_mgmt::whereDate('next_learn_at', $tomorrow)->get();
 
         return view('today')->with(['books_today' => $book_today, 'books_tomorrow' => $book_tomorrow]);
     }

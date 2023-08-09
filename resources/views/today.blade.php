@@ -11,33 +11,35 @@
 <body>
     <h1>期限切れ</h1>
     <h1>Today {{\Carbon\Carbon::today()->format('Y/m/d')}}</h1>
-        @foreach($books_today as $book)
+        @foreach($books_today as $book_mtmg)
             <div class='book'>
-                <h2><a href="/books/{{$book->id}}">{{$book->name}}</a></h2>
+                <h2><a href="/books/{{$book_mtmg->book_id}}">{{$book_mtmg->book->name}}</a></h2>
                 <table>
-                    @for ($i = 0; $i<($book->a_day); $i++)
-                    @if ($book->max >= $book->finished+$i+1)
+                    @for ($i = 0; $i<($book_mtmg->a_day); $i++)
+                    @if ($book_mtmg->book->max >= $book_mtmg->finished+$i+1)
                         <tr>
-                            @if ($book->today_finished == ($book->finished + $i))
+                            @if ($book_mtmg->today_finished == ($book_mtmg->finished + $i))
                             <th>
-                                <a href="/today/{{$book->id}}/{{$book->finished + $i+1}}/complete">{{$book->type->name}}{{$book->finished+$i+1}}</a>
+                                <a href="/today/{{$book_mtmg->book->id}}/{{$book_mtmg->finished + $i+1}}/complete">
+                                    {{$book_mtmg->book->type->name}}{{$book_mtmg->finished+$i+1}}
+                                </a>
                             </th>
                             @else
                             <th>
-                                {{$book->type->name}}{{$book->finished+$i+1}}
+                                {{$book_mtmg->book->type->name}}{{$book_mtmg->finished+$i+1}}
                             </th>
                             @endif
-                            @if ($book->today_finished == ($book->finished + $i))
+                            @if ($book_mtmg->today_finished == ($book_mtmg->finished + $i))
                                 <th>
-                                    <form action="/today/{{$book->id}}/complete" id="form_{{$book->id}}_complete" method="post">
+                                    <form action="/today/{{$book_mtmg->book_id}}/complete" id="form_{{$book_mtmg->book_id}}_complete" method="post">
                                         @csrf
-                                        <button type="button" onclick="complete({{$book->id}})">complete</button>
+                                        <button type="button" onclick="complete({{$book_mtmg->book_id}})">complete</button>
                                     </form>
                                 </th>
                                 <th>
-                                    <form action="/today/{{$book->id}}/pass" id="form_{{$book->id}}_pass" method="post">
+                                    <form action="/today/{{$book_mtmg->book_id}}/pass" id="form_{{$book_mtmg->book_id}}_pass" method="post">
                                         @csrf
-                                        <button type="button" onclick="pass({{$book->id}})">pass</button>
+                                        <button type="button" onclick="pass({{$book_mtmg->book_id}})">pass</button>
                                     </form>
                                 </th>
                             @endif
@@ -87,6 +89,7 @@
                 </table>
             @endif
         @endforeach
+        
         @foreach($books_tomorrow as $book)
             
             <h2><a href="/books/{{$book->id}}">{{$book->name}}</a></h2>

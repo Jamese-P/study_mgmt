@@ -32,19 +32,24 @@ final class BookController extends Controller
 
     public function create(Subject $subject, Type $type, Intarval $intarval)
     {
-        return view('books.create')->with(['subjects' => $subject->get(),
+        return view('books.create')->with([
+            'subjects' => $subject->get(),
             'types' => $type->get(),
             'intarvals' => $intarval->get()]);
     }
 
-    public function store(BookRequest $request, Book $book)
+    public function store(Request $request, Book $book, Book_mgmt $book_mgmt)
     {
         $input = $request['book'];
         $book->fill($input);
-        $book->user_id = '1';
-        $book->finished = '0';
-        $book->today_finished = '0';
+        $input = $request['book_mgmt'];
+        $book_mgmt->fill($input);
+        $book_mgmt->user_id = '1';
+        $book_mgmt->finished = '0';
+        $book_mgmt->today_finished = '0';
         $book->save();
+        $book_mgmt->book_id=$book->id;
+        $book_mgmt->save();
 
         return redirect('/books/'.$book->id);
     }

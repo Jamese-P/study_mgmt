@@ -131,7 +131,7 @@
             </div>
         @endforeach
 
-    <a href="/">参考書一覧</a>
+    <a href="/books">参考書一覧</a>
     <br>
     <a href="/books/create">create</a>
     

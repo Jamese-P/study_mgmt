@@ -37,12 +37,12 @@
             </div>
             <div class="a_day">
                 <h2>1日の学習単元またはページ</h2>
-                <input type="number" name="book[a_day]" placeholder="1日の学習ページ" value="{{old('book.a_day')}}">
-                <p class="a_day__error" style="color:red">{{ $errors->first('book.a_day') }}</p>
+                <input type="number" name="book_mgmt[a_day]" placeholder="1日の学習ページ" value="{{old('book_mgmt.a_day')}}">
+                <p class="a_day__error" style="color:red">{{ $errors->first('book_mgmt.a_day') }}</p>
             </div>
             <div class="intarval">
                 <h2>学習間隔</h2>
-                <select name="book[intarval_id]">
+                <select name="book_mgmt[intarval_id]">
                     @foreach($intarvals as $intarval)
                         <option value="{{$intarval->id}}">{{$intarval->name}}</option>
                     @endforeach
@@ -50,8 +50,8 @@
             </div>
             <div class="next_learn_at">
                 <h2>学習日</h2>
-                <input type="date" name="book[next_learn_at]" value="{{old('book.next_learn_at')}}">
-                <p class="next_learn_at__error" style="color:red">{{ $errors->first('book.next_learn_at') }}</p>
+                <input type="date" name="book_mgmt[next_learn_at]" value="{{old('book_mgmt.next_learn_at')}}">
+                <p class="next_learn_at__error" style="color:red">{{ $errors->first('book_mgmt.next_learn_at') }}</p>
             </div>
             <input type="submit" value="保存"/>
         </form>

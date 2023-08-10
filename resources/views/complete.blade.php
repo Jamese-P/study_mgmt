@@ -1,3 +1,4 @@
+<x-app-layout>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -7,7 +8,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <form action="/today/{{$book->id}}/{{$unit}}" method="POST">
+        <form action="{{route('today.make_log',['book'=>$book->id,'unit'=>$unit])}}" method="POST">
             @csrf
             <div class="name">
                 <h1>{{$book->name}} {{$book->type->name}}{{$unit}}</h1>
@@ -33,3 +34,4 @@
         </div>
     </body>
 </html>
+</x-app-layout>

@@ -1,3 +1,7 @@
+<x-app-layout>
+    <x-slot name="header">
+        参考書詳細
+    </x-slot>
 <!DOCTYPE HTML>
 <html lang="{{str_replace('_','_',app()->getLocale())}}">
     <head>
@@ -43,3 +47,4 @@
         
     </body>
 </html>
+</x-app-layout>

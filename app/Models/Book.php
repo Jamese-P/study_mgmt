@@ -17,8 +17,9 @@ class Book extends Model
         'type_id',
         'max',
     ];
-    
-    public function book_mgmt(){
+
+    public function book_mgmt()
+    {
         return $this->hasOne(Book_mgmt::class);
     }
 

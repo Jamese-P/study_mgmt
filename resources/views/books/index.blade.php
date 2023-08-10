@@ -1,3 +1,7 @@
+<x-app-layout>
+    <x-slot name="header">
+        参考書一覧
+    </x-slot>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -9,11 +13,7 @@
 </head>
 
 <body>
-    <a href="/today">today</a>
-    <br>
     <a href="/books/create">create</a>
-    <br>
-    <a href="/label">label</a>
     <br>
     
     <h2>参考書一覧</h2>
@@ -24,33 +24,53 @@
                 <th>参考書名</th>
                 <th>教科</th>
                 <th>次回予定日</th>
-                <th>一日実施量</th>
                 <th>学習間隔</th>
+                <th>実施量</th>
+                <th>終了</th>
                 <th>終了予定日</th>
             </tr>
             @foreach($book_mgmts as $book_mgmt)
                 <tr>
                     <div class='book'>
                         <th>
-                            {{$book_mgmt->book->today_finished/$book_mgmt->book->max*100}}%
+                            <div class="percent">
+                            {{$book_mgmt->today_finished/$book_mgmt->book->max*100}}%
+                            </div>
                         </th>
                         <th>
+                            <div class="name">
                             <a href="/books/{{$book_mgmt->book_id}}">{{$book_mgmt->book->name}}</a>
+                            </div>
                         </th>
                         <th>
+                            <div class="subject">
                             {{$book_mgmt->book->subject->name}}
+                            </div>
                         </th>
                         <th>
-                            <div style="color:red">{{$book_mgmt->next_learn_at}}</div>
+                            <div class="next_learn_at" style="color:red">
+                            {{$book_mgmt->next_learn_at}}
+                            </div>
                         </th>
                         <th>
-                            {{$book_mgmt->a_day}}{{$book_mgmt->book->type->name}}
-                        </th>
-                        <th>
+                            <div class="intarval">
                             {{$book_mgmt->intarval->name}}
+                            </div>
                         </th>
                         <th>
+                            <div class="a_day">
+                            {{$book_mgmt->a_day}}{{$book_mgmt->book->type->name}}
+                            </div>
+                        </th>
+                        <th>
+                            <div class="max">
+                                {{$book_mgmt->book->max}}
+                            </div>
+                        </th>
+                        <th>
+                            <div class="end_date">
                             {{$book_mgmt->end_date}}
+                            </div>
                         </th>
                         <!--<th>-->
                         <!--    <form action="/home/{{$book_mgmt->id}}" id="form_{{$book_mgmt->id}}" method="post">-->
@@ -83,3 +103,4 @@
         </script>
     </body>
 </html>
+</x-app-layout>

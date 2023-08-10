@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use URL;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        URL::forceScheme('https');
+        $this->app['request']->server->set('HTTPS', 'on');
     }
 }

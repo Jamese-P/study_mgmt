@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TodayController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,26 +13,38 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
-Route::get('/', [TodayController::class, 'show']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::controller(TodayController::class)->group(function () {
-    Route::get('/today', 'show');
-    Route::post('/today/{book}/complete', 'complete2');
-    Route::post('/today/{book}/pass', 'pass');
-    Route::get('/today/{book}/{unit}/complete', 'complete');
-    Route::post('/today/{book}/{unit}', 'make_log');
+Route::get('/', [TodayController::class, 'show'])->name('today')->middleware(['auth']);
+
+Route::controller(TodayController::class)->middleware(['auth'])->group(function () {
+    Route::get('/today', 'show')->name('today');
+    Route::post('/today/{book}/complete', 'complete2')->name('today.complete2');
+    Route::post('/today/{book}/pass', 'pass')->name('today.pass');
+    Route::get('/today/{book}/{unit}/complete', 'complete')->name('today.complete');
+    Route::post('/today/{book}/{unit}', 'make_log')->name('today.make_log');
 });
 
-Route::controller(BookController::class)->group(function () {
-    Route::get('/books', 'index');
-    Route::post('/books', 'store');
-    Route::get('/books/create', 'create');
-    Route::get('/books/{book}', 'show');
-    Route::put('/books/{book}', 'update');
-    Route::get('/books/{book}/edit', 'edit');
+Route::controller(BookController::class)->middleware(['auth'])->group(function () {
+    Route::get('/books', 'index')->name('book.index');
+    Route::post('/books', 'store')->name('book.store');
+    Route::get('/books/create', 'create')->name('book.create');
+    Route::get('/books/{book}', 'show')->name('book.show');
+    Route::put('/books/{book}', 'update')->name('book.update');
+    Route::get('/books/{book}/edit', 'edit')->name('book.edit');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

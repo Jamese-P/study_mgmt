@@ -76,7 +76,7 @@
                             @endif
                             @if ($book_mgmt->today_finished == ($book_mgmt->finished+$book_mgmt->a_day + $i))
                                 <th>
-                                    <form action="/today/{{$book_mgmt->book_id}}/complete" id="form_{{$book_mgmt->book_id}}_complete" method="post">
+                                    <form action="/today/{{$book_mgmt->book_id}}/{{$book_mgmt->today_finished+1}}/complete" id="form_{{$book_mgmt->book_id}}_complete" method="get">
                                         @csrf
                                         <button type="button" onclick="complete({{$book_mgmt->book_id}})">complete</button>
                                     </form>
@@ -116,7 +116,7 @@
                             @endif
                             @if ($book_mgmt->today_finished == ($book_mgmt->finished + $i))
                                 <th>
-                                    <form action="/today/{{$book_mgmt->book_id}}/complete" id="form_{{$book_mgmt->book_id}}_complete" method="post">
+                                    <form action="/today/{{$book_mgmt->book_id}}/{{$book_mgmt->today_finished+1}}/complete" id="form_{{$book_mgmt->book_id}}_complete" method="get">
                                         @csrf
                                         <button type="button" onclick="complete({{$book_mgmt->book_id}})">complete</button>
                                     </form>

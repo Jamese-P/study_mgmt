@@ -11,22 +11,34 @@ use App\Models\Log;
 use Carbon\Carbon;
 use DateTimeImmutable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TodayController extends Controller
 {
     public function show()
     {
         //ページを開いた時
+        //すべてのものを更新
+        $book_mgmts = Book_mgmt::where('user_id', Auth::id())->get();
+        $today = Carbon::today();
+        foreach ($book_mgmts as $book) {
+            $schedul = Carbon::parse($book->next_learn_at);
+            if ($schedul->lt($today)) {
+                $book->finished = $book->today_finished;
+                $book->next_learn_at = $schedul->addDays($book->intarval->days);
+                $book->save();
+            }
+        }
+
         //昨日が予定日のものの更新
         $yesterday = Carbon::yesterday();
-        $book_yesterday = Book_mgmt::whereDate('next_learn_at', $yesterday)->get();
+        $book_yesterday = Book_mgmt::whereDate('next_learn_at', $yesterday)->where('user_id', Auth::id())->get();
         foreach ($book_yesterday as $book) {
             $book->finished = $book->today_finished;
-            $book->next_learn_at = Carbon::createFromFormat('Y-m-d', $book->next_learn_at)->addDays($book->intarval->days);
+            $book->next_learn_at = Carbon::parse($book->next_learn_at)->addDays($book->intarval->days);
             $book->save();
         }
 
-        $book_mgmts = Book_mgmt::get();
         //終了予定日の再計算
         foreach ($book_mgmts as $book) {
             $rest_times = ceil(($book->book->max - $book->finished) / $book->a_day) - 1;
@@ -34,10 +46,9 @@ class TodayController extends Controller
             $book->save();
         }
 
-        $today = Carbon::today();
-        $book_today = Book_mgmt::whereDate('next_learn_at', $today)->get();
+        $book_today = Book_mgmt::whereDate('next_learn_at', $today)->where('user_id', Auth::id())->get();
         $tomorrow = Carbon::tomorrow();
-        $book_tomorrow = Book_mgmt::whereDate('next_learn_at', $tomorrow)->get();
+        $book_tomorrow = Book_mgmt::whereDate('next_learn_at', $tomorrow)->where('user_id', Auth::id())->get();
 
         return view('today')->with(['books_today' => $book_today, 'books_tomorrow' => $book_tomorrow]);
     }

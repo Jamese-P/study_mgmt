@@ -13,7 +13,10 @@
 </head>
 
 <body>
+    
     <h1>期限切れ</h1>
+    
+    
     <h1>Today {{\Carbon\Carbon::today()->format('Y/m/d')}}</h1>
         @foreach($books_today as $book_mgmt)
             <div class='book'>

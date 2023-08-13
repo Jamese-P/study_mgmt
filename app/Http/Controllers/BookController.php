@@ -16,7 +16,7 @@ final class BookController extends Controller
 {
     public function index(Book_mgmt $book_mgmt)
     {
-        return view('books.index')->with(['book_mgmts' => $book_mgmt->where('user_id', Auth::id())->get()]);
+        return view('books.index')->with(['book_mgmts' => $book_mgmt->where('user_id',Auth::id())->get()]);
     }
 
     public function show(Book $book)

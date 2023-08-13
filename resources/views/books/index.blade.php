@@ -16,7 +16,7 @@
     <a href="/books/create">create</a>
     <br>
     
-    <h2>参考書一覧</h2>
+    <h2>学習中参考書</h2>
     <div class='books'>
         <table border="1">
             <tr>
@@ -84,6 +84,10 @@
                 </tr>
             @endforeach
         </table>
+    </div>
+    
+    <div>
+        <h2>学習済み参考書</h2>
     </div>
         <script>
             function completeTask(id){

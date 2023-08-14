@@ -43,4 +43,9 @@ final class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function book_mgmts()
+    {
+        return $this->hasMany(Book_mgmt::class);
+    }
 }

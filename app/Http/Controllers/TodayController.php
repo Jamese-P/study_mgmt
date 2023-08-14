@@ -15,29 +15,13 @@ use Illuminate\Support\Facades\Auth;
 
 class TodayController extends Controller
 {
-    public function show()
+    public function show(Book_mgmt $book_mgmt)
     {
         //ページを開いた時
-        //すべてのものを更新
-        $book_mgmts = Book_mgmt::where('user_id', Auth::id())->get();
+        $book_mgmts = $book_mgmt->get_under_progress();
         $today = Carbon::today();
-        foreach ($book_mgmts as $book) {
-            $schedul = Carbon::parse($book->next_learn_at);
-            if ($schedul->lt($today)) {
-                $book->finished = $book->today_finished;
-                $book->next_learn_at = $schedul->addDays($book->intarval->days);
-                $book->save();
-            }
-        }
 
-        //昨日が予定日のものの更新
-        $yesterday = Carbon::yesterday();
-        $book_yesterday = Book_mgmt::whereDate('next_learn_at', $yesterday)->where('user_id', Auth::id())->get();
-        foreach ($book_yesterday as $book) {
-            $book->finished = $book->today_finished;
-            $book->next_learn_at = Carbon::parse($book->next_learn_at)->addDays($book->intarval->days);
-            $book->save();
-        }
+        $this->update_next_learn();
 
         //終了予定日の再計算
         foreach ($book_mgmts as $book) {
@@ -46,27 +30,32 @@ class TodayController extends Controller
             $book->save();
         }
 
-        $book_today = Book_mgmt::whereDate('next_learn_at', $today)->where('user_id', Auth::id())->get();
+        //$book_today = Book_mgmt::whereDate('next_learn_at', $today)->where('user_id', Auth::id())->get();
+        $book_today = $book_mgmt->get_under_progress_byDate($today);
         $tomorrow = Carbon::tomorrow();
-        $book_tomorrow = Book_mgmt::whereDate('next_learn_at', $tomorrow)->where('user_id', Auth::id())->get();
+        $book_tomorrow = $book_mgmt->get_under_progress_byDate($tomorrow);
 
         return view('today')->with(['books_today' => $book_today, 'books_tomorrow' => $book_tomorrow]);
     }
 
-    public function complete2(Book $book)
+    private function update_next_learn()
     {
-        $log = new Log();
-        $log->book_id = $book->id;
-        $log->number = $book->today_finished + 1;
-        $log->comprehension_id = '2';
-        $log->learned_at = new DateTimeImmutable();
+        //すべてのものを更新
+        $book_mgmt = new Book_mgmt();
+        $book_mgmts = $book_mgmt->get_under_progress();
+        $today = Carbon::today();
+        foreach ($book_mgmts as $book) {
+            $schedul = Carbon::parse($book->next_learn_at);
+            if ($schedul->lt($today)) {
+                $book->finished = $book->today_finished;
+                $book->next_learn_at = $schedul->addDays($book->intarval->days);
 
-        $book->today_finished = $book->today_finished + 1;
-
-        $log->save();
-        $book->save();
-
-        return redirect('/today');
+                if ($book->book->max === $book->today_finished) {
+                    $book->finish_flag = 1;
+                }
+                $book->save();
+            }
+        }
     }
 
     public function complete(Book $book, int $unit)
@@ -88,11 +77,10 @@ class TodayController extends Controller
         $log->number = $unit;
         $log->learned_at = new DateTimeImmutable();
 
-        $book_mgmt = Book_mgmt::where('book_id', $book->id)->first();
+        $book_mgmt = $book->book_mgmt()->first();
         $book_mgmt->today_finished = $book_mgmt->today_finished + 1;
 
         $log->save();
-        $book->save();
         $book_mgmt->save();
 
         return redirect('/today');
@@ -106,10 +94,11 @@ class TodayController extends Controller
         $log->comprehension_id = '1';
         $log->passed_at = new DateTimeImmutable();
 
-        $book->today_finished = $book->today_finished + 1;
+        $book_mgmt = $book->book_mgmt()->first();
+        $book_mgmt->today_finished = $book_mgmt->today_finished + 1;
 
         $log->save();
-        $book->save();
+        $book_mgmt->save();
 
         return redirect('/today');
     }

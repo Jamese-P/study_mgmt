@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('comprehension_id')->constrained()->nullable();
             $table->timestamp('learned_at')->nullable();
             $table->timestamp('passed_at')->nullable();
-            $table->string('comment', 200)->default('NULL')->nullabele();
+            $table->string('comment', 200)->default('NULL')->nullable();
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate()->nullable();
         });

@@ -20,9 +20,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('book_id')->constrained();
             $table->integer('a_day');
+            $table->foreignId('intarval_id')->constrained();
             $table->integer('finished');
             $table->integer('today_finished');
-            $table->foreignId('intarval_id')->constrained();
+            $table->integer('finish_flag')->default('0');
             $table->date('next_learn_at');
             $table->date('end_date')->nullable();
             $table->timestamp('created_at')->useCurrent()->nullable();

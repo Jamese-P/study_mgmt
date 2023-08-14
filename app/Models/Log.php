@@ -27,4 +27,5 @@ final class Log extends Model
     {
         return $this->belongsTo(Comprehension::class);
     }
+    
 }

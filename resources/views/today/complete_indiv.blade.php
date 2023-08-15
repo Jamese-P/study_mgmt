@@ -8,11 +8,20 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <form action="{{route('today.comp_log',['book'=>$book->id,'unit'=>$unit])}}" method="POST">
+        <form action="{{route('today.comp_indiv_log')}}" method="POST">
             @csrf
-            @method('PUT')
             <div class="name">
-                <h1>{{$book->name}} {{$book->type->name}}{{$unit}}</h1>
+                <h1>参考書名</h1>
+                <select name="log[book_id]">
+                    @foreach($books as $book)
+                        <option value="{{$book->id}}">{{$book->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="number">
+                <h2>単元またはページ</h2>
+                <input type="number" name="log[number]" placeholder="学習ページ" value="{{old('log.number')}}">
+                <p class="number__error" style="color:red">{{ $errors->first('log.number') }}</p>
             </div>
             <div class="comprehension">
                 <h2>理解度</h2>

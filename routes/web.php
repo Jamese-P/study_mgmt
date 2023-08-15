@@ -11,16 +11,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-//Route::get('/', [TodayController::class, 'show'])->name('today')->middleware(['auth']);
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::controller(TodayController::class)->middleware(['auth'])->group(function () {
     Route::get('/today', 'show')->name('today');
+    Route::get('/today/complete', 'complete_indiv')->name('today.comp_indiv');
+    Route::post('/today/complete', 'complete_indiv_log')->name('today.comp_indiv_log');
     Route::put('/today/{book}/{unit}/pass', 'pass')->name('today.pass');
     Route::get('/today/{book}/{unit}/complete', 'complete')->name('today.complete');
-    Route::put('/today/{book}/{unit}', 'make_log')->name('today.make_log');
+    Route::put('/today/{book}/{unit}', 'complete_log')->name('today.comp_log');
 });
 
 Route::controller(BookController::class)->middleware(['auth'])->group(function () {

@@ -13,7 +13,8 @@
 </head>
 
 <body>
-    
+    <a href="{{route('today.comp_indiv')}}">学習登録</a>
+    <br>
     <h1>期限切れ</h1>
     
     <br>

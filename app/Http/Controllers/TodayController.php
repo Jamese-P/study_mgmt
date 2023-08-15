@@ -43,50 +43,49 @@ class TodayController extends Controller
 
         return view('today')->with(['books_today' => $book_today, 'books_tomorrow' => $book_tomorrow]);
     }
-    
-    public function complete_indiv(Book $book,Comprehension $comprehension){
 
+    public function complete_indiv(Book $book, Comprehension $comprehension)
+    {
         return view('today.complete_indiv')->with([
-            'books'=>$book->get(),
+            'books' => $book->get(),
             'comprehensions' => $comprehension->get(),
-            ]);
-        
+        ]);
     }
-    
-    public function complete_indiv_log(Request $request){
-        $input=$request['log'];
-        
-        $book_id=$input["book_id"];
-        $book=Book::where('id',$book_id)->first();
-        
-        $unit=$input["number"];
-        
+
+    public function complete_indiv_log(Request $request)
+    {
+        $input = $request['log'];
+
+        $book_id = $input['book_id'];
+        $book = Book::where('id', $book_id)->first();
+
+        $unit = $input['number'];
+
         $log = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->where('number', $unit)->first();
-        if(!$log){
-            
-            $log =new Log();
+        if (! $log) {
+            $log = new Log();
         }
-        
+
         $log->fill($input);
-        $log->learned_at=new DateTimeImmutable();
+        $log->learned_at = new DateTimeImmutable();
         $log->save();
-        
+
         return redirect('/today');
     }
 
-    public function complete(Book $book, int $unit,Comprehension $comprehension)
+    public function complete(Book $book, int $unit, Comprehension $comprehension)
     {
         return view('complete')->with([
             'book' => $book,
             'unit' => $unit,
             'comprehensions' => $comprehension->get(),
-            ]);
+        ]);
     }
 
     public function complete_log(Request $request, Book $book, int $unit)
     {
         $input = $request['log'];
-        $log = $book->logs()->whereNull('learned_at')->WhereNull('passed_at')->where('number', $unit)->first();
+        $log = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->where('number', $unit)->first();
         if (! $log) {
             $log = new Log();
             $log->book_id = $book->id;
@@ -97,7 +96,7 @@ class TodayController extends Controller
         $log->save();
 
         $book_mgmt = $book->book_mgmt()->first();
-        $log_next = $book->logs()->whereNull('learned_at')->WhereNull('passed_at')->orderBy('number', 'asc')->first();
+        $log_next = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->orderBy('number', 'asc')->first();
         if ($log_next) {
             $book_mgmt->next = $log_next->number;
             $book_mgmt->today_rest--;
@@ -112,13 +111,13 @@ class TodayController extends Controller
 
     public function pass(Book $book, int $unit)
     {
-        $log = $book->logs()->whereNull('learned_at')->WhereNull('passed_at')->where('number', $unit)->first();
+        $log = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->where('number', $unit)->first();
         if ($log) {
             $log->delete();
         }
 
         $book_mgmt = $book->book_mgmt()->first();
-        $log_next = $book->logs()->whereNull('learned_at')->WhereNull('passed_at')->orderBy('number', 'asc')->first();
+        $log_next = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->orderBy('number', 'asc')->first();
         if ($log_next) {
             $book_mgmt->next = $log_next->number;
         } else {
@@ -129,5 +128,4 @@ class TodayController extends Controller
 
         return redirect('/today');
     }
-
 }

@@ -6,11 +6,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Book_mgmt;
+use App\Models\Comprehension;
 use App\Models\Intarval;
 use App\Models\Log;
 use App\Models\Subject;
 use App\Models\Type;
-use App\Models\Comprehension;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -111,7 +111,7 @@ final class BookController extends Controller
         ]);
     }
 
-    public function make_log_relearn(Book $book,Request $request)
+    public function make_log_relearn(Book $book, Request $request)
     {
         $book_mgmt = $book->book_mgmt()->first();
 
@@ -120,8 +120,8 @@ final class BookController extends Controller
         $book_mgmt->finished = '0';
         $book_mgmt->finish_flag = '0';
         $book_mgmt->save();
-        
-        $comprehension=$request->comprehension_id;
+
+        $comprehension = $request->comprehension_id;
         echo $comprehension;
 
         for ($i = 1; $i <= $book->max; $i++) {
@@ -134,7 +134,7 @@ final class BookController extends Controller
             }
         }
 
-        $log_next = $book->logs()->whereNull('learned_at')->WhereNull('passed_at')->orderBy('number', 'asc')->first();
+        $log_next = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->orderBy('number', 'asc')->first();
         if ($log_next) {
             $book_mgmt->next = $log_next->number;
         } else {

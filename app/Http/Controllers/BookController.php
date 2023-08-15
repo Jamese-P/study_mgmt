@@ -6,23 +6,31 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Book_mgmt;
+use App\Models\Comprehension;
 use App\Models\Intarval;
 use App\Models\Log;
 use App\Models\Subject;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 final class BookController extends Controller
 {
     public function index(Book_mgmt $book_mgmt)
     {
-        return view('books.index')->with(['book_mgmts' => $book_mgmt->get()]);
+        $book_progress = $book_mgmt->get_under_progress();
+        $book_finish = $book_mgmt->get_finished();
+
+        return view('books.index')->with([
+            'book_progress' => $book_progress,
+            'book_finish' => $book_finish,
+        ]);
     }
 
     public function show(Book $book)
     {
-        $log = Log::where('book_id', $book->id)->get();
-        $book_mgmt = Book_mgmt::where('book_id', $book->id)->first();
+        $log = $book->logs()->whereNotNull('learned_at')->orWhereNotNull('passed_at')->orderBy('learned_at', 'desc')->get();
+        $book_mgmt = $book->book_mgmt()->first();
 
         return view('books.show')->with(['book_mgmt' => $book_mgmt, 'logs' => $log]);
     }
@@ -39,23 +47,41 @@ final class BookController extends Controller
     {
         $input = $request['book'];
         $book->fill($input);
+        $book->save();
+
         $input = $request['book_mgmt'];
         $book_mgmt->fill($input);
-        $book_mgmt->user_id = '1';
+        $book_mgmt->user_id = Auth::user()->id;
         $book_mgmt->finished = '0';
-        $book_mgmt->today_finished = '0';
-        $book->save();
         $book_mgmt->book_id = $book->id;
+        $book_mgmt->next = 1;
         $book_mgmt->save();
+
+        $book_mgmt->today_rest = $book_mgmt->a_day;
+
+        $book_mgmt->save();
+
+        $this->logs_to_learn(1, $book->max, $book);
 
         return redirect('/books/'.$book->id);
     }
 
+    private function logs_to_learn(int $start, int $finish, Book $book)
+    {
+        for ($i = $start; $i <= $finish; $i++) {
+            $log = new Log();
+            $log->book_id = $book->id;
+            $log->number = $i;
+            $log->save();
+        }
+    }
+
     public function edit(Book $book, Subject $subject, Type $type, Intarval $intarval)
     {
-        $book_mgmt=Book_mgmt::where('book_id', $book->id)->first();
-        
-        return view('books.edit')->with(['book_mgmt' => $book_mgmt,
+        $book_mgmt = $book->book_mgmt()->first();
+
+        return view('books.edit')->with([
+            'book_mgmt' => $book_mgmt,
             'subjects' => $subject->get(),
             'types' => $type->get(),
             'intarvals' => $intarval->get()]);
@@ -63,16 +89,60 @@ final class BookController extends Controller
 
     public function update(Request $request, Book $book)
     {
-        $book_mgmt=Book_mgmt::where('book_id', $book->id)->first();
-        
+        $book_mgmt = $book->book_mgmt()->first();
+
         $input = $request['book'];
         $book->fill($input);
         $book->save();
-        
-        $input=$request['book_mgmt'];
+
+        $input = $request['book_mgmt'];
         $book_mgmt->fill($input);
         $book_mgmt->save();
 
         return redirect('/books/'.$book->id);
+    }
+
+    public function relearn(Book $book, Intarval $intarval, Comprehension $comprehension)
+    {
+        return view('books.relearn')->with([
+            'book' => $book,
+            'intarvals' => $intarval->get(),
+            'comprehensions' => $comprehension->get(),
+        ]);
+    }
+
+    public function make_log_relearn(Book $book, Request $request)
+    {
+        $book_mgmt = $book->book_mgmt()->first();
+
+        $input = $request['book_mgmt'];
+        $book_mgmt->fill($input);
+        $book_mgmt->finished = '0';
+        $book_mgmt->finish_flag = '0';
+        $book_mgmt->save();
+
+        $comprehension = $request->comprehension_id;
+        echo $comprehension;
+
+        for ($i = 1; $i <= $book->max; $i++) {
+            $log = $book->logs()->where('number', $i)->orderBy('learned_at', 'desc')->first();
+            if ($log && $log->comprehension_id >= $comprehension) {
+                $log_new = new Log();
+                $log_new->number = $log->number;
+                $log_new->book_id = $book->id;
+                $log_new->save();
+            }
+        }
+
+        $log_next = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->orderBy('number', 'asc')->first();
+        if ($log_next) {
+            $book_mgmt->next = $log_next->number;
+        } else {
+            $book_mgmt->finish_flag = 1;
+        }
+        $book_mgmt->today_rest = $book_mgmt->a_day;
+        $book_mgmt->save();
+
+        return redirect('/books');
     }
 }

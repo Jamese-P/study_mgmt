@@ -16,7 +16,7 @@
     <a href="/books/create">create</a>
     <br>
     
-    <h2>参考書一覧</h2>
+    <h2>学習中参考書</h2>
     <div class='books'>
         <table border="1">
             <tr>
@@ -29,12 +29,12 @@
                 <th>終了</th>
                 <th>終了予定日</th>
             </tr>
-            @foreach($book_mgmts as $book_mgmt)
+            @foreach($book_progress as $book_mgmt)
                 <tr>
                     <div class='book'>
                         <th>
                             <div class="percent">
-                            {{$book_mgmt->today_finished/$book_mgmt->book->max*100}}%
+                            {{$book_mgmt->finished/$book_mgmt->book->max*100}}%
                             </div>
                         </th>
                         <th>
@@ -85,18 +85,85 @@
             @endforeach
         </table>
     </div>
+    
+    <br>
+    
+    <h2>学習済み参考書</h2>
+    <div class='books'>
+        <table border="1">
+            <tr>
+                <th>進捗率</th>
+                <th>参考書名</th>
+                <th>教科</th>
+                <th>次回予定日</th>
+                <th>学習間隔</th>
+                <th>実施量</th>
+                <th>終了</th>
+                <th>終了日</th>
+                <th></th>
+            </tr>
+            @foreach($book_finish as $book_mgmt)
+                <tr>
+                    <div class='book'>
+                        <th>
+                            <div class="percent">
+                            {{$book_mgmt->finished/$book_mgmt->book->max*100}}%
+                            </div>
+                        </th>
+                        <th>
+                            <div class="name">
+                            <a href="/books/{{$book_mgmt->book_id}}">{{$book_mgmt->book->name}}</a>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="subject">
+                            {{$book_mgmt->book->subject->name}}
+                            </div>
+                        </th>
+                        <th>
+                            <div class="next_learn_at" style="color:red">
+                            {{$book_mgmt->next_learn_at}}
+                            </div>
+                        </th>
+                        <th>
+                            <div class="intarval">
+                            {{$book_mgmt->intarval->name}}
+                            </div>
+                        </th>
+                        <th>
+                            <div class="a_day">
+                            {{$book_mgmt->a_day}}{{$book_mgmt->book->type->name}}
+                            </div>
+                        </th>
+                        <th>
+                            <div class="max">
+                                {{$book_mgmt->book->max}}
+                            </div>
+                        </th>
+                        <th>
+                            <div class="end_date">
+                            {{$book_mgmt->end_date}}
+                            </div>
+                        </th>
+                        <th>
+                            <form action="/books/{{$book_mgmt->book_id}}/relearn" id="form_{{$book_mgmt->id}}" method="get">
+                                <button type="button" onclick="relearn({{$book_mgmt->id}})">再学習</button>
+                            </form>
+                        </th>
+                        
+                    </div>
+                </tr>
+            @endforeach
+        </table>
+    </div>
+        
+        
+
         <script>
-            function completeTask(id){
-                'use strict'
-                if(confirm('complete?')){
-                    document.getElementById(`form_${id}`).submit();
-                }
-                
-            }
-            function deleteTask(id){
+            function relearn(id){
                 'use strict'
                 
-                if(confirm('delete? \n not come back')){
+                if(confirm('再学習しますか？')){
                     document.getElementById(`form_${id}`).submit();
                 }
             }

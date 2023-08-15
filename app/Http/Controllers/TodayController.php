@@ -14,19 +14,22 @@ use Illuminate\Http\Request;
 
 class TodayController extends Controller
 {
-    public function show()
+    public function show(Book_mgmt $book_mgmt)
     {
         //ページを開いた時
-        //昨日が予定日のものの更新
-        $yesterday = Carbon::yesterday();
-        $book_yesterday = Book_mgmt::whereDate('next_learn_at', $yesterday)->get();
-        foreach ($book_yesterday as $book) {
-            $book->finished = $book->today_finished;
-            $book->next_learn_at = Carbon::createFromFormat('Y-m-d', $book->next_learn_at)->addDays($book->intarval->days);
-            $book->save();
+        $book_mgmts = $book_mgmt->get_under_progress();
+        $today = Carbon::today();
+
+        $today = Carbon::today();
+        foreach ($book_mgmts as $book) {
+            $schedul = Carbon::parse($book->next_learn_at);
+            if ($schedul->lt($today)) {
+                $book->today_rest = $book->book->max;
+                $book->next_learn_at = $schedul->addDays($book->intarval->days);
+                $book->save();
+            }
         }
 
-        $book_mgmts = Book_mgmt::get();
         //終了予定日の再計算
         foreach ($book_mgmts as $book) {
             $rest_times = ceil(($book->book->max - $book->finished) / $book->a_day) - 1;
@@ -34,71 +37,94 @@ class TodayController extends Controller
             $book->save();
         }
 
-        $today = Carbon::today();
-        $book_today = Book_mgmt::whereDate('next_learn_at', $today)->get();
+        $book_today = $book_mgmt->get_under_progress_byDate($today);
         $tomorrow = Carbon::tomorrow();
-        $book_tomorrow = Book_mgmt::whereDate('next_learn_at', $tomorrow)->get();
+        $book_tomorrow = $book_mgmt->get_under_progress_byDate($tomorrow);
 
         return view('today')->with(['books_today' => $book_today, 'books_tomorrow' => $book_tomorrow]);
     }
 
-    public function complete2(Book $book)
+    public function complete_indiv(Book $book, Comprehension $comprehension)
     {
-        $log = new Log();
-        $log->book_id = $book->id;
-        $log->number = $book->today_finished + 1;
-        $log->comprehension_id = '2';
+        return view('today.complete_indiv')->with([
+            'books' => $book->get(),
+            'comprehensions' => $comprehension->get(),
+        ]);
+    }
+
+    public function complete_indiv_log(Request $request)
+    {
+        $input = $request['log'];
+
+        $book_id = $input['book_id'];
+        $book = Book::where('id', $book_id)->first();
+
+        $unit = $input['number'];
+
+        $log = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->where('number', $unit)->first();
+        if (! $log) {
+            $log = new Log();
+        }
+
+        $log->fill($input);
         $log->learned_at = new DateTimeImmutable();
-
-        $book->today_finished = $book->today_finished + 1;
-
         $log->save();
-        $book->save();
 
         return redirect('/today');
     }
 
-    public function complete(Book $book, int $unit)
+    public function complete(Book $book, int $unit, Comprehension $comprehension)
     {
-        $comprehension = Comprehension::all();
-
         return view('complete')->with([
             'book' => $book,
             'unit' => $unit,
-            'comprehensions' => $comprehension]);
+            'comprehensions' => $comprehension->get(),
+        ]);
     }
 
-    public function make_log(Request $request, Book $book, int $unit)
+    public function complete_log(Request $request, Book $book, int $unit)
     {
         $input = $request['log'];
-        $log = new Log();
+        $log = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->where('number', $unit)->first();
+        if (! $log) {
+            $log = new Log();
+            $log->book_id = $book->id;
+            $log->number = $unit;
+        }
         $log->fill($input);
-        $log->book_id = $book->id;
-        $log->number = $unit;
         $log->learned_at = new DateTimeImmutable();
-
-        $book_mgmt = Book_mgmt::where('book_id', $book->id)->first();
-        $book_mgmt->today_finished = $book_mgmt->today_finished + 1;
-
         $log->save();
-        $book->save();
+
+        $book_mgmt = $book->book_mgmt()->first();
+        $log_next = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->orderBy('number', 'asc')->first();
+        if ($log_next) {
+            $book_mgmt->next = $log_next->number;
+            $book_mgmt->today_rest--;
+        } else {
+            $book_mgmt->finish_flag = 1;
+        }
+        $book_mgmt->finished = $unit;
         $book_mgmt->save();
 
         return redirect('/today');
     }
 
-    public function pass(Book $book)
+    public function pass(Book $book, int $unit)
     {
-        $log = new Log();
-        $log->book_id = $book->id;
-        $log->number = $book->today_finished + 1;
-        $log->comprehension_id = '1';
-        $log->passed_at = new DateTimeImmutable();
+        $log = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->where('number', $unit)->first();
+        if ($log) {
+            $log->delete();
+        }
 
-        $book->today_finished = $book->today_finished + 1;
-
-        $log->save();
-        $book->save();
+        $book_mgmt = $book->book_mgmt()->first();
+        $log_next = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->orderBy('number', 'asc')->first();
+        if ($log_next) {
+            $book_mgmt->next = $log_next->number;
+        } else {
+            $book_mgmt->finish_flag = 1;
+        }
+        $book_mgmt->finished = $unit;
+        $book_mgmt->save();
 
         return redirect('/today');
     }

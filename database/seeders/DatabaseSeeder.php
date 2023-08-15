@@ -21,8 +21,8 @@ final class DatabaseSeeder extends Seeder
             IntarvalSeeder::class,
             SubjectSeeder::class,
             ComprehensionSeeder::class,
-            BookSeeder::class,
-            Book_mgmtSeeder::class,
+            //BookSeeder::class,
+            //Book_mgmtSeeder::class,
         ]);
     }
 }

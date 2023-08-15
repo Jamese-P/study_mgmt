@@ -7,29 +7,21 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TodayController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/', [TodayController::class, 'show'])->name('today')->middleware(['auth']);
+Route::get('/', function () {
+    return view('home');
+});
 
 Route::controller(TodayController::class)->middleware(['auth'])->group(function () {
     Route::get('/today', 'show')->name('today');
-    Route::post('/today/{book}/complete', 'complete2')->name('today.complete2');
-    Route::post('/today/{book}/pass', 'pass')->name('today.pass');
+    Route::get('/today/complete', 'complete_indiv')->name('today.comp_indiv');
+    Route::post('/today/complete', 'complete_indiv_log')->name('today.comp_indiv_log');
+    Route::put('/today/{book}/{unit}/pass', 'pass')->name('today.pass');
     Route::get('/today/{book}/{unit}/complete', 'complete')->name('today.complete');
-    Route::post('/today/{book}/{unit}', 'make_log')->name('today.make_log');
+    Route::put('/today/{book}/{unit}', 'complete_log')->name('today.comp_log');
 });
 
 Route::controller(BookController::class)->middleware(['auth'])->group(function () {
@@ -39,6 +31,8 @@ Route::controller(BookController::class)->middleware(['auth'])->group(function (
     Route::get('/books/{book}', 'show')->name('book.show');
     Route::put('/books/{book}', 'update')->name('book.update');
     Route::get('/books/{book}/edit', 'edit')->name('book.edit');
+    Route::get('/books/{book}/relearn', 'relearn')->name('book.relearn');
+    Route::put('/books/{book}/relearn', 'make_log_relearn')->name('book.make_log_relearn');
 });
 
 Route::middleware('auth')->group(function () {

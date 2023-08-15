@@ -58,7 +58,7 @@ class TodayController extends Controller
     {
         $input = $request['log'];
         $log = $book->logs()->whereNull('learned_at')->WhereNull('passed_at')->where('number', $unit)->first();
-        if (!$log) {
+        if (! $log) {
             $log = new Log();
             $log->book_id = $book->id;
             $log->number = $unit;
@@ -84,7 +84,7 @@ class TodayController extends Controller
     public function pass(Book $book, int $unit)
     {
         $log = $book->logs()->whereNull('learned_at')->WhereNull('passed_at')->where('number', $unit)->first();
-        if (!$log) {
+        if (! $log) {
             $log = new Log();
             $log->book_id = $book->id;
             $log->number = $unit;

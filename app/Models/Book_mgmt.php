@@ -41,7 +41,7 @@ class Book_mgmt extends Model
 
     public function get_under_progress()
     {
-        return $this::where('user_id', Auth::id())->where('finish_flag', '0')->get();
+        return $this::where('user_id', Auth::id())->where('finish_flag', '0');
     }
 
     public function get_under_progress_byDate(Carbon $day)

@@ -16,7 +16,9 @@
     <a href="{{route('today.comp_indiv')}}">学習登録</a>
     <br>
     <h1>期限切れ</h1>
-    
+        @foreach($books_exp as $book_mgmt)
+        <p>{{$book_mgmt->book->name}}</p>
+        @endforeach
     <br>
     <h1>Today {{\Carbon\Carbon::today()->format('Y/m/d')}}</h1>
         @foreach($books_today as $book_mgmt)
@@ -108,12 +110,11 @@
         @endforeach
         
     <br>
-    <a href="/books/create">create</a>
     
     <script>
         function complete(id){
             'use strict'
-            if(confirm('complete?')){
+            if(confirm('完了しますか？')){
                 document.getElementById(`form_${id}_complete`).submit();
             }
             
@@ -121,8 +122,16 @@
         function pass(id){
             'use strict'
             
-            if(confirm('pass?')){
+            if(confirm('本当にパスしますか？')){
                 document.getElementById(`form_${id}_pass`).submit();
+            }
+        }
+        
+        window.onload = function(){
+            if(!@json($books_exp)){
+                if(confirm('期限切れがあります。\n処理してください。')){
+                    
+                }
             }
         }
     </script>

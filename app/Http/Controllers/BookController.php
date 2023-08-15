@@ -18,7 +18,7 @@ final class BookController extends Controller
 {
     public function index(Book_mgmt $book_mgmt)
     {
-        $book_progress = $book_mgmt->get_under_progress();
+        $book_progress = $book_mgmt->get_under_progress()->get();
         $book_finish = $book_mgmt->get_finished();
 
         return view('books.index')->with([
@@ -47,6 +47,7 @@ final class BookController extends Controller
     {
         $input = $request['book'];
         $book->fill($input);
+        $book->user_id=Auth::id();
         $book->save();
 
         $input = $request['book_mgmt'];

@@ -11,24 +11,21 @@ use App\Models\Log;
 use Carbon\Carbon;
 use DateTimeImmutable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TodayController extends Controller
 {
     public function show(Book_mgmt $book_mgmt)
     {
         //ページを開いた時
-        $book_mgmts = $book_mgmt->get_under_progress();
+        $book_mgmts = $book_mgmt->get_under_progress()->get();
         $today = Carbon::today();
+        
+        $book_exp=$book_mgmt->get_under_progress()->where('today_rest','>',0)->get();
 
+        //期限切れ項目の検索と更新
         $today = Carbon::today();
-        foreach ($book_mgmts as $book) {
-            $schedul = Carbon::parse($book->next_learn_at);
-            if ($schedul->lt($today)) {
-                $book->today_rest = $book->book->max;
-                $book->next_learn_at = $schedul->addDays($book->intarval->days);
-                $book->save();
-            }
-        }
+        $this->exp_update($book_mgmt);
 
         //終了予定日の再計算
         foreach ($book_mgmts as $book) {
@@ -41,7 +38,23 @@ class TodayController extends Controller
         $tomorrow = Carbon::tomorrow();
         $book_tomorrow = $book_mgmt->get_under_progress_byDate($tomorrow);
 
-        return view('today')->with(['books_today' => $book_today, 'books_tomorrow' => $book_tomorrow]);
+        return view('today')->with([
+            'books_exp'=>$book_exp,
+            'books_today' => $book_today, 
+            'books_tomorrow' => $book_tomorrow]);
+    }
+    
+    public function exp_update(Book_mgmt $book_mgmt){
+        $book_mgmts = $book_mgmt->get_under_progress()->get();
+        $today = Carbon::today();
+        foreach ($book_mgmts as $book) {
+            $schedul = Carbon::parse($book->next_learn_at);
+            if ($schedul->lt($today)) {
+                $book->today_rest = $book->book->max;
+                $book->next_learn_at = $schedul->addDays($book->intarval->days);
+                $book->save();
+            }
+        }
     }
 
     public function complete_indiv(Book $book, Comprehension $comprehension)

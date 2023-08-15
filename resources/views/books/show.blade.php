@@ -24,6 +24,7 @@
         <a href="/today">back</a>
         
         <h2>学習履歴</h2>
+        <div class="logs">
         <table border="1" style="border-collapse: collapse">
             <tr>
                 <th>{{$book_mgmt->book->type->name}}</th>
@@ -44,7 +45,7 @@
                 </tr>
             @endforeach
         </table>
-        
+        </div>
     </body>
 </html>
 </x-app-layout>

@@ -40,7 +40,7 @@
         </form>
             
         <div class="back">
-            [<a href="/">back</a>]
+            [<a href="{{route('today')}}">back</a>]
         </div>
     </body>
 </html>

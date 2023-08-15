@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('book.index')" :active="request()->routeIs('book.index')">
                         {{ __('参考書一覧') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('log.index')" :active="request()->routeIs('log.index')">
+                        {{ __('学習履歴') }}
+                    </x-nav-link>
                 </div>
             </div>
             

@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TodayController;
+use App\Http\Controllers\LogController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -33,6 +34,10 @@ Route::controller(BookController::class)->middleware(['auth'])->group(function (
     Route::get('/books/{book}/edit', 'edit')->name('book.edit');
     Route::get('/books/{book}/relearn', 'relearn')->name('book.relearn');
     Route::put('/books/{book}/relearn', 'make_log_relearn')->name('book.make_log_relearn');
+});
+
+Route::controller(LogController::class)->middleware(['auth'])->group(function () {
+    Route::get('/logs', 'index')->name('log.index');
 });
 
 Route::middleware('auth')->group(function () {

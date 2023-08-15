@@ -18,6 +18,10 @@ class Book extends Model
         'max',
     ];
 
+    protected $casts = [
+        'max' => 'int',
+    ];
+
     public function book_mgmt()
     {
         return $this->hasOne(Book_mgmt::class);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Carbon\Carbon;
@@ -15,6 +17,11 @@ class Book_mgmt extends Model
         'a_day',
         'intarval_id',
         'next_learn_at',
+    ];
+
+    protected $casts = [
+        'a_day' => 'int',
+        'next' => 'int',
     ];
 
     public function book()

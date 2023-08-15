@@ -10,6 +10,7 @@
     <body>
         <form action="{{route('today.make_log',['book'=>$book->id,'unit'=>$unit])}}" method="POST">
             @csrf
+            @method('PUT')
             <div class="name">
                 <h1>{{$book->name}} {{$book->type->name}}{{$unit}}</h1>
             </div>

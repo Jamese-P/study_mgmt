@@ -22,8 +22,9 @@ return new class extends Migration
             $table->integer('a_day');
             $table->foreignId('intarval_id')->constrained();
             $table->integer('finished');
-            $table->integer('today_finished');
             $table->integer('finish_flag')->default('0');
+            $table->integer('next');
+            $table->integer('today_rest')->default('0');
             $table->date('next_learn_at');
             $table->date('end_date')->nullable();
             $table->timestamp('created_at')->useCurrent()->nullable();

@@ -13,15 +13,14 @@ Route::get('/dashboard', function () {
 
 //Route::get('/', [TodayController::class, 'show'])->name('today')->middleware(['auth']);
 Route::get('/', function () {
-return view('welcome');
+    return view('welcome');
 });
 
 Route::controller(TodayController::class)->middleware(['auth'])->group(function () {
     Route::get('/today', 'show')->name('today');
-    Route::post('/today/{book}/complete', 'complete2')->name('today.complete2');
-    Route::post('/today/{book}/pass', 'pass')->name('today.pass');
+    Route::put('/today/{book}/{unit}/pass', 'pass')->name('today.pass');
     Route::get('/today/{book}/{unit}/complete', 'complete')->name('today.complete');
-    Route::post('/today/{book}/{unit}', 'make_log')->name('today.make_log');
+    Route::put('/today/{book}/{unit}', 'make_log')->name('today.make_log');
 });
 
 Route::controller(BookController::class)->middleware(['auth'])->group(function () {
@@ -31,6 +30,7 @@ Route::controller(BookController::class)->middleware(['auth'])->group(function (
     Route::get('/books/{book}', 'show')->name('book.show');
     Route::put('/books/{book}', 'update')->name('book.update');
     Route::get('/books/{book}/edit', 'edit')->name('book.edit');
+    Route::get('/books/{book}/relearn', 'relearn')->name('book.relearn');
 });
 
 Route::middleware('auth')->group(function () {

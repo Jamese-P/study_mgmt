@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LogRequest;
 use App\Models\Book;
 use App\Models\Book_mgmt;
 use App\Models\Comprehension;
@@ -36,7 +37,7 @@ class TodayController extends Controller
         $tomorrow = Carbon::tomorrow();
         $book_tomorrow = $book_mgmt->get_under_progress_byDate($tomorrow);
 
-        return view('today')->with([
+        return view('today.today')->with([
             'logs_exp' => $log_exp,
             'books_exp' => $book_exp,
             'books_today' => $book_today,
@@ -90,12 +91,12 @@ class TodayController extends Controller
     public function complete_indiv(Book $book, Comprehension $comprehension)
     {
         return view('today.complete_indiv')->with([
-            'books' => $book->get(),
+            'books' => $book->orderBy('updated_at','desc')->get(),
             'comprehensions' => $comprehension->get(),
         ]);
     }
 
-    public function complete_indiv_log(Request $request)
+    public function complete_indiv_log(LogRequest $request)
     {
         $input = $request['log'];
 
@@ -104,13 +105,14 @@ class TodayController extends Controller
 
         $unit = $input['number'];
 
-        $log = $book->logs()->whereNull('learned_at')->orwhereNotNull('scheduled_at')->where('number', $unit)->first();
+        $log = $book->logs()->whereNull('learned_at')->where('number', $unit)->first();
         if (! $log) {
             $log = new Log();
         }
 
         $log->fill($input);
         $log->learned_at = new DateTimeImmutable();
+        $log->scheduled_at = null;
         $log->save();
 
         return redirect(route('today'));
@@ -118,7 +120,7 @@ class TodayController extends Controller
 
     public function complete(Book $book, int $unit, Comprehension $comprehension)
     {
-        return view('complete')->with([
+        return view('today.complete')->with([
             'book' => $book,
             'unit' => $unit,
             'comprehensions' => $comprehension->get(),
@@ -143,6 +145,10 @@ class TodayController extends Controller
         if ($log_next) {
             $book_mgmt->next = $log_next->number;
             $book_mgmt->today_rest--;
+            if ($book_mgmt->today_rest === 0) {
+                $book_mgmt->next_learn_at = Carbon::parse($book_mgmt->next_learn_at)->addDays($book_mgmt->intarval->days);
+                $book_mgmt->today_rest = $book_mgmt->a_day;
+            }
         } else {
             $book_mgmt->finish_flag = 1;
         }
@@ -154,7 +160,7 @@ class TodayController extends Controller
 
     public function pass(Book $book, int $unit)
     {
-        $log = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', $unit)->first();
+        $log = $book->logs()->whereNull('learned_at')->where('number', $unit)->first();
         if ($log) {
             $log->delete();
         }
@@ -171,7 +177,7 @@ class TodayController extends Controller
 
         return redirect(route('today'));
     }
-    
+
     public function comp_exp(Book $book, int $unit, Comprehension $comprehension)
     {
         return view('today.complete_exp')->with([
@@ -180,7 +186,7 @@ class TodayController extends Controller
             'comprehensions' => $comprehension->get(),
         ]);
     }
-    
+
     public function comp_exp_log(Request $request, Book $book, int $unit)
     {
         $input = $request['log'];
@@ -192,7 +198,7 @@ class TodayController extends Controller
         }
         $log->fill($input);
         $log->learned_at = new DateTimeImmutable();
-        $log->scheduled_at=NULL;
+        $log->scheduled_at = null;
         $log->save();
 
         return redirect(route('today'));
@@ -207,6 +213,4 @@ class TodayController extends Controller
 
         return redirect(route('today'));
     }
-    
-    
 }

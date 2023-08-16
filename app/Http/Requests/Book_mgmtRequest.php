@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-final class BookRequest extends FormRequest
+class Book_mgmtRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -16,8 +16,10 @@ final class BookRequest extends FormRequest
     public function rules()
     {
         return [
-            'book.name' => 'required|string|max:100',
-            'book.max' => 'required|gte:1',
+            'book_mgmt.a_day' => 'required|gte:1',
+            'book_mgmt.next' => 'required|gte:1',
+            //'book_mgmt.next_learn_at' => 'required|date|after:yesterday',
+            'book_mgmt.next_learn_at' => 'required|date',
         ];
     }
 }

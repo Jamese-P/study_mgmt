@@ -15,6 +15,12 @@
                     <x-nav-link :href="route('today')" :active="request()->routeIs('today')">
                         {{ __('Today') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('today.comp_indiv')" :active="request()->routeIs('today.comp_indiv')">
+                        {{ __('学習登録') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('book.create')" :active="request()->routeIs('book.create')">
+                        {{ __('参考書登録') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('book.index')" :active="request()->routeIs('book.index')">
                         {{ __('参考書一覧') }}
                     </x-nav-link>

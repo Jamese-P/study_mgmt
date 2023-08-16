@@ -121,31 +121,9 @@
     <br>
     <h1>Tommorow {{\Carbon\Carbon::tomorrow()->format('Y/m/d')}}</h1>
         @foreach($books_today as $book_mgmt)
-            @if ($book_mgmt->intarval_id=='1' && $book_mgmt->book->max > $book_mgmt->finished)
+            @if ($book_mgmt->intarval_id=='1' )
             <div class='book'>
-                <h2><a href="/books/{{$book_mgmt->book->id}}">{{$book_mgmt->book->name}}</a></h2>
-                <table>
-                    <tr>
-                        @if ($book_mgmt->next > $book_mgmt->finished)
-                        <th>
-                            {{$book_mgmt->book->type->name}}{{$book_mgmt->next}}
-                        </th>
-                        <th>
-                            <form action="/today/{{$book_mgmt->book_id}}/{{$book_mgmt->next}}/complete" id="form_{{$book_mgmt->book_id}}_complete" method="get">
-                                @csrf
-                                <button type="button" onclick="complete({{$book_mgmt->book_id}})">complete</button>
-                            </form>
-                        </th>
-                        <th>
-                            <form action="/today/{{$book_mgmt->book_id}}/{{$book_mgmt->next}}/pass" id="form_{{$book_mgmt->book_id}}_pass" method="post">
-                                @csrf
-                                @method('PUT')
-                                <button type="button" onclick="pass({{$book_mgmt->book_id}})">pass</button>
-                            </form>
-                        </th>
-                        @endif
-                    </tr>
-                </table>
+                <h2><a href="/books/{{$book_mgmt->book->id}}">{{$book_mgmt->book->name}}</a> {{$book_mgmt->a_day}}{{$book_mgmt->book->type->name}}</h2>
             </div>
             @endif
         @endforeach

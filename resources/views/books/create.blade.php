@@ -31,6 +31,11 @@
                     @endforeach
                 </select>
             </div>
+            <div class="next">
+                <h2>初回学習単元またはページ</h2>
+                <input type="number" name="book_mgmt[next]" placeholder="最初の学習ページ" value="{{old('book_mgmt.a_day',1)}}">
+                <p class="next__error" style="color:red">{{ $errors->first('book_mgmt.next') }}</p>
+            </div>
             <div class="max">
                 <h2>終了単元またはページ</h2>
                 <input type="number" name="book[max]" placeholder="終了ページ" value="{{old('book.max')}}">
@@ -50,14 +55,14 @@
                 </select>
             </div>
             <div class="next_learn_at">
-                <h2>学習日</h2>
+                <h2>初回学習日</h2>
                 <input type="date" name="book_mgmt[next_learn_at]" value="{{old('book_mgmt.next_learn_at')}}">
                 <p class="next_learn_at__error" style="color:red">{{ $errors->first('book_mgmt.next_learn_at') }}</p>
             </div>
             <input type="submit" value="保存"/>
         </form>
         <div class="back">
-            [<a href="/">back</a>]
+            [<a href="{{route('today')}}">back</a>]
         </div>
     </body>
 </html>

@@ -57,14 +57,13 @@ final class BookController extends Controller
         $book_mgmt->user_id = Auth::user()->id;
         $book_mgmt->finished = '0';
         $book_mgmt->book_id = $book->id;
-        $book_mgmt->next = 1;
         $book_mgmt->save();
 
         $book_mgmt->today_rest = $book_mgmt->a_day;
 
         $book_mgmt->save();
 
-        $this->logs_to_learn(1, $book->max, $book);
+        $this->logs_to_learn($book_mgmt->next, $book->max, $book);
 
         return redirect('/books/'.$book->id);
     }
@@ -102,7 +101,28 @@ final class BookController extends Controller
         $book_mgmt->fill($input);
         $book_mgmt->save();
 
+        $this->update_logs($book_mgmt->next, $book->max, $book);
+
         return redirect('/books/'.$book->id);
+    }
+
+    public function update_logs(int $start, int $finish, Book $book)
+    {
+        for ($i = 1; $i < $start; $i++) {
+            $log = $book->logs()->whereNull('learned_at')->where('number', $i)->first();
+            if ($log) {
+                $log->delete();
+            }
+        }
+        for ($i = $start; $i <= $finish; $i++) {
+            $log = $book->logs()->whereNull('learned_at')->where('number', $i)->first();
+            if (! $log) {
+                $log = new Log();
+                $log->book_id = $book->id;
+                $log->number = $i;
+                $log->save();
+            }
+        }
     }
 
     public function relearn(Book $book, Intarval $intarval, Comprehension $comprehension)

@@ -16,6 +16,7 @@ class Book_mgmt extends Model
     protected $fillable = [
         'a_day',
         'intarval_id',
+        'next',
         'next_learn_at',
     ];
 

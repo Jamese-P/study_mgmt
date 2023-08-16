@@ -16,7 +16,7 @@ final class Log extends Model
         'number',
         'comprehension_id',
         'learned_at',
-        'passed_at',
+        'scheduled_at',
         'comment',
     ];
 

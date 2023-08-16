@@ -11,21 +11,19 @@ use App\Models\Log;
 use Carbon\Carbon;
 use DateTimeImmutable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TodayController extends Controller
 {
     public function show(Book_mgmt $book_mgmt)
     {
-        //ページを開いた時
         $book_mgmts = $book_mgmt->get_under_progress()->get();
         $today = Carbon::today();
-        
-        $book_exp=$book_mgmt->get_under_progress()->where('today_rest','>',0)->get();
 
-        //期限切れ項目の検索と更新
-        $today = Carbon::today();
-        $this->exp_update($book_mgmt);
+        //期限切れのある参考書の検索
+        $book_exp = $book_mgmt->get_exp();
+
+        //期限切れのログ検索
+        $log_exp = Log::whereNotNull('scheduled_at')->get();
 
         //終了予定日の再計算
         foreach ($book_mgmts as $book) {
@@ -39,22 +37,54 @@ class TodayController extends Controller
         $book_tomorrow = $book_mgmt->get_under_progress_byDate($tomorrow);
 
         return view('today')->with([
-            'books_exp'=>$book_exp,
-            'books_today' => $book_today, 
-            'books_tomorrow' => $book_tomorrow]);
+            'logs_exp' => $log_exp,
+            'books_exp' => $book_exp,
+            'books_today' => $book_today,
+            'books_tomorrow' => $book_tomorrow,
+        ]);
     }
-    
-    public function exp_update(Book_mgmt $book_mgmt){
-        $book_mgmts = $book_mgmt->get_under_progress()->get();
-        $today = Carbon::today();
-        foreach ($book_mgmts as $book) {
-            $schedul = Carbon::parse($book->next_learn_at);
-            if ($schedul->lt($today)) {
-                $book->today_rest = $book->book->max;
-                $book->next_learn_at = $schedul->addDays($book->intarval->days);
-                $book->save();
+
+    public function update_exp(Book $book)
+    {
+        $book_mgmt = $book->book_mgmt()->first();
+        $schedule = Carbon::parse($book_mgmt->next_learn_at);
+
+        for ($i = $book_mgmt->today_rest; $i > 0; $i--) {
+            $log = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', $book_mgmt->next)->first();
+            if (! $log) {
+                $log = new Log();
+                $log->number = $book_mgmt->next;
             }
+            $log->scheduled_at = $schedule;
+            $log->save();
+
+            $log_next = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->orderBy('number', 'asc')->first();
+            if ($log_next) {
+                $book_mgmt->next = $log_next->number;
+            } else {
+                $book_mgmt->finish_flag = 1;
+                break;
+            }
+
+            $book_mgmt->save();
         }
+
+        $book_mgmt->today_rest = $book_mgmt->a_day;
+        $book_mgmt->next_learn_at = $schedule->addDays($book_mgmt->intarval->days);
+        $book_mgmt->save();
+
+        return redirect(route('today'));
+    }
+
+    public function update_no_exp(Book $book)
+    {
+        $book_mgmt = $book->book_mgmt()->first();
+        $schedule = Carbon::parse($book_mgmt->next_learn_at);
+        $book_mgmt->today_rest = $book_mgmt->a_day;
+        $book_mgmt->next_learn_at = $schedule->addDays($book_mgmt->intarval->days);
+        $book_mgmt->save();
+
+        return redirect(route('today'));
     }
 
     public function complete_indiv(Book $book, Comprehension $comprehension)
@@ -74,7 +104,7 @@ class TodayController extends Controller
 
         $unit = $input['number'];
 
-        $log = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->where('number', $unit)->first();
+        $log = $book->logs()->whereNull('learned_at')->orwhereNotNull('scheduled_at')->where('number', $unit)->first();
         if (! $log) {
             $log = new Log();
         }
@@ -83,7 +113,7 @@ class TodayController extends Controller
         $log->learned_at = new DateTimeImmutable();
         $log->save();
 
-        return redirect('/today');
+        return redirect(route('today'));
     }
 
     public function complete(Book $book, int $unit, Comprehension $comprehension)
@@ -98,7 +128,7 @@ class TodayController extends Controller
     public function complete_log(Request $request, Book $book, int $unit)
     {
         $input = $request['log'];
-        $log = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->where('number', $unit)->first();
+        $log = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', $unit)->first();
         if (! $log) {
             $log = new Log();
             $log->book_id = $book->id;
@@ -109,7 +139,7 @@ class TodayController extends Controller
         $log->save();
 
         $book_mgmt = $book->book_mgmt()->first();
-        $log_next = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->orderBy('number', 'asc')->first();
+        $log_next = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->orderBy('number', 'asc')->first();
         if ($log_next) {
             $book_mgmt->next = $log_next->number;
             $book_mgmt->today_rest--;
@@ -119,18 +149,18 @@ class TodayController extends Controller
         $book_mgmt->finished = $unit;
         $book_mgmt->save();
 
-        return redirect('/today');
+        return redirect(route('today'));
     }
 
     public function pass(Book $book, int $unit)
     {
-        $log = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->where('number', $unit)->first();
+        $log = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', $unit)->first();
         if ($log) {
             $log->delete();
         }
 
         $book_mgmt = $book->book_mgmt()->first();
-        $log_next = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->orderBy('number', 'asc')->first();
+        $log_next = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->orderBy('number', 'asc')->first();
         if ($log_next) {
             $book_mgmt->next = $log_next->number;
         } else {
@@ -139,6 +169,44 @@ class TodayController extends Controller
         $book_mgmt->finished = $unit;
         $book_mgmt->save();
 
-        return redirect('/today');
+        return redirect(route('today'));
     }
+    
+    public function comp_exp(Book $book, int $unit, Comprehension $comprehension)
+    {
+        return view('today.complete_exp')->with([
+            'book' => $book,
+            'unit' => $unit,
+            'comprehensions' => $comprehension->get(),
+        ]);
+    }
+    
+    public function comp_exp_log(Request $request, Book $book, int $unit)
+    {
+        $input = $request['log'];
+        $log = $book->logs()->whereNull('learned_at')->whereNotNull('scheduled_at')->where('number', $unit)->first();
+        if (! $log) {
+            $log = new Log();
+            $log->book_id = $book->id;
+            $log->number = $unit;
+        }
+        $log->fill($input);
+        $log->learned_at = new DateTimeImmutable();
+        $log->scheduled_at=NULL;
+        $log->save();
+
+        return redirect(route('today'));
+    }
+
+    public function pass_exp(Book $book, int $unit)
+    {
+        $log = $book->logs()->whereNull('learned_at')->whereNotNull('scheduled_at')->where('number', $unit)->first();
+        if ($log) {
+            $log->delete();
+        }
+
+        return redirect(route('today'));
+    }
+    
+    
 }

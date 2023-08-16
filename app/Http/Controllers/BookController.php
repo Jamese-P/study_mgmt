@@ -29,7 +29,7 @@ final class BookController extends Controller
 
     public function show(Book $book)
     {
-        $log = $book->logs()->whereNotNull('learned_at')->orWhereNotNull('passed_at')->orderBy('learned_at', 'desc')->get();
+        $log = $book->logs()->whereNotNull('learned_at')->orderBy('learned_at', 'desc')->get();
         $book_mgmt = $book->book_mgmt()->first();
 
         return view('books.show')->with(['book_mgmt' => $book_mgmt, 'logs' => $log]);
@@ -47,7 +47,7 @@ final class BookController extends Controller
     {
         $input = $request['book'];
         $book->fill($input);
-        $book->user_id=Auth::id();
+        $book->user_id = Auth::id();
         $book->save();
 
         $input = $request['book_mgmt'];
@@ -135,7 +135,7 @@ final class BookController extends Controller
             }
         }
 
-        $log_next = $book->logs()->whereNull('learned_at')->whereNull('passed_at')->orderBy('number', 'asc')->first();
+        $log_next = $book->logs()->whereNull('learned_at')->orderBy('number', 'asc')->first();
         if ($log_next) {
             $book_mgmt->next = $log_next->number;
         } else {

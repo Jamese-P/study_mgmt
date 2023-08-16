@@ -91,7 +91,7 @@ class TodayController extends Controller
     public function complete_indiv(Book $book, Comprehension $comprehension)
     {
         return view('today.complete_indiv')->with([
-            'books' => $book->orderBy('updated_at','desc')->get(),
+            'books' => $book->orderBy('updated_at', 'desc')->get(),
             'comprehensions' => $comprehension->get(),
         ]);
     }

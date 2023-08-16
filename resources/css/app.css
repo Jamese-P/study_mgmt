@@ -1,3 +1,71 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-exp{
+    @apply inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20;
+}
+
+.btn-no-exp{
+    @apply inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10;
+}
+
+.btn-comp{
+    @apply inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10;
+}
+
+.btn-pass{
+    @apply inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20;
+}
+
+.txt-h1{
+    @apply text-3xl;
+}
+
+.txt-h2{
+    @apply text-xl;
+}
+
+.books{
+    @apply flex flex-col overflow-x-auto sm:-mx-6 lg:-mx-8 inline-block w-auto py-2 sm:px-6 lg:px-8 overflow-hidden;
+}
+
+.book-table{
+    @apply w-auto text-center text-sm font-light;
+}
+
+.book-thead{
+    @apply border-b font-medium dark:border-neutral-500;
+}
+
+.book-tr{
+    @apply border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600;
+}
+.book-th{
+    @apply px-6 py-4;
+}
+.book-td{
+    @apply whitespace-nowrap px-6 py-4;
+}
+
+.logs{
+    @apply flex flex-col overflow-x-auto sm:-mx-2 lg:-mx-2 inline-block w-auto py-2 sm:px-2 lg:px-2 overflow-hidden;
+}
+
+.log-table{
+    @apply w-auto text-center text-sm font-light;
+}
+
+.log-thead{
+    @apply border-b font-medium dark:border-neutral-500;
+}
+
+.log-tr{
+    @apply border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600;
+}
+.log-th{
+    @apply px-2 py-2;
+}
+.log-td{
+    @apply whitespace-nowrap px-2 py-2;
+}

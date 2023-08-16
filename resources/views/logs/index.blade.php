@@ -9,49 +9,43 @@
     <meta charset="utf-8">
     <title>Logs</title>
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
-    <h2>学習履歴</h2>
     <div class='logs'>
-        <table border="1" style="border-collapse: collapse">
-            <tr>
-                <th>参考書名</th>
-                <th>教科</th>
-                <th></th>
-                <th>学習日時</th>
-                <th>理解度</th>
-                <th>コメント</th>
-            </tr>
-            @foreach($logs as $log)
+        <table class="log-table">
+            <thead class="log-thead">
                 <tr>
-                    <th>{{$log->book->name}}</th>
-                    <th>{{$log->book->subject->name}}</th>
-                    <th>{{$log->book->type->name}}{{$log->number}}</th>
-                    <th>{{$log->learned_at}}</th>
-                    <th>{{$log->comprehension->name}}</th>
-                    <th>
-                        @if($log->comment != 'NULL')
-                            {{$log->comment}}
-                        @endif
-                    </th>
+                    <th class="log-th">教科</th>
+                    <th class="log-th">参考書名</th>
+                    <th class="log-th"></th>
+                    <th class="log-th">学習日時</th>
+                    <th class="log-th">理解度</th>
+                    <th class="log-th">コメント</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($logs as $log)
+                <tr class="log-tr">
+                    <td class="log-td">{{$log->book->subject->name}}</td>
+                    <td class="log-td">{{$log->book->name}}</td>
+                    <td class="log-td">{{$log->book->type->name}}{{$log->number}}</td>
+                    <td class="log-td">{{$log->learned_at}}</td>
+                    <td class="log-td">{{$log->comprehension->name}}</td>
+                    <td class="log-td">{{$log->comment}}</td>
                 </tr>
             @endforeach
+            </tbody>
         </table>
     </div>
+    <script>
         
-        
-
-        <script>
-            function relearn(id){
-                'use strict'
-                
-                if(confirm('再学習しますか？')){
-                    document.getElementById(`form_${id}`).submit();
-                }
-            }
-        </script>
-    </body>
+    </script>
+</body>
 </html>
 </x-app-layout>

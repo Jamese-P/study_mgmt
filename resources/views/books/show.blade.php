@@ -24,28 +24,28 @@
         <a href="/today">back</a>
         
         <h2>学習履歴</h2>
-        <div class="logs">
-        <table border="1" style="border-collapse: collapse">
-            <tr>
-                <th>{{$book_mgmt->book->type->name}}</th>
-                <th>学習日時</th>
-                <th>理解度</th>
-                <th>コメント</th>
-            </tr>
-            @foreach($logs as $log)
+        <div class='logs'>
+        <table class="log-table">
+            <thead class="log-thead">
                 <tr>
-                    <th>{{$log->number}}</th>
-                    <th>{{$log->learned_at}}</th>
-                    <th>{{$log->comprehension->name}}</th>
-                    <th>
-                        @if($log->comment != 'NULL')
-                            {{$log->comment}}
-                        @endif
-                    </th>
+                    <th class="log-th">{{$book_mgmt->book->type->name}}</th>
+                    <th class="log-th">学習日時</th>
+                    <th class="log-th">理解度</th>
+                    <th class="log-th">コメント</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($logs as $log)
+                <tr class="log-tr">
+                    <td class="log-td">{{$log->number}}</td>
+                    <td class="log-td">{{$log->learned_at}}</td>
+                    <td class="log-td">{{$log->comprehension->name}}</td>
+                    <td class="log-td">{{$log->comment}}</td>
                 </tr>
             @endforeach
+            </tbody>
         </table>
-        </div>
+    </div>
     </body>
 </html>
 </x-app-layout>

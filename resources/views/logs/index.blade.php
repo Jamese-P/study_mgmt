@@ -13,9 +13,6 @@
 </head>
 
 <body>
-    <a href="/books/create">create</a>
-    <br>
-    
     <h2>学習履歴</h2>
     <div class='logs'>
         <table border="1" style="border-collapse: collapse">

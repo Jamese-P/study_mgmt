@@ -91,7 +91,7 @@ class TodayController extends Controller
     public function complete_indiv(Book $book, Comprehension $comprehension)
     {
         return view('today.complete_indiv')->with([
-            'books' => $book->get(),
+            'books' => $book->orderBy('updated_at','desc')->get(),
             'comprehensions' => $comprehension->get(),
         ]);
     }
@@ -145,6 +145,10 @@ class TodayController extends Controller
         if ($log_next) {
             $book_mgmt->next = $log_next->number;
             $book_mgmt->today_rest--;
+            if ($book_mgmt->today_rest === 0) {
+                $book_mgmt->next_learn_at = Carbon::parse($book_mgmt->next_learn_at)->addDays($book_mgmt->intarval->days);
+                $book_mgmt->today_rest = $book_mgmt->a_day;
+            }
         } else {
             $book_mgmt->finish_flag = 1;
         }

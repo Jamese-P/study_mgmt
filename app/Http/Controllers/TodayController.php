@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LogRequest;
 use App\Models\Book;
 use App\Models\Book_mgmt;
 use App\Models\Comprehension;
@@ -95,7 +96,7 @@ class TodayController extends Controller
         ]);
     }
 
-    public function complete_indiv_log(Request $request)
+    public function complete_indiv_log(LogRequest $request)
     {
         $input = $request['log'];
 
@@ -104,13 +105,14 @@ class TodayController extends Controller
 
         $unit = $input['number'];
 
-        $log = $book->logs()->whereNull('learned_at')->orwhereNotNull('scheduled_at')->where('number', $unit)->first();
+        $log = $book->logs()->whereNull('learned_at')->where('number', $unit)->first();
         if (! $log) {
             $log = new Log();
         }
 
         $log->fill($input);
         $log->learned_at = new DateTimeImmutable();
+        $log->scheduled_at = null;
         $log->save();
 
         return redirect(route('today'));
@@ -154,7 +156,7 @@ class TodayController extends Controller
 
     public function pass(Book $book, int $unit)
     {
-        $log = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', $unit)->first();
+        $log = $book->logs()->whereNull('learned_at')->where('number', $unit)->first();
         if ($log) {
             $log->delete();
         }
@@ -171,7 +173,7 @@ class TodayController extends Controller
 
         return redirect(route('today'));
     }
-    
+
     public function comp_exp(Book $book, int $unit, Comprehension $comprehension)
     {
         return view('today.complete_exp')->with([
@@ -180,7 +182,7 @@ class TodayController extends Controller
             'comprehensions' => $comprehension->get(),
         ]);
     }
-    
+
     public function comp_exp_log(Request $request, Book $book, int $unit)
     {
         $input = $request['log'];
@@ -192,7 +194,7 @@ class TodayController extends Controller
         }
         $log->fill($input);
         $log->learned_at = new DateTimeImmutable();
-        $log->scheduled_at=NULL;
+        $log->scheduled_at = null;
         $log->save();
 
         return redirect(route('today'));
@@ -207,6 +209,4 @@ class TodayController extends Controller
 
         return redirect(route('today'));
     }
-    
-    
 }

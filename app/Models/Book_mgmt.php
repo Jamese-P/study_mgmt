@@ -53,4 +53,11 @@ class Book_mgmt extends Model
     {
         return $this::where('user_id', Auth::id())->where('finish_flag', '1')->get();
     }
+
+    public function get_exp()
+    {
+        $today = Carbon::today();
+
+        return $this::whereDate('next_learn_at', '<', $today)->where('user_id', Auth::id())->where('finish_flag', '0')->get();
+    }
 }

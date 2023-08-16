@@ -123,6 +123,13 @@ final class BookController extends Controller
                 $log->save();
             }
         }
+        
+        while(1){
+            if(!$log=$book->logs()->whereNull('learned_at')->where('number','>', $finish+1)->first()){
+                break;
+            }
+            $log->delete();
+        }
     }
 
     public function relearn(Book $book, Intarval $intarval, Comprehension $comprehension)

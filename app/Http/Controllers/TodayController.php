@@ -37,7 +37,7 @@ class TodayController extends Controller
         $tomorrow = Carbon::tomorrow();
         $book_tomorrow = $book_mgmt->get_under_progress_byDate($tomorrow);
 
-        return view('today')->with([
+        return view('today.today')->with([
             'logs_exp' => $log_exp,
             'books_exp' => $book_exp,
             'books_today' => $book_today,
@@ -120,7 +120,7 @@ class TodayController extends Controller
 
     public function complete(Book $book, int $unit, Comprehension $comprehension)
     {
-        return view('complete')->with([
+        return view('today.complete')->with([
             'book' => $book,
             'unit' => $unit,
             'comprehensions' => $comprehension->get(),

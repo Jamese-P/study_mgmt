@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <title>Today</title>
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -33,14 +33,14 @@
                 <th>
                     <form action="/today/{{$book_mgmt->book_id}}/exp" id="form_{{$book_mgmt->book_id}}_exp" method="post">
                         @csrf
-                        <button type="button" onclick="exp({{$book_mgmt->book_id}})">期限切れ</button>
+                        <button type="button" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" onclick="exp({{$book_mgmt->book_id}})">期限切れ</button>
                     </form>
                 </th>
                 <th>
                     <form action="/today/{{$book_mgmt->book_id}}/no_exp" id="form_{{$book_mgmt->book_id}}_no_exp" method="post">
                         @csrf
                         @method('PUT')
-                        <button type="button" onclick="no_exp({{$book_mgmt->book_id}})">持ち越し</button>
+                        <button type="button" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" onclick="no_exp({{$book_mgmt->book_id}})">持ち越し</button>
                     </form>
                 </th>
             </tr>

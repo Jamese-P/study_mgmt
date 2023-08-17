@@ -66,7 +66,7 @@
                     <input id="next_learn_at" class="form-date" type="date" name="book_mgmt[next_learn_at]" value="{{$book_mgmt->next_learn_at}}">
                 </div>
                 <div class="back">
-                    [<a href="{{route('book.index')}}">back</a>]
+                    [<a href="{{route('book.show',['book'=>$book_mgmt->book->id])}}">back</a>]
                 </div>
                 <input type="submit" class="form-submit" value="保存"/>
             </form>

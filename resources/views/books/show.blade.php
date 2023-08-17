@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{$book_mgmt->book->name}}
+        {{$book_mgmt->book->name}}<a href="/books/{{$book_mgmt->book->id}}/edit" class="btn-comp">edit</a>
     </x-slot>
 <!DOCTYPE HTML>
 <html lang="{{str_replace('_','_',app()->getLocale())}}">
@@ -12,37 +12,56 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h2 class="subject">{{$book_mgmt->book->subject->name}}</h2>
-        <h2>進捗率：{{$book_mgmt->percent}}%</h2>
-        <h2 class="max">終了{{$book_mgmt->book->type->name}}:{{$book_mgmt->book->max}}</h2>
-        <h2>{{$book_mgmt->intarval->name}}{{$book_mgmt->a_day}}{{$book_mgmt->book->type->name}}</h2>
-        <h2 class="next_learn_at">次の学習日は{{$book_mgmt->next_learn_at}}</h2>
-        <h2 class="end_date">終了予定日：{{$book_mgmt->end_date}}</h2>
-        
-        <a href="/books/{{$book_mgmt->book->id}}/edit">edit</a>
-        
-        <h2 class="txt-h2">学習履歴</h2>
-        <div class='logs'>
-        <table class="log-table">
-            <thead class="log-thead">
+        <table class="book-table">
+            <thead class="book-thead">
                 <tr>
-                    <th class="log-th">{{$book_mgmt->book->type->name}}</th>
-                    <th class="log-th">学習日時</th>
-                    <th class="log-th">理解度</th>
-                    <th class="log-th">コメント</th>
+                    <th class="book-th"></th>
+                    <th class="book-th">進捗</th>
+                    <th class="book-th">学習スピード</th>
+                    <th class="book-th">次回</th>
+                    <th class="book-th">終了</th>
+                    <th class="book-th"></th>
                 </tr>
             </thead>
             <tbody>
-            @foreach($logs as $log)
-                <tr class="log-tr">
-                    <td class="log-td">{{$log->number}}</td>
-                    <td class="log-td">{{$log->learned_at}}</td>
-                    <td class="log-td">{{$log->comprehension->name}}</td>
-                    <td class="log-td">{{$log->comment}}</td>
+                <tr>
+                    <td class="book-td">{{$book_mgmt->book->subject->name}}</td>
+                    <td class="book-td">{{$book_mgmt->percent}}%</td>
+                    <td class="book-td">{{$book_mgmt->intarval->name}}{{$book_mgmt->a_day}}{{$book_mgmt->book->type->name}}</td>
+                    <td class="book-td">{{$book_mgmt->next_learn_at}}<br>{{$book_mgmt->book->type->name}}{{$book_mgmt->next}}</td>
+                    <td class="book-td">{{$book_mgmt->end_date}}<br>{{$book_mgmt->book->type->name}}{{$book_mgmt->book->max}}</td>
+
                 </tr>
-            @endforeach
             </tbody>
         </table>
+
+        <br>
+        <br>
+
+        <div class="w-fit">
+            <h2 class="txt-h2">学習履歴</h2>
+            <div class='logs'>
+            <table class="log-table">
+                <thead class="log-thead">
+                    <tr>
+                        <th class="log-th">{{$book_mgmt->book->type->name}}</th>
+                        <th class="log-th">学習日時</th>
+                        <th class="log-th">理解度</th>
+                        <th class="log-th">コメント</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($logs as $log)
+                    <tr class="log-tr">
+                        <td class="log-td">{{$log->number}}</td>
+                        <td class="log-td">{{$log->learned_at}}</td>
+                        <td class="log-td">{{$log->comprehension->name}}</td>
+                        <td class="log-td">{{$log->comment}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
     </body>
 </html>

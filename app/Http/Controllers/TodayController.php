@@ -45,7 +45,7 @@ class TodayController extends Controller
         $book_exp = $book_mgmt->get_exp();
 
         //期限切れのログ検索
-        $log_exp = Log::whereNotNull('scheduled_at')->get();
+        $log_exp = Log::whereNotNull('scheduled_at')->orderBy('scheduled_at','asc')->get();
 
         $book_today = $book_mgmt->get_under_progress_byDate($today);
         $tomorrow = Carbon::tomorrow();

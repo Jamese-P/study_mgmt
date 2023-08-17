@@ -24,7 +24,7 @@
                 <table class="book-table">
                     <thead class="book-thead">
                         <tr>
-                            <th class="book-th">進捗率</th>
+                            <th class="book-th">進捗</th>
                             <th class="book-th">参考書名</th>
                             <th class="book-th">教科</th>
                             <th class="book-th">次回</th>
@@ -40,7 +40,7 @@
                             <div class='book'>
                                 <td class="book-td">
                                     <div class="percent">
-                                    {{round($book_mgmt->finished/$book_mgmt->book->max*100,1)}}%
+                                    {{$book_mgmt->percent}}%
                                     </div>
                                 </td>
                                 <td class="book-td">
@@ -67,7 +67,7 @@
                                 </td>
                                 <td class="book-td">
                                     <div class="max">
-                                        {{$book_mgmt->book->max}}
+                                        {{$book_mgmt->book->type->name}}{{$book_mgmt->book->max}}
                                     </div>
                                 </td>
                                 <td class="book-td">
@@ -89,7 +89,7 @@
                 <table class="book-table">
                     <thead class="book-thead">
                         <tr>
-                            <th class="book-th">進捗率</th>
+                            <th class="book-th">進捗</th>
                             <th class="book-th">参考書名</th>
                             <th class="book-th">教科</th>
                             <th class="book-th">学習スピード</th>

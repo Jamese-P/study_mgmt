@@ -13,7 +13,7 @@
     </head>
     <body>
         <h2 class="subject">{{$book_mgmt->book->subject->name}}</h2>
-        <h2>進捗率：{{round($book_mgmt->finished/$book_mgmt->book->max*100,1)}}%</h2>
+        <h2>進捗率：{{$book_mgmt->percent}}%</h2>
         <h2 class="max">終了{{$book_mgmt->book->type->name}}:{{$book_mgmt->book->max}}</h2>
         <h2>{{$book_mgmt->intarval->name}}{{$book_mgmt->a_day}}{{$book_mgmt->book->type->name}}</h2>
         <h2 class="next_learn_at">次の学習日は{{$book_mgmt->next_learn_at}}</h2>

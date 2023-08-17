@@ -42,7 +42,7 @@ class Book_mgmt extends Model
 
     public function get_under_progress()
     {
-        return $this::where('user_id', Auth::id())->where('finish_flag', '0');
+        return $this::where('user_id', Auth::id())->where('finish_flag', '0')->orderBy('updated_at','desc');
     }
 
     public function get_under_progress_byDate(Carbon $day)
@@ -52,7 +52,7 @@ class Book_mgmt extends Model
 
     public function get_finished()
     {
-        return $this::where('user_id', Auth::id())->where('finish_flag', '1')->get();
+        return $this::where('user_id', Auth::id())->where('finish_flag', '1')->orderBy('updated_at','desc')->get();
     }
 
     public function get_exp()

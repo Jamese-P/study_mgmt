@@ -80,8 +80,20 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('today')" :active="request()->routeIs('today')">
+                {{ __('Today') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('today.comp_indiv')" :active="request()->routeIs('today.comp_indiv')">
+                {{ __('学習登録') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('book.create')" :active="request()->routeIs('book.create')">
+                {{ __('参考書登録') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('book.index')" :active="request()->routeIs('book.index')">
+                {{ __('参考書一覧') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('log.index')" :active="request()->routeIs('log.index')">
+                {{ __('学習履歴') }}
             </x-responsive-nav-link>
         </div>
 

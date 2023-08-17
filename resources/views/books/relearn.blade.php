@@ -1,4 +1,7 @@
 <x-app-layout>
+    <x-slot name="header">
+        再学習
+    </x-slot>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -8,49 +11,65 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <form action="/books/{{$book->id}}/relearn" method="POST">
-            @csrf
-            @method('PUT')
-            <div class="name">
-                <h2>{{$book->name}}</h2>
-            </div>
-            <div class="subject">
-                <h2>{{$book->subject->name}}</h2>
-            </div>
-            <div class="max">
-                <h2>終了{{$book->type->name}}：{{$book->max}}</h2>
-            </div>
-            <div class="a_day">
-                <h2>1日の学習単元またはページ</h2>
-                <input type="number" name="book_mgmt[a_day]" placeholder="1日の学習ページ" value="{{old('book_mgmt.a_day')}}">
-                <p class="a_day__error" style="color:red">{{ $errors->first('book_mgmt.a_day') }}</p>
-            </div>
-            <div class="comprehension">
-                <h2>学習対象単元の理解度</h2>
-                <select name="comprehension_id">
-                    @foreach($comprehensions as $comprehension)
-                        <option value="{{$comprehension->id}}">{{$comprehension->name}}</option>
-                    @endforeach
-                </select>未満
-            </div>
-            <div class="intarval">
-                <h2>学習間隔</h2>
-                <select name="book_mgmt[intarval_id]">
-                    @foreach($intarvals as $intarval)
-                        <option value="{{$intarval->id}}">{{$intarval->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="next_learn_at">
-                <h2>学習日</h2>
-                <input type="date" name="book_mgmt[next_learn_at]" value="{{old('book_mgmt.next_learn_at')}}">
-                <p class="next_learn_at__error" style="color:red">{{ $errors->first('book_mgmt.next_learn_at') }}</p>
-            </div>
-            <input type="submit" value="保存"/>
-        </form>
-        <div class="back">
-            [<a href="{{route('book.index')}}">back</a>]
+        <div class="form1">
+            <form action="/books/{{$book->id}}/relearn" method="POST" class="form-book">
+                @csrf
+                @method('PUT')
+                <div class="form-element">
+                    <h1 class="txt-h1">{{$book_mgmt->book->name}}</h1>
+                </div>
+                <div class="form-element">
+                    <h2 class="txt-h2">{{$book_mgmt->book->subject->name}}</h2>
+                </div>
+                <div class="form-grid">
+                    <div class="form-element">
+                        <label for="next" class="form-label">開始{{$book_mgmt->book->type->name}}</label>
+                        <input type="number" id="next" class="form-input" name="book_mgmt[next]" placeholder="開始{{$book->type->name}}" value="{{old('book_mgmt.next',$book->start)}}">
+                    </div>
+                    <div class="form-element">
+                        <label for="finish" class="form-label">終了{{$book->type->name}}</label>
+                        <input type="number" id="finish" class="form-input" name="book_mgmt[finish]" placeholder="開始{{$book->type->name}}" value="{{old('book.max',$book->max)}}" required>
+                    </div>
+                </div>
+                
+                <div class="form-element">
+                    <label for="comprehension" class="form-label">学習対象単元の理解度(未満)</label>
+                    <select name="comprehension_id" class="form-select">
+                        @foreach($comprehensions as $comprehension)
+                            <option value="{{$comprehension->id}}">{{$comprehension->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-grid">
+                    <div class="form-element">
+                        <label for="intarval" class="form-label">学習間隔</label>
+                        <select id="intarval" class="form-select" name="book_mgmt[intarval_id]">
+                            <option value="{{$book_mgmt->intarval->id}}">{{$book_mgmt->intarval->name}}</option>
+                            @foreach($intarvals as $intarval)
+                                <option value="{{$intarval->id}}">{{$intarval->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-element">
+                        <label for="a_day" class="form-label">1回の学習{{$book->type->name}}</label>
+                        <input id="a_day" class="form-input" type="number" name="book_mgmt[a_day]" placeholder="1日の学習{{$book->type->name}}" value="{{old('book_mgmt.a_day',$book_mgmt->a_day)}}">
+                        <p class="a_day__error" style="color:red">{{ $errors->first('book_mgmt.a_day') }}</p>
+                    </div>
+                </div>
+                
+                <div class="form-element">
+                    <label for="next_learn_at" class="form-label">学習日</label>
+                    <input id="next_learn_at" class="form-date" type="date" name="book_mgmt[next_learn_at]" value="{{old('book_mgmt.next_learn_at',\Carbon\Carbon::today()->format('Y-m-d'))}}">
+                    <p class="next_learn_at__error" style="color:red">{{ $errors->first('book_mgmt.next_learn_at') }}</p>
+                </div>
+                <div class="back">
+                    [<a href="{{route('book.index')}}">back</a>]
+                </div>
+                <input type="submit" class="form-submit" value="保存"/>
+            </form>
         </div>
+            
+                
     </body>
 </html>
 </x-app-layout>

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        参考書詳細
+        {{$book_mgmt->book->name}}
     </x-slot>
 <!DOCTYPE HTML>
 <html lang="{{str_replace('_','_',app()->getLocale())}}">
@@ -12,7 +12,6 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1 class="name">{{$book_mgmt->book->name}}</h1>
         <h2 class="subject">{{$book_mgmt->book->subject->name}}</h2>
         <h2>進捗率：{{round($book_mgmt->finished/$book_mgmt->book->max*100,1)}}%</h2>
         <h2 class="max">終了{{$book_mgmt->book->type->name}}:{{$book_mgmt->book->max}}</h2>
@@ -21,9 +20,8 @@
         <h2 class="end_date">終了予定日：{{$book_mgmt->end_date}}</h2>
         
         <a href="/books/{{$book_mgmt->book->id}}/edit">edit</a>
-        <a href="/today">back</a>
         
-        <h2>学習履歴</h2>
+        <h2 class="txt-h2">学習履歴</h2>
         <div class='logs'>
         <table class="log-table">
             <thead class="log-thead">

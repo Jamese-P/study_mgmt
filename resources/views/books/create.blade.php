@@ -34,9 +34,9 @@
                         </select>
                     </div>
                     <div class="form-element">
-                        <label for="next" class="form-label">初回学習単元またはページ</label>
-                        <input id="next" class="form-number" type="number" name="book_mgmt[next]" placeholder="最初の学習ページ" value="{{old('book_mgmt.a_day',1)}}">
-                        <p class="next__error" style="color:red">{{ $errors->first('book_mgmt.next') }}</p>
+                        <label for="start" class="form-label">初回学習単元またはページ</label>
+                        <input id="start" class="form-number" type="number" name="book[start]" placeholder="開始ページ" value="{{old('book.start',1)}}">
+                        <p class="next__error" style="color:red">{{ $errors->first('book.start') }}</p>
                     </div>
                     <div class="form-element">
                         <label for="finish" class="form-label">終了単元またはページ</label>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="form-element">
                     <label for="next_learn_at" class="form-label">初回学習日</label>
-                    <input type="date" id="next_learn_at" class="form-date" name="book_mgmt[next_learn_at]" value="{{old('book_mgmt.next_learn_at')}}">
+                    <input type="date" id="next_learn_at" class="form-date" name="book_mgmt[next_learn_at]" value="{{old('book_mgmt.next_learn_at',\Carbon\Carbon::today()->format('Y-m-d'))}}">
                     <p class="next_learn_at__error" style="color:red">{{ $errors->first('book_mgmt.next_learn_at') }}</p>
                 </div>
                 <div class="back">

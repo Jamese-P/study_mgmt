@@ -57,6 +57,7 @@ final class BookController extends Controller
         $book_mgmt->user_id = Auth::user()->id;
         $book_mgmt->finished = '0';
         $book_mgmt->book_id = $book->id;
+        $book_mgmt->next=$book->start;
         $book_mgmt->save();
 
         $book_mgmt->today_rest = $book_mgmt->a_day;
@@ -134,7 +135,10 @@ final class BookController extends Controller
 
     public function relearn(Book $book, Intarval $intarval, Comprehension $comprehension)
     {
+        $book_mgmt = $book->book_mgmt()->first();
+
         return view('books.relearn')->with([
+            'book_mgmt' => $book_mgmt,
             'book' => $book,
             'intarvals' => $intarval->get(),
             'comprehensions' => $comprehension->get(),
@@ -150,10 +154,16 @@ final class BookController extends Controller
         $book_mgmt->finished = '0';
         $book_mgmt->finish_flag = '0';
         $book_mgmt->save();
+        
+        if($book->max<=$input["finish"]){
+            $finish=$book->max;
+        }else{
+            $finish=$input["finish"];
+        }
 
         $comprehension = $request->comprehension_id;
 
-        for ($i = 1; $i <= $book->max; $i++) {
+        for ($i = 1; $i <= $finish; $i++) {
             $log = $book->logs()->where('number', $i)->orderBy('learned_at', 'desc')->first();
             if ($log && $log->comprehension_id >= $comprehension) {
                 $log_new = new Log();

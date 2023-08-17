@@ -100,73 +100,113 @@
         </div>
         
         <div class="today">
-            <h1 class="txt-h1">Today {{\Carbon\Carbon::today()->format('Y/m/d')}}</h1>
-            @foreach($books_today as $book_mgmt)
-            <div class='book'>
-                <h2 class="txt-h2"><a href="/books/{{$book_mgmt->book->id}}">{{$book_mgmt->book->name}}</a> 残り{{$book_mgmt->today_rest}}{{$book_mgmt->book->type->name}}</h2>
-                <table class="book-table">
-                    <tr>
-                        @if ($book_mgmt->today_rest>0)
-                        <td class="book-td">
-                            {{$book_mgmt->book->type->name}}{{$book_mgmt->next}}
-                        </td>
-                        <td class="book-td">
-                            <form action="/today/{{$book_mgmt->book_id}}/{{$book_mgmt->next}}/complete" id="form_{{$book_mgmt->book_id}}_complete" method="get">
-                                @csrf
-                                <button type="button" class="btn-comp" onclick="complete({{$book_mgmt->book_id}})">complete</button>
-                            </form>
-                        </td>
-                        <td class="book-td">
-                            <form action="/today/{{$book_mgmt->book_id}}/{{$book_mgmt->next}}/pass" id="form_{{$book_mgmt->book_id}}_pass" method="post">
-                                @csrf
-                                @method('PUT')
-                                <button type="button" class="btn-pass" onclick="pass({{$book_mgmt->book_id}})">pass</button>
-                            </form>
-                        </td>
-                        @endif
-                    </tr>
-                </table>
-            </div>
-            @endforeach
+            <h1 class="txt-h1">Today <div class="text-base flex place-items-end">{{\Carbon\Carbon::today()->format('Y/m/d')}}</div></h1>
+            <table>
+                <tbody>
+                    @foreach($books_today as $book_mgmt)
+                    <div class='book'>
+                        <tr class="book-thead">
+                            <td>
+                                <h2 class="txt-h2"><a href="/books/{{$book_mgmt->book->id}}">{{$book_mgmt->book->name}}</a></h2>
+                            </td>
+                            <td>
+                                残り{{$book_mgmt->today_rest}}{{$book_mgmt->book->type->name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table class="book-table">
+                                    <tr>
+                                        @if ($book_mgmt->today_rest>0)
+                                        <td class="book-td">
+                                            {{$book_mgmt->book->type->name}}{{$book_mgmt->next}}
+                                        </td>
+                                        <td class="book-td">
+                                            <form action="/today/{{$book_mgmt->book_id}}/{{$book_mgmt->next}}/complete" id="form_{{$book_mgmt->book_id}}_complete" method="get">
+                                                @csrf
+                                                <button type="button" class="btn-comp" onclick="complete({{$book_mgmt->book_id}})">complete</button>
+                                            </form>
+                                        </td>
+                                        <td class="book-td">
+                                            <form action="/today/{{$book_mgmt->book_id}}/{{$book_mgmt->next}}/pass" id="form_{{$book_mgmt->book_id}}_pass" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="button" class="btn-pass" onclick="pass({{$book_mgmt->book_id}})">pass</button>
+                                            </form>
+                                        </td>
+                                        @endif
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </div>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
 
         <div class="tomorrow">
-            <h1 class="txt-h1">Tommorow {{\Carbon\Carbon::tomorrow()->format('Y/m/d')}}</h1>
-            @foreach($books_today as $book_mgmt)
-                @if ($book_mgmt->intarval_id=='1' )
-                <div class='book'>
-                    <h2 class="txt-h2"><a href="/books/{{$book_mgmt->book->id}}">{{$book_mgmt->book->name}}</a> {{$book_mgmt->a_day}}{{$book_mgmt->book->type->name}}</h2>
-                </div>
-                @endif
-            @endforeach
-    
-            @foreach($books_tomorrow as $book_mgmt)
-                <div class='book'>
-                    <h2 class="txt-h2"><a href="/books/{{$book_mgmt->book->id}}">{{$book_mgmt->book->name}}</a> 残り{{$book_mgmt->today_rest}}{{$book_mgmt->book->type->name}}</h2>
-                    <table class="book-table">
-                        <tr>
-                            @if ($book_mgmt->today_rest!=0)
-                            <td class="book-td">
-                                {{$book_mgmt->book->type->name}}{{$book_mgmt->next}}
+            <h1 class="txt-h1">Tommorow  <div class="text-base flex place-items-end">{{\Carbon\Carbon::tomorrow()->format('Y/m/d')}}</div></h1>
+            <table>
+                <tbody>
+                    @foreach($books_tomorrow as $book_mgmt)
+                    <div class='book'>
+                        <tr class="book-thead">
+                            <td>
+                                <h2 class="txt-h2"><a href="/books/{{$book_mgmt->book->id}}">{{$book_mgmt->book->name}}</a></h2>
                             </td>
-                            <td class="book-td">
-                                <form action="/today/{{$book_mgmt->book_id}}/{{$book_mgmt->next}}/complete" id="form_{{$book_mgmt->book_id}}_complete" method="get">
-                                    @csrf
-                                    <button type="button" class="btn-comp" onclick="complete({{$book_mgmt->book_id}})">complete</button>
-                                </form>
+                            <td>
+                                残り{{$book_mgmt->today_rest}}{{$book_mgmt->book->type->name}}
                             </td>
-                            <td class="book-td">
-                                <form action="/today/{{$book_mgmt->book_id}}/{{$book_mgmt->next}}/pass" id="form_{{$book_mgmt->book_id}}_pass" method="post">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="button" class="btn-pass" onclick="pass({{$book_mgmt->book_id}})">pass</button>
-                                </form>
-                            </td>
-                            @endif
                         </tr>
-                    </table>
-                </div>
-            @endforeach
+                        <tr>
+                            <td colspan="2">
+                                <table class="book-table">
+                                    <tr>
+                                        @if ($book_mgmt->today_rest!=0)
+                                        <td class="book-td">
+                                            {{$book_mgmt->book->type->name}}{{$book_mgmt->next}}
+                                        </td>
+                                        <td class="book-td">
+                                            <form action="/today/{{$book_mgmt->book_id}}/{{$book_mgmt->next}}/complete" id="form_{{$book_mgmt->book_id}}_complete" method="get">
+                                                @csrf
+                                                <button type="button" class="btn-comp" onclick="complete({{$book_mgmt->book_id}})">complete</button>
+                                            </form>
+                                        </td>
+                                        <td class="book-td">
+                                            <form action="/today/{{$book_mgmt->book_id}}/{{$book_mgmt->next}}/pass" id="form_{{$book_mgmt->book_id}}_pass" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="button" class="btn-pass" onclick="pass({{$book_mgmt->book_id}})">pass</button>
+                                            </form>
+                                        </td>
+                                        @endif
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </div>
+                    @endforeach
+                    
+                    @foreach($books_today as $book_mgmt)
+                        @if ($book_mgmt->intarval_id=='1' )
+                        <tr class="book-thead">
+                            <td>
+                                <h2 class="txt-h2"><a href="/books/{{$book_mgmt->book->id}}">{{$book_mgmt->book->name}}</a></h2>
+                            </td>
+                            <td>
+                                {{$book_mgmt->a_day}}{{$book_mgmt->book->type->name}}
+                            </td>
+                        </tr>
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
+                    
+
+                   
+    
+                    
         </div>
     </div>
 

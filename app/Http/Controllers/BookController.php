@@ -57,7 +57,7 @@ final class BookController extends Controller
         $book_mgmt->user_id = Auth::user()->id;
         $book_mgmt->finished = '0';
         $book_mgmt->book_id = $book->id;
-        $book_mgmt->next=$book->start;
+        $book_mgmt->next = $book->start;
         $book_mgmt->save();
 
         $book_mgmt->today_rest = $book_mgmt->a_day;
@@ -154,11 +154,11 @@ final class BookController extends Controller
         $book_mgmt->finished = '0';
         $book_mgmt->finish_flag = '0';
         $book_mgmt->save();
-        
-        if($book->max<=$input["finish"]){
-            $finish=$book->max;
-        }else{
-            $finish=$input["finish"];
+
+        if ($book->max <= $input['finish']) {
+            $finish = $book->max;
+        } else {
+            $finish = $input['finish'];
         }
 
         $comprehension = $request->comprehension_id;

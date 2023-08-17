@@ -7,7 +7,7 @@ a{
 }
 
 .grid3{
-    @apply grid md:grid-cols-3 md:gap-6 items-start;
+    @apply grid md:grid-cols-3 md:gap-6 items-start place-items-center content-evenly ;
 }
 
 .grid2{
@@ -31,11 +31,11 @@ a{
 }
 
 .txt-h1{
-    @apply text-3xl;
+    @apply text-3xl flex justify-center;
 }
 
 .txt-h2{
-    @apply text-xl;
+    @apply text-xl flex justify-center;
 }
 
 .books{

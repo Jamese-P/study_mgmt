@@ -18,6 +18,7 @@ final class BookRequest extends FormRequest
         return [
             'book.name' => 'required|string|max:100',
             'book.max' => 'required|gte:1',
+
         ];
     }
 }

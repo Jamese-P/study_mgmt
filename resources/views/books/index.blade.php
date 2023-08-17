@@ -84,7 +84,7 @@
         </div>
         
         <div>
-            <h2　class="txt-h2">学習済み参考書</h2>
+            <h2 class="txt-h2">学習済み参考書</h2>
             <div class='books'>
                 <table class="book-table">
                     <thead class="book-thead">

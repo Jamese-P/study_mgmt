@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('subject_id')->constrained();
             $table->foreignId('type_id')->constrained();
+            $table->integer('start');
             $table->integer('max');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate()->nullable();

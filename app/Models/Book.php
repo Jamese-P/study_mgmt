@@ -15,11 +15,13 @@ class Book extends Model
         'name',
         'subject_id',
         'type_id',
+        'start',
         'max',
     ];
 
     protected $casts = [
         'max' => 'int',
+        'start' => 'int',
     ];
 
     public function book_mgmt()

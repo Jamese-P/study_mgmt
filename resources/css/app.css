@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+a{
+    @apply font-medium text-blue-600 dark:text-blue-500 hover:underline;
+}
+
+.grid3{
+    @apply grid md:grid-cols-3 md:gap-6 items-start;
+}
+
+.grid2{
+    @apply grid md:grid-cols-2 md:gap-6 items-start;
+}
+
 .btn-exp{
     @apply inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20;
 }
@@ -69,3 +81,51 @@
 .log-td{
     @apply whitespace-nowrap px-2 py-2;
 }
+
+.form1{
+    @apply h-screen w-screen flex justify-center;
+}
+.form-book{
+    @apply items-center lg:max-w-lg lg:w-full md:w-1/2 w-5/6;
+}
+
+.form-log{
+    @apply items-center lg:max-w-lg lg:w-full md:w-1/2 w-5/6;
+}
+
+.form-element{
+    @apply relative z-0 w-full mb-6;
+}
+
+.form-grid{
+    @apply grid md:grid-cols-2 md:gap-6;
+}
+
+.form-label{
+    @apply block peer-focus:font-medium text-sm text-gray-700 dark:text-gray-400;
+}
+
+.form-input{
+    @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
+
+.form-textarea{
+    @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
+
+.form-select{
+    @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500
+}
+
+.form-number{
+    @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
+
+.form-date{
+     @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
+
+.form-submit{
+    @apply place-items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
+}
+

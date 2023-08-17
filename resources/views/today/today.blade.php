@@ -1,7 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        Today
-    </x-slot>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -17,8 +14,19 @@
 </head>
 
 <body>
-    <div class="grid3">
+    @if(!$books_exp->isEmpty())
+    <div class="flex justify-centeritems-center p-4 mb-4 text-sm text-red-600 border border-red-600 rounded-lg bg-red-50 dark:text-red-400 dark:border-red-400" role="alert">
+        <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+        </svg>
+            <span class="sr-only">Info</span>
+            <div>
+                <span class="font-medium">Danger alert!</span> 期限切れの参考書を処理してください
+            </div>
+    </div>
+    @endif
     
+    <div class="grid3">
         <div class="exp">
             @if(!$books_exp->isEmpty())
             <h1 class="txt-h1">期限切れの参考書</h1>
@@ -35,7 +43,7 @@
                     <tbody>
                     @foreach($books_exp as $book_mgmt)
                         <tr class="book-tr">
-                            <td class="book-td">{{$book_mgmt->book->name}}</td>
+                            <td class="book-td"><a href="{{route('book.show',['book'=>$book_mgmt->book_id])}}">{{$book_mgmt->book->name}}</a></td>
                             <td class="book-td">{{$book_mgmt->today_rest}}{{$book_mgmt->book->type->name}}</td>
                             <td class="book-td">
                                 <form action="/today/{{$book_mgmt->book_id}}/exp" id="form_{{$book_mgmt->book_id}}_exp" method="post">
@@ -202,11 +210,6 @@
                     @endforeach
                 </tbody>
             </table>
-                    
-
-                   
-    
-                    
         </div>
     </div>
 

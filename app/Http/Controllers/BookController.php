@@ -163,7 +163,7 @@ final class BookController extends Controller
 
         $comprehension = $request->comprehension_id;
 
-        for ($i = 1; $i <= $finish; $i++) {
+        for ($i = $book_mgmt->next; $i <= $finish; $i++) {
             $log = $book->logs()->where('number', $i)->orderBy('learned_at', 'desc')->first();
             if ($log && $log->comprehension_id >= $comprehension) {
                 $log_new = new Log();

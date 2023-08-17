@@ -105,7 +105,7 @@
                             <div class='book'>
                                 <td class="book-td">
                                     <div class="percent">
-                                    {{round($book_mgmt->finished/$book_mgmt->book->max*100,1)}}%
+                                    {{$book_mgmt->percent}}%
                                     </div>
                                 </td>
                                 <td class="book-td">

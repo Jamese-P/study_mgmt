@@ -16,7 +16,7 @@ class LogRequest extends FormRequest
     public function rules()
     {
         return [
-            'log.number' => 'required',
+            'log.number' => 'required|gte:1',
         ];
     }
 }

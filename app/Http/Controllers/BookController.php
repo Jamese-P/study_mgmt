@@ -125,7 +125,7 @@ final class BookController extends Controller
         }
 
         while (1) {
-            if (! $log = $book->logs()->whereNull('learned_at')->where('number', '>', $finish + 1)->first()) {
+            if (! $log = $book->logs()->whereNull('learned_at')->where('number', '>', $finish)->first()) {
                 break;
             }
             $log->delete();

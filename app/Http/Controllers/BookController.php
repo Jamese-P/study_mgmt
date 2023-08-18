@@ -55,13 +55,10 @@ final class BookController extends Controller
         $input = $book_mgmt_request['book_mgmt'];
         $book_mgmt->fill($input);
         $book_mgmt->user_id = Auth::user()->id;
-        $book_mgmt->finished = '0';
+        $book_mgmt->finished = $input['next']-1;
         $book_mgmt->book_id = $book->id;
         $book_mgmt->next = $book->start;
-        $book_mgmt->save();
-
-        $book_mgmt->today_rest = $book_mgmt->a_day;
-
+        $book_mgmt->today_rest=$input['a_day'];
         $book_mgmt->save();
 
         $this->logs_to_learn($book_mgmt->next, $book->max, $book);
@@ -151,7 +148,7 @@ final class BookController extends Controller
 
         $input = $book_mgmt_request['book_mgmt'];
         $book_mgmt->fill($input);
-        $book_mgmt->finished = '0';
+        $book_mgmt->finished = $input['next']-1;
         $book_mgmt->finish_flag = '0';
         $book_mgmt->save();
 

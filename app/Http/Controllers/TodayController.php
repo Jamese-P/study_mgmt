@@ -33,13 +33,6 @@ class TodayController extends Controller
         
         $book_mgmts = $book_mgmt->get_under_progress()->get();
         $today = Carbon::today();
-        
-        // //終了予定日の再計算
-        // foreach ($book_mgmts as $book) {
-        //     $rest_times = ceil(($book->book->max - $book->finished) / $book->a_day) - 1;
-        //     $book->end_date = Carbon::parse($book->next_learn_at)->addDays($rest_times * $book->intarval->days);
-        //     $book->save();
-        // }
 
         //期限切れのある参考書の検索
         $book_exp = $book_mgmt->get_exp();
@@ -141,7 +134,7 @@ class TodayController extends Controller
         ]);
     }
 
-    public function complete_log(Request $request, Book $book, int $unit)
+    public function complete_log(LogRequest $request, Book $book, int $unit)
     {
         $input = $request['log'];
         $log = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', $unit)->first();

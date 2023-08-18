@@ -37,6 +37,7 @@
                         </select>
                     </div>
                     <div class="form-element">
+                        <input type="hidden" name="book[start]" value="{{$book_mgmt->book->start}}">
                         <label for="next" class="form-label">次回学習単元またはページ</label>
                         <input id="next" class="form-number" type="number" name="book_mgmt[next]" placeholder="最初の学習ページ" value="{{$book_mgmt->next}}">
                         <p class="next__error" style="color:red">{{ $errors->first('book_mgmt.next') }}</p>

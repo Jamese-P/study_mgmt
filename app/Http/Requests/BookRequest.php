@@ -19,6 +19,10 @@ final class BookRequest extends FormRequest
             'book.name' => 'required|string|max:50',
             'book.start'=>'required|gte:1',
             'book.max' => 'required|gte:1',
+            'book_mgmt.a_day' => 'required|gte:1',
+            'book_mgmt.next' => 'required|gte:1',
+            //'book_mgmt.next_learn_at' => 'required|date|after:yesterday',
+            'book_mgmt.next_learn_at' => 'required|date',
 
         ];
     }

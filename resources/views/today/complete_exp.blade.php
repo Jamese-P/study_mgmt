@@ -15,6 +15,7 @@
                 <div class="name">
                     <h1 class="txt-h1">{{$book->name}} {{$book->type->name}}{{$unit}}</h1>
                 </div>
+                <input type="hidden" name="log[number]" value="{{$unit}}">
                 <div class="comprehension">
                     <label for="comprehension" class="form-label">理解度</label>
                     <select id="comprehension" class="form-select" name="log[comprehension_id]">

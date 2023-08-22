@@ -33,7 +33,7 @@
             @foreach($logs as $log)
                 <tr class="log-tr">
                     <td class="log-td">{{$log->book->subject->name}}</td>
-                    <td class="log-td">{{$log->book->name}}</td>
+                    <td class="log-td"><a href="/books/{{$log->book->id}}">{{$log->book->name}}</a></td>
                     <td class="log-td">{{$log->book->type->name}}{{$log->number}}</td>
                     <td class="log-td">{{$log->learned_at}}</td>
                     <td class="log-td">{{$log->comprehension->name}}</td>

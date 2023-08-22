@@ -45,23 +45,20 @@ final class BookController extends Controller
             'intarvals' => $intarval->get()]);
     }
 
-    public function store(BookRequest $book_request, Book_mgmtRequest $book_mgmt_request, Book $book, Book_mgmt $book_mgmt)
+    public function store(BookRequest $book_request,  Book $book, Book_mgmt $book_mgmt)
     {
         $input = $book_request['book'];
         $book->fill($input);
         $book->user_id = Auth::id();
         $book->save();
 
-        $input = $book_mgmt_request['book_mgmt'];
+        $input = $book_request['book_mgmt'];
         $book_mgmt->fill($input);
         $book_mgmt->user_id = Auth::user()->id;
-        $book_mgmt->finished = '0';
+        $book_mgmt->finished = $input['next']-1;
         $book_mgmt->book_id = $book->id;
         $book_mgmt->next = $book->start;
-        $book_mgmt->save();
-
-        $book_mgmt->today_rest = $book_mgmt->a_day;
-
+        $book_mgmt->today_rest=$input['a_day'];
         $book_mgmt->save();
 
         $this->logs_to_learn($book_mgmt->next, $book->max, $book);
@@ -90,7 +87,7 @@ final class BookController extends Controller
             'intarvals' => $intarval->get()]);
     }
 
-    public function update(BookRequest $book_request, Book_mgmtRequest $book_mgmt_request, Book $book)
+    public function update(BookRequest $book_request,  Book $book)
     {
         $book_mgmt = $book->book_mgmt()->first();
 
@@ -98,8 +95,17 @@ final class BookController extends Controller
         $book->fill($input);
         $book->save();
 
-        $input = $book_mgmt_request['book_mgmt'];
+        $finish=$book_mgmt->a_day-$book_mgmt->today_rest;
+        
+        $input = $book_request['book_mgmt'];
         $book_mgmt->fill($input);
+        $book_mgmt->save();
+        if($finish>=$input['a_day']){
+            $book_mgmt->today_rest=$input['a_day'];
+            $book_mgmt->next_learn_at = Carbon::parse($book_mgmt->next_learn_at)->addDays($book_mgmt->intarval->days);
+        }else{
+        $book_mgmt->today_rest=$input['a_day']-$finish;
+        }
         $book_mgmt->save();
 
         $this->update_logs($book_mgmt->next, $book->max, $book);
@@ -145,13 +151,13 @@ final class BookController extends Controller
         ]);
     }
 
-    public function make_log_relearn(Book $book, Request $request, Book_mgmtRequest $book_mgmt_request)
+    public function make_log_relearn(Book $book, Request $request, BookRequest $book_request)
     {
         $book_mgmt = $book->book_mgmt()->first();
 
-        $input = $book_mgmt_request['book_mgmt'];
+        $input = $book_request['book_mgmt'];
         $book_mgmt->fill($input);
-        $book_mgmt->finished = '0';
+        $book_mgmt->finished = $input['next']-1;
         $book_mgmt->finish_flag = '0';
         $book_mgmt->save();
 

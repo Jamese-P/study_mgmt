@@ -37,6 +37,7 @@
                         </select>
                     </div>
                     <div class="form-element">
+                        <input type="hidden" name="book[start]" value="{{$book_mgmt->book->start}}">
                         <label for="next" class="form-label">次回学習単元またはページ</label>
                         <input id="next" class="form-number" type="number" name="book_mgmt[next]" placeholder="最初の学習ページ" value="{{$book_mgmt->next}}">
                         <p class="next__error" style="color:red">{{ $errors->first('book_mgmt.next') }}</p>
@@ -66,7 +67,7 @@
                     <input id="next_learn_at" class="form-date" type="date" name="book_mgmt[next_learn_at]" value="{{$book_mgmt->next_learn_at}}">
                 </div>
                 <div class="back">
-                    [<a href="{{route('book.index')}}">back</a>]
+                    [<a href="{{route('book.show',['book'=>$book_mgmt->book->id])}}">back</a>]
                 </div>
                 <input type="submit" class="form-submit" value="保存"/>
             </form>

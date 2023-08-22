@@ -16,10 +16,7 @@ class Book_mgmtRequest extends FormRequest
     public function rules()
     {
         return [
-            'book_mgmt.a_day' => 'required|gte:1',
-            //'book_mgmt.next' => 'required|gte:1',
-            //'book_mgmt.next_learn_at' => 'required|date|after:yesterday',
-            'book_mgmt.next_learn_at' => 'required|date',
+            
         ];
     }
 }

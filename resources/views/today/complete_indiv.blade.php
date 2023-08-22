@@ -21,7 +21,7 @@
                 </div>
                 <div class="number">
                     <label for="number" class="form-label">単元またはページ</label>
-                    <input type="number" id="number" name="log[number]" class="form-number" placeholder="学習ページ" value="{{old('log.number')}}" required>
+                    <input type="number" id="number" name="log[number]" class="form-number" placeholder="学習ページ" value="{{old('log.number')}}">
                     <p class="number__error" style="color:red">{{ $errors->first('log.number') }}</p>
                 </div>
                 <div class="comprehension">
@@ -36,14 +36,14 @@
                     <label for="comment" class="form-label">コメント</label>
                     <textarea id="comment" class="form-textarea" name="log[comment]" placeholder="コメント" value="{{old('log.comment')}}"></textarea>
                 </div>
-                
+                <div class="back">
+                    [<a href="{{route('today')}}">back</a>]
+                </div>
                 <input type="submit" class="form-submit" value="保存"/>
             </form>
         </div>
             
-        <div class="back">
-            [<a href="{{route('today')}}">back</a>]
-        </div>
+                
     </body>
 </html>
 </x-app-layout>

@@ -17,11 +17,14 @@
                 @method('PUT')
                 <div class="form-element">
                     <h1 class="txt-h1">{{$book_mgmt->book->name}}</h1>
+                    <input type="hidden" name="book[name]" value="{{$book_mgmt->book->name}}">
                 </div>
                 <div class="form-element">
                     <h2 class="txt-h2">{{$book_mgmt->book->subject->name}}</h2>
                 </div>
                 <div class="form-grid">
+                    <input type="hidden" name="book[start]" value="{{$book_mgmt->book->start}}">
+                    <input type="hidden" name="book[max]" value="{{$book_mgmt->book->max}}">
                     <div class="form-element">
                         <label for="next" class="form-label">開始{{$book_mgmt->book->type->name}}</label>
                         <input type="number" id="next" class="form-input" name="book_mgmt[next]" placeholder="開始{{$book->type->name}}" value="{{old('book_mgmt.next',$book->start)}}">

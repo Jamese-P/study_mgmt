@@ -37,6 +37,7 @@
                         <label for="start" class="form-label">初回学習単元またはページ</label>
                         <input id="start" class="form-number" type="number" name="book[start]" placeholder="開始ページ" value="{{old('book.start',1)}}">
                         <p class="next__error" style="color:red">{{ $errors->first('book.start') }}</p>
+                        <input type="hidden" name="book_mgmt[next]" value="{{old('book.start',1)}}">
                     </div>
                     <div class="form-element">
                         <label for="finish" class="form-label">終了単元またはページ</label>

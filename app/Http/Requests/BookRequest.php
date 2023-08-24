@@ -23,7 +23,7 @@ final class BookRequest extends FormRequest
             'book_mgmt.next' => 'required|gte:1',
             //'book_mgmt.next_learn_at' => 'required|date|after:yesterday',
             'book_mgmt.next_learn_at' => 'required|date',
-
+            'book_mgmt.end_date'=>'required_without:book_mgmt.a_day,book_mgmt'
         ];
     }
 }

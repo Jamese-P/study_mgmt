@@ -43,7 +43,7 @@
                     <tbody>
                     @foreach($books_exp as $book_mgmt)
                         <tr class="book-tr">
-                            <td class="book-td"><a href="{{route('book.show',['book'=>$book_mgmt->book_id])}}">{{$book_mgmt->book->name}}</a></td>
+                            <td class="book-td"><a class="link" href="{{route('book.show',['book'=>$book_mgmt->book_id])}}">{{$book_mgmt->book->name}}</a></td>
                             <td class="book-td">{{$book_mgmt->today_rest}}{{$book_mgmt->book->type->name}}</td>
                             <td class="book-td">
                                 <form action="/today/{{$book_mgmt->book_id}}/exp" id="form_{{$book_mgmt->book_id}}_exp" method="post">
@@ -83,7 +83,7 @@
                     <tbody>
                     @foreach($logs_exp as $log)
                         <tr class="log-tr">
-                            <td class="log-td"><a href="{{route('book.show',['book'=>$log->book_id])}}">{{$log->book->name}}</a></td>
+                            <td class="log-td"><a class="link" href="{{route('book.show',['book'=>$log->book_id])}}">{{$log->book->name}}</a></td>
                             <td class="log-td">{{$log->book->type->name}}{{$log->number}}</td>
                             <td class="log-td">{{$log->scheduled_at}}</td>
                             <td class="log-td">
@@ -115,7 +115,7 @@
                     <div class='book'>
                         <tr class="book-thead">
                             <td>
-                                <h2 class="txt-book-name"><a href="/books/{{$book_mgmt->book->id}}">{{$book_mgmt->book->name}}</a></h2>
+                                <h2 class="txt-book-name"><a class="link" href="/books/{{$book_mgmt->book->id}}">{{$book_mgmt->book->name}}</a></h2>
                             </td>
                             <td>
                                 残り{{$book_mgmt->today_rest}}{{$book_mgmt->book->type->name}}
@@ -161,7 +161,7 @@
                     <div class='book'>
                         <tr class="book-thead">
                             <td>
-                                <h2 class="txt-book-name"><a href="/books/{{$book_mgmt->book->id}}">{{$book_mgmt->book->name}}</a></h2>
+                                <h2 class="txt-book-name"><a class="link" href="/books/{{$book_mgmt->book->id}}">{{$book_mgmt->book->name}}</a></h2>
                             </td>
                             <td>
                                 残り{{$book_mgmt->today_rest}}{{$book_mgmt->book->type->name}}
@@ -200,7 +200,7 @@
                         @if ($book_mgmt->intarval_id=='1' )
                         <tr class="book-thead">
                             <td>
-                                <h2 class="txt-book-name"><a href="/books/{{$book_mgmt->book->id}}">{{$book_mgmt->book->name}}</a></h2>
+                                <h2 class="txt-book-name"><a class="link" href="/books/{{$book_mgmt->book->id}}">{{$book_mgmt->book->name}}</a></h2>
                             </td>
                             <td>
                                 {{$book_mgmt->a_day}}{{$book_mgmt->book->type->name}}

@@ -45,7 +45,7 @@
                                 </td>
                                 <td class="book-td">
                                     <div class="name">
-                                    <a href="/books/{{$book_mgmt->book_id}}">{{$book_mgmt->book->name}}</a>
+                                    <a class="link" href="/books/{{$book_mgmt->book_id}}">{{$book_mgmt->book->name}}</a>
                                     </div>
                                 </td>
                                 <td class="book-td">
@@ -110,7 +110,7 @@
                                 </td>
                                 <td class="book-td">
                                     <div class="name">
-                                    <a href="/books/{{$book_mgmt->book_id}}">{{$book_mgmt->book->name}}</a>
+                                    <a class="link" href="/books/{{$book_mgmt->book_id}}">{{$book_mgmt->book->name}}</a>
                                     </div>
                                 </td>
                                 <td class="book-td">

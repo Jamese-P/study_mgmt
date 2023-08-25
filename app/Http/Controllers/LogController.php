@@ -13,7 +13,7 @@ class LogController extends Controller
     {
         $log = Log::whereHas('book', function ($query) {
             $query->where('user_id', Auth::id());
-        })->whereNotNull('learned_at')->orderBy('learned_at', 'desc')->get();
+        })->whereNotNull('learned_at')->sortable()->orderBy('learned_at', 'desc')->get();
 
         return view('logs.index')->with(['logs' => $log]);
     }

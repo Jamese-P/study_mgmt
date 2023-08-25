@@ -6,10 +6,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 final class Log extends Model
 {
     use HasFactory;
+    use Sortable;
 
     protected $fillable = [
         'book_id',
@@ -19,6 +21,8 @@ final class Log extends Model
         'scheduled_at',
         'comment',
     ];
+    
+    public $sortable = ['comprehension_id', 'learned_at'];
 
     public function book()
     {
@@ -28,5 +32,12 @@ final class Log extends Model
     public function comprehension()
     {
         return $this->belongsTo(Comprehension::class);
+    }
+    
+    public function subjectSortable($query, $direction)
+    {
+        return $query->leftJoin('books', 'books.id', '=', 'logs.book_id')
+              ->select('logs.*')
+              ->orderBy('books.subject_id', $direction);
     }
 }

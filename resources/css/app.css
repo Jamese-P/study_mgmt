@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-a{
+.link{
     @apply font-medium text-blue-600 dark:text-blue-500 hover:underline;
 }
 

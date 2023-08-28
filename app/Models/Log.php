@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Support\Facades\Auth;
 
 final class Log extends Model
 {
@@ -39,5 +40,11 @@ final class Log extends Model
         return $query->leftJoin('books', 'books.id', '=', 'logs.book_id')
               ->select('logs.*')
               ->orderBy('books.subject_id', $direction);
+    }
+    
+    public function learned_logs(){
+        return $this::whereHas('book', function ($query) {
+            $query->where('user_id', Auth::id());
+        })->whereNotNull('learned_at');
     }
 }

@@ -43,6 +43,7 @@ Route::controller(BookController::class)->middleware(['auth'])->group(function (
 
 Route::controller(LogController::class)->middleware(['auth'])->group(function () {
     Route::get('/logs', 'index')->name('log.index');
+    Route::get('/logs/refine', 'refine')->name('log.index.refine');
 });
 
 Route::middleware('auth')->group(function () {

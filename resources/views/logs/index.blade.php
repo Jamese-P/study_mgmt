@@ -1,7 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        学習履歴
-    </x-slot>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -17,6 +14,17 @@
 </head>
 
 <body>
+    <div>
+        <p class="log-head">表示させる教科を選択してください</p>
+        <div class="subject">
+        @foreach($subjects as $subject)
+            <input type="checkbox" id="subject{{$subject->id}}" name="subjects" value="{{$subject->id}}" onchange="func_subject()" checked>
+            <label class="subject-label" for="subject{{$subject->id}}">{{$subject->name}}</label>
+        @endforeach
+        </div>
+
+    </div>
+    
     <div class='logs'>
         <table class="log-table">
             <thead class="log-thead">
@@ -42,9 +50,23 @@
             @endforeach
             </tbody>
         </table>
+        <div>
+            {{$logs->appends(request()->query())->links()}}
+        </div>
     </div>
     <script>
         
+        
+        function func_subject(){
+            var val=[];
+            let input_subjects = document.querySelectorAll("input[name=subjects]:checked");
+            if( 0 < input_subjects.length ) {
+	            for(let checked_data of input_subjects) {
+		            val.push(checked_data.value); 
+	            }
+	            console.log(val);
+            }
+        }
     </script>
 </body>
 </html>

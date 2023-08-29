@@ -17,7 +17,7 @@ final class BookRequest extends FormRequest
     {
         return [
             'book.name' => 'required|string|max:50',
-            'book.start'=>'required|gte:1',
+            'book.start' => 'required|gte:1',
             'book.max' => 'required|gte:1',
             'book_mgmt.a_day' => 'required|gte:1',
             'book_mgmt.next' => 'required|gte:1',

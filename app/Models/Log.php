@@ -23,7 +23,7 @@ final class Log extends Model
         'comment',
     ];
     
-    public $sortable = ['comprehension_id', 'learned_at'];
+    public $sortable = ['comprehension_id', 'learned_at','book_id'];
 
     public function book()
     {

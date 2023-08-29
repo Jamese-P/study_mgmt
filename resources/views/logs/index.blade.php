@@ -15,13 +15,21 @@
 
 <body>
     <div>
-        <p class="log-head">表示させる教科を選択してください</p>
-        <div class="subject">
-        @foreach($subjects as $subject)
-            <input type="checkbox" id="subject{{$subject->id}}" name="subjects" value="{{$subject->id}}" onchange="func_subject()" checked>
-            <label class="subject-label" for="subject{{$subject->id}}">{{$subject->name}}</label>
-        @endforeach
-        </div>
+        <form action="{{route('log.index.refine')}}" method="GET">
+            <p class="log-head">表示させる教科を選択してください</p>
+            <div class="subject">
+                @foreach($subjects as $subject)
+                @if(in_array($subject->id,$display_subjects))
+                <input type="checkbox" id="subject{{$subject->id}}" name="subject[{{$subject->id}}]" value="{{$subject->id}}" checked/>
+                @else
+                <input type="checkbox" id="subject{{$subject->id}}" name="subject[{{$subject->id}}]" value="{{$subject->id}}"/>
+                @endif
+                <label class="subject-label" for="subject{{$subject->id}}">{{$subject->name}}</label>
+                @endforeach
+                <input type="submit" class="btn-exp" value="絞り込み"/>
+            </div>
+        </form>
+           
 
     </div>
     
@@ -30,7 +38,7 @@
             <thead class="log-thead">
                 <tr>
                     <th class="log-th" scope="col">@sortablelink('subject', '教科')</th>
-                    <th class="log-th" scope="col">参考書名</th>
+                    <th class="log-th" scope="col">@sortablelink('book_id', '参考書名')</th>
                     <th class="log-th" scope="col"></th>
                     <th class="log-th" scope="col">@sortablelink('learned_at', '学習日')</th>
                     <th class="log-th" scope="col">@sortablelink('comprehension_id', '理解度')</th>
@@ -56,17 +64,6 @@
     </div>
     <script>
         
-        
-        function func_subject(){
-            var val=[];
-            let input_subjects = document.querySelectorAll("input[name=subjects]:checked");
-            if( 0 < input_subjects.length ) {
-	            for(let checked_data of input_subjects) {
-		            val.push(checked_data.value); 
-	            }
-	            console.log(val);
-            }
-        }
     </script>
 </body>
 </html>

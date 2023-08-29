@@ -16,7 +16,7 @@ class Book_mgmtRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
         ];
     }
 }

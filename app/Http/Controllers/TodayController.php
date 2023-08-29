@@ -17,20 +17,20 @@ class TodayController extends Controller
 {
     public function show(Book_mgmt $book_mgmt)
     {
-        $book_mgmts=$book_mgmt->all();
-        
+        $book_mgmts = $book_mgmt->all();
+
         foreach ($book_mgmts as $book) {
-            $logs=$book->book()->first()->logs()->count();
-            $logs_learn=$book->book()->first()->logs()->whereNotNull('learned_at')->count();
-            $book->percent=round($logs_learn/$logs*100,1);
+            $logs = $book->book()->first()->logs()->count();
+            $logs_learn = $book->book()->first()->logs()->whereNotNull('learned_at')->count();
+            $book->percent = round($logs_learn / $logs * 100, 1);
             //終了予定日の再計算
-            if($book->finish_flag==0){
+            if ($book->finish_flag == 0) {
                 $rest_times = ceil(($book->book->max - $book->finished) / $book->a_day) - 1;
                 $book->end_date = Carbon::parse($book->next_learn_at)->addDays($rest_times * $book->intarval->days);
             }
             $book->save();
         }
-        
+
         $book_mgmts = $book_mgmt->get_under_progress()->get();
         $today = Carbon::today();
 
@@ -38,7 +38,7 @@ class TodayController extends Controller
         $book_exp = $book_mgmt->get_exp();
 
         //期限切れのログ検索
-        $log_exp = Log::whereNotNull('scheduled_at')->orderBy('scheduled_at','asc')->get();
+        $log_exp = Log::whereNotNull('scheduled_at')->orderBy('scheduled_at', 'asc')->get();
 
         $book_today = $book_mgmt->get_under_progress_byDate($today);
         $tomorrow = Carbon::tomorrow();

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->integer('next');
             $table->integer('today_rest')->default('0');
             $table->date('next_learn_at');
-            $table->float('percent',5,1)->default('0');
+            $table->float('percent', 5, 1)->default('0');
             $table->date('end_date')->nullable();
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate()->nullable();

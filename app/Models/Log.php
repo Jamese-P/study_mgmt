@@ -6,8 +6,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Support\Facades\Auth;
+use Kyslik\ColumnSortable\Sortable;
 
 final class Log extends Model
 {
@@ -22,8 +22,8 @@ final class Log extends Model
         'scheduled_at',
         'comment',
     ];
-    
-    public $sortable = ['comprehension_id', 'learned_at','book_id'];
+
+    public $sortable = ['comprehension_id', 'learned_at', 'book_id'];
 
     public function book()
     {
@@ -34,15 +34,16 @@ final class Log extends Model
     {
         return $this->belongsTo(Comprehension::class);
     }
-    
+
     public function subjectSortable($query, $direction)
     {
         return $query->leftJoin('books', 'books.id', '=', 'logs.book_id')
               ->select('logs.*')
               ->orderBy('books.subject_id', $direction);
     }
-    
-    public function learned_logs(){
+
+    public function learned_logs()
+    {
         return $this::whereHas('book', function ($query) {
             $query->where('user_id', Auth::id());
         })->whereNotNull('learned_at');

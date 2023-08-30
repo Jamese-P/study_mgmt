@@ -46,6 +46,10 @@ Route::controller(LogController::class)->middleware(['auth'])->group(function ()
     Route::get('/logs/refine', 'refine')->name('log.index.refine');
 });
 
+Route::controller(EventController::class)->middleware(['auth'])->group(function () {
+    Route::get('/calendar', function () { return view('calendar.calendar');})->name('calendar');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

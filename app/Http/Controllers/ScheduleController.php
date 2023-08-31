@@ -50,4 +50,12 @@ class ScheduleController extends Controller
             ->where('start_date', '<', $end_date)
             ->get();
     }
+    
+    public function update(Schedule $schedule){
+        
+    }
+    
+    public function delete(Schedule $schedule){
+        
+    }
 }

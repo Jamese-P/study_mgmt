@@ -1,4 +1,4 @@
-@import './modal.css';
+@import "./modal.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -147,3 +147,4 @@
 .subject-label{
     @apply inline-block pl-[0.15rem] hover:cursor-pointer;
 }
+

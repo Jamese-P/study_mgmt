@@ -52,8 +52,12 @@ class ScheduleController extends Controller
             ->get();
     }
     
-    public function create(Request $request){
-        $schedule=new Schedule();
+    public function create(Schedule $schedule,Request $request){
+        $input=$request['schedule'];
+        
+        $schedule->fill($input)->save();
+        
+        return redirect(route("calendar"));
     }
     
     public function update(Request $request){

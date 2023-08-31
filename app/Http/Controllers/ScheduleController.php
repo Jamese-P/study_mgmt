@@ -41,6 +41,7 @@ class ScheduleController extends Controller
         return Schedule::query()
             ->select(
                 // FullCalendarの形式に合わせる
+                'id',
                 'start_date as start',
                 'end_date as end',
                 'name as title'
@@ -51,15 +52,22 @@ class ScheduleController extends Controller
             ->get();
     }
     
-    public function create(Schedule $schedule){
-        
+    public function create(Request $request){
+        $schedule=new Schedule();
     }
     
-    public function update(Schedule $schedule){
+    public function update(Request $request){
+        $schedule=Schedule::find($request->input('id'));
+        $input=$request['schedule'];
+        $schedule->fill($input)->save();
         
+        return redirect(route("calendar"));
     }
     
-    public function delete(Schedule $schedule){
-        
+    public function delete(Request $request){
+         $schedule=Schedule::find($request->input('id'));
+         $schedule->delete();
+         
+         return redirect(route("calendar"));
     }
 }

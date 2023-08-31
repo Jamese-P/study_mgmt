@@ -52,8 +52,8 @@ Route::controller(ScheduleController::class)->middleware(['auth'])->group(functi
     Route::post('/calendar/store', 'store')->name('calendar.store');
     Route::post('/calendar/create', 'store')->name('calendar.create');
     Route::post('/calendar/get', 'get')->name('calendar.get');
-    Route::put('/calendar/{schedule}', 'update')->name('calendar.update');
-    Route::delete('/calendar/{schedule}', 'delete')->name('calendar.delete');
+    Route::put('/calendar', 'update')->name('calendar.update');
+    Route::delete('/calendar', 'delete')->name('calendar.delete');
 });
 
 Route::middleware('auth')->group(function () {

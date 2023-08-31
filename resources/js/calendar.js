@@ -5,6 +5,14 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import axios from 'axios';
 
+function formatDate(date, pos) {
+    var dt = new Date(date);
+    if(pos==="end"){
+        dt.setDate(dt.getDate() - 1);
+    }
+    return dt.getFullYear() + '-' +('0' + (dt.getMonth()+1)).slice(-2)+ '-' +  ('0' + dt.getDate()).slice(-2);
+}
+
 var calendarEl = document.getElementById("calendar");
 
 let calendar = new Calendar(calendarEl, {
@@ -22,34 +30,12 @@ let calendar = new Calendar(calendarEl, {
     height: "auto",
     
     select: function (info) {
-        //alert("selected " + info.startStr + " to " + info.endStr);
+        document.getElementById("create-id").value = "";
+        document.getElementById("create-name").value = "";
+        document.getElementById("create-start_date").value = formatDate(info.start);
+        document.getElementById("create-end_date").value = formatDate(info.end, "end");
 
         document.getElementById('modal-create').style.display = 'flex';
-        
-        var eventName="";
-
-        if (eventName) {
-            // Laravelの登録処理の呼び出し
-            axios
-                .post("/calendar/store", {
-                    start_date: info.start.valueOf(),
-                    end_date: info.end.valueOf(),
-                    name: eventName,
-                })
-                .then(() => {
-                    // イベントの追加
-                    calendar.addEvent({
-                        title: eventName,
-                        start: info.start,
-                        end: info.end,
-                        allDay: true,
-                    });
-                })
-                .catch(() => {
-                    // バリデーションエラーなど
-                    alert("登録に失敗しました");
-                });
-        }
     },
 
     events: function (info, successCallback, failureCallback) {
@@ -70,6 +56,16 @@ let calendar = new Calendar(calendarEl, {
                 alert("登録に失敗しました");
             });
     },
+    
+    eventClick:function(info){
+        document.getElementById("edit-id").value = info.event.id;
+        document.getElementById("delete-id").value = info.event.id;
+        document.getElementById("edit-name").value = info.event.title;
+        document.getElementById("edit-start_date").value = formatDate(info.event.start);
+        document.getElementById("edit-end_date").value = formatDate(info.event.end, "end");
+
+        document.getElementById('modal-edit').style.display = 'flex';
+    }
 
 });
 calendar.render();
@@ -80,4 +76,14 @@ window.closeCreateModal = function (){
 
 window.closeEditModal = function (){
     document.getElementById('modal-edit').style.display = 'none';
+}
+
+window.deleteConfirm = function(){
+    'use strict'
+    
+    document.getElementById('modal-edit').style.display = 'none';
+
+    if (confirm('本当に削除しますか？')) {
+        document.getElementById('delete-form').submit();
+    }
 }

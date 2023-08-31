@@ -68,6 +68,19 @@ class ScheduleController extends Controller
         return redirect(route("calendar"));
     }
     
+    public function drop(Request $request){
+        $schedule=Schedule::find($request->input('id'));
+        
+        $start_date = date('Y-m-d', $request->input('start_date') / 1000);
+        $end_date = date('Y-m-d', $request->input('end_date') / 1000);
+        
+        $schedule->start_date=$start_date;
+        $schedule->end_date=$end_date;
+        $schedule->save();
+        
+        return redirect(route("calendar"));
+    }
+    
     public function delete(Request $request){
          $schedule=Schedule::find($request->input('id'));
          $schedule->delete();

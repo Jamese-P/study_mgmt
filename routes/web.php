@@ -53,6 +53,7 @@ Route::controller(ScheduleController::class)->middleware(['auth'])->group(functi
     Route::post('/calendar/create', 'create')->name('calendar.create');
     Route::post('/calendar/get', 'get')->name('calendar.get');
     Route::put('/calendar', 'update')->name('calendar.update');
+    Route::put('/calendar/drop', 'drop')->name('calendar.drop');
     Route::delete('/calendar', 'delete')->name('calendar.delete');
 });
 

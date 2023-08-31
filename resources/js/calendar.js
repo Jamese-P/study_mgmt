@@ -1,5 +1,5 @@
 import { Calendar } from "@fullcalendar/core";
-import interactionPlugin from "@fullcalendar/interaction";
+import interactionPlugin , { Draggable } from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
@@ -18,14 +18,28 @@ var calendarEl = document.getElementById("calendar");
 let calendar = new Calendar(calendarEl, {
     plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin],
     initialView: "dayGridMonth",
+    customButtons: {
+        createEvent:{
+            text:'+',
+            click:function(){
+                document.getElementById("create-id").value = "";
+                document.getElementById("create-name").value = "";
+                document.getElementById("create-start_date").value = "";
+                document.getElementById("create-end_date").value = "";
+        
+                document.getElementById('modal-create').style.display = 'flex';
+            }
+        }
+    },
     headerToolbar: {
-        left: "prev,next today",
+        left: "prev,next today createEvent",
         center: "title",
         right: "dayGridMonth,timeGridWeek,listWeek",
     },
 
     // 日付をクリック、または範囲を選択したイベント
     selectable: true,
+    editable: true,
     
     height: "auto",
     
@@ -65,7 +79,16 @@ let calendar = new Calendar(calendarEl, {
         document.getElementById("edit-end_date").value = formatDate(info.event.end, "end");
 
         document.getElementById('modal-edit').style.display = 'flex';
-    }
+    },
+    
+    eventDrop: function(info) {
+        axios
+            .put("/calendar/drop", {
+                start_date: info.event.start.valueOf(),
+                end_date: info.event.end.valueOf(),
+                id: info.event.id.valueOf(),
+            });
+    },
 
 });
 calendar.render();

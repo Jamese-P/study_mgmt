@@ -51,6 +51,7 @@ Route::controller(ScheduleController::class)->middleware(['auth'])->group(functi
     Route::get('/calendar', function () { return view('calendar.calendar');})->name('calendar');
     Route::post('/calendar/store', 'store')->name('calendar.store');
     Route::post('/calendar/get', 'get')->name('calendar.get');
+    Route::delete('/calendar', 'delete')->name('calendar.delete');
 });
 
 Route::middleware('auth')->group(function () {

@@ -18,6 +18,9 @@ let calendar = new Calendar(calendarEl, {
 
     // 日付をクリック、または範囲を選択したイベント
     selectable: true,
+    editable: true,
+    height: "auto",
+    
     select: function (info) {
         //alert("selected " + info.startStr + " to " + info.endStr);
 
@@ -63,8 +66,26 @@ let calendar = new Calendar(calendarEl, {
             })
             .catch(() => {
                 // バリデーションエラーなど
-                alert("登録に失敗しました");
+                alert("読み込みに失敗しました");
             });
+    },
+    
+    eventClick: function(info) {
+        if (confirm('削除しますか？')) {
+            axios
+                .delete("/calendar",{
+                    name: info.event.titile,
+                })
+                .then(() => {
+                    info.event.remove();
+                })
+                .catch(() => {
+                    alert("削除に失敗しました");
+                });
+            
+        }
+        
+            
     },
     
 });

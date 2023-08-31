@@ -43,11 +43,23 @@ class ScheduleController extends Controller
                 // FullCalendarの形式に合わせる
                 'start_date as start',
                 'end_date as end',
-                'name as title'
+                'name as title',
             )
             // FullCalendarの表示範囲のみ表示
             ->where('end_date', '>', $start_date)
             ->where('start_date', '<', $end_date)
             ->get();
+    }
+    
+    public function delete(Request $request){
+        
+        $request->validate([
+            'name' => 'required',
+        ]);
+        
+        $schedule=Schedule::where('name',$request->input('name'))->first();
+        $schedule->delete();
+        
+        return;
     }
 }

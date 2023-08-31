@@ -18,11 +18,15 @@ let calendar = new Calendar(calendarEl, {
 
     // 日付をクリック、または範囲を選択したイベント
     selectable: true,
+    
+    height: "auto",
+    
     select: function (info) {
         //alert("selected " + info.startStr + " to " + info.endStr);
 
-        // 入力ダイアログ
-        const eventName = prompt("イベントを入力してください");
+        document.getElementById('modal-create').style.display = 'flex';
+        
+        var eventName="";
 
         if (eventName) {
             // Laravelの登録処理の呼び出し
@@ -47,7 +51,7 @@ let calendar = new Calendar(calendarEl, {
                 });
         }
     },
-    
+
     events: function (info, successCallback, failureCallback) {
         // Laravelのイベント取得処理の呼び出し
         axios
@@ -66,6 +70,14 @@ let calendar = new Calendar(calendarEl, {
                 alert("登録に失敗しました");
             });
     },
-    
+
 });
 calendar.render();
+
+window.closeCreateModal = function (){
+    document.getElementById('modal-create').style.display = 'none';
+}
+
+window.closeEditModal = function (){
+    document.getElementById('modal-edit').style.display = 'none';
+}

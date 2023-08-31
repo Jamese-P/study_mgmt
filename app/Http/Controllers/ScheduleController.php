@@ -51,6 +51,10 @@ class ScheduleController extends Controller
             ->get();
     }
     
+    public function create(Schedule $schedule){
+        
+    }
+    
     public function update(Schedule $schedule){
         
     }

@@ -50,6 +50,7 @@ Route::controller(LogController::class)->middleware(['auth'])->group(function ()
 Route::controller(ScheduleController::class)->middleware(['auth'])->group(function () {
     Route::get('/calendar', function () { return view('calendar.calendar');})->name('calendar');
     Route::post('/calendar/store', 'store')->name('calendar.store');
+    Route::post('/calendar/create', 'store')->name('calendar.create');
     Route::post('/calendar/get', 'get')->name('calendar.get');
     Route::put('/calendar/{schedule}', 'update')->name('calendar.update');
     Route::delete('/calendar/{schedule}', 'delete')->name('calendar.delete');

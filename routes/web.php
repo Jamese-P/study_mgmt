@@ -6,6 +6,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TodayController;
+use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -44,6 +45,15 @@ Route::controller(BookController::class)->middleware(['auth'])->group(function (
 Route::controller(LogController::class)->middleware(['auth'])->group(function () {
     Route::get('/logs', 'index')->name('log.index');
     Route::get('/logs/refine', 'refine')->name('log.index.refine');
+});
+
+Route::controller(ScheduleController::class)->middleware(['auth'])->group(function () {
+    Route::get('/calendar', function () { return view('calendar.calendar');})->name('calendar');
+    Route::post('/calendar/store', 'store')->name('calendar.store');
+    Route::post('/calendar/create', 'store')->name('calendar.create');
+    Route::post('/calendar/get', 'get')->name('calendar.get');
+    Route::put('/calendar', 'update')->name('calendar.update');
+    Route::delete('/calendar', 'delete')->name('calendar.delete');
 });
 
 Route::middleware('auth')->group(function () {

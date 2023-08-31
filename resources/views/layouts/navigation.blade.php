@@ -27,6 +27,9 @@
                     <x-nav-link :href="route('log.index')" :active="request()->routeIs('log.index')">
                         {{ __('学習履歴') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
+                        {{ __('カレンダー') }}
+                    </x-nav-link>
                 </div>
             </div>
             
@@ -94,6 +97,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('log.index')" :active="request()->routeIs('log.index')">
                 {{ __('学習履歴') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
+                {{ __('カレンダー') }}
             </x-responsive-nav-link>
         </div>
 

@@ -5,8 +5,8 @@ declare(strict_types=1);
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TodayController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\TodayController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -48,7 +48,9 @@ Route::controller(LogController::class)->middleware(['auth'])->group(function ()
 });
 
 Route::controller(ScheduleController::class)->middleware(['auth'])->group(function () {
-    Route::get('/calendar', function () { return view('calendar.calendar');})->name('calendar');
+    Route::get('/calendar', function () {
+    return view('calendar.calendar');
+    })->name('calendar');
     Route::post('/calendar/store', 'store')->name('calendar.store');
     Route::post('/calendar/create', 'create')->name('calendar.create');
     Route::post('/calendar/get', 'get')->name('calendar.get');

@@ -1,36 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Models\Schedule;
+use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
-    public function store(Schedule $schedule,Request $request){
-        
+    public function store(Schedule $schedule, Request $request)
+    {
         $request->validate([
             'start_date' => 'required|integer',
             'end_date' => 'required|integer',
             'name' => 'required|max:32',
         ]);
 
-        
         // 日付に変換。JavaScriptのタイムスタンプはミリ秒なので秒に変換
         $schedule->start_date = date('Y-m-d', $request->input('start_date') / 1000);
         $schedule->end_date = date('Y-m-d', $request->input('end_date') / 1000);
         $schedule->name = $request->input('name');
         $schedule->save();
 
-        return;
     }
-    
+
     public function get(Request $request)
     {
         $request->validate([
             'start_date' => 'required|integer',
-            'end_date' => 'required|integer'
+            'end_date' => 'required|integer',
         ]);
 
         // カレンダー表示期間
@@ -51,40 +50,44 @@ class ScheduleController extends Controller
             ->where('start_date', '<', $end_date)
             ->get();
     }
-    
-    public function create(Schedule $schedule,Request $request){
-        $input=$request['schedule'];
-        
+
+    public function create(Schedule $schedule, Request $request)
+    {
+        $input = $request['schedule'];
+
         $schedule->fill($input)->save();
-        
-        return redirect(route("calendar"));
+
+        return redirect(route('calendar'));
     }
-    
-    public function update(Request $request){
-        $schedule=Schedule::find($request->input('id'));
-        $input=$request['schedule'];
+
+    public function update(Request $request)
+    {
+        $schedule = Schedule::find($request->input('id'));
+        $input = $request['schedule'];
         $schedule->fill($input)->save();
-        
-        return redirect(route("calendar"));
+
+        return redirect(route('calendar'));
     }
-    
-    public function drop(Request $request){
-        $schedule=Schedule::find($request->input('id'));
-        
+
+    public function drop(Request $request)
+    {
+        $schedule = Schedule::find($request->input('id'));
+
         $start_date = date('Y-m-d', $request->input('start_date') / 1000);
         $end_date = date('Y-m-d', $request->input('end_date') / 1000);
-        
-        $schedule->start_date=$start_date;
-        $schedule->end_date=$end_date;
+
+        $schedule->start_date = $start_date;
+        $schedule->end_date = $end_date;
         $schedule->save();
-        
-        return redirect(route("calendar"));
+
+        return redirect(route('calendar'));
     }
-    
-    public function delete(Request $request){
-         $schedule=Schedule::find($request->input('id'));
-         $schedule->delete();
-         
-         return redirect(route("calendar"));
+
+    public function delete(Request $request)
+    {
+        $schedule = Schedule::find($request->input('id'));
+        $schedule->delete();
+
+        return redirect(route('calendar'));
     }
 }

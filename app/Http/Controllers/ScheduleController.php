@@ -22,7 +22,6 @@ class ScheduleController extends Controller
         $schedule->end_date = date('Y-m-d', $request->input('end_date') / 1000);
         $schedule->name = $request->input('name');
         $schedule->save();
-
     }
 
     public function get(Request $request)

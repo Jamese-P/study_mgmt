@@ -24,19 +24,17 @@
                     <div class="form-element">
                         <label for="subject" class="form-label">教科</label>
                         <select id="subject" class="form-select" name="book[subject_id]">
-                            <option value="{{ $book_mgmt->book->subject->id }}">{{ $book_mgmt->book->subject->name }}
                             </option>
                             @foreach ($subjects as $subject)
-                                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                <option value="{{ $subject->id }}" @if($subject->id === (int)old('book.subject_id',$book_mgmt->book->subject->id)) selected @endif>{{ $subject->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-element">
                         <label for="type" class="form-label">単元またはページ</label>
                         <select id="type" class="form-select" name="book[type_id]">
-                            <option value="{{ $book_mgmt->book->type->id }}">{{ $book_mgmt->book->type->name }}</option>
                             @foreach ($types as $type)
-                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                <option value="{{ $type->id }}" @if($type->id === (int)old('book.type_id',$book_mgmt->book->type->id)) selected @endif>{{ $type->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -56,9 +54,8 @@
                     <div class="form-element">
                         <label for="intarval" class="form-label">学習間隔</label>
                         <select id="intarval" class="form-select" name="book_mgmt[intarval_id]">
-                            <option value="{{ $book_mgmt->intarval->id }}">{{ $book_mgmt->intarval->name }}</option>
                             @foreach ($intarvals as $intarval)
-                                <option value="{{ $intarval->id }}">{{ $intarval->name }}</option>
+                                <option value="{{ $intarval->id }}" @if($intarval->id === (int)old('book_mgmt.intarval_id',$book_mgmt->intarval->id)) selected @endif>{{ $intarval->name }}</option>
                             @endforeach
                         </select>
                     </div>

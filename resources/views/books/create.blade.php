@@ -24,7 +24,7 @@
                         <label for="subject" class="form-label">教科</label>
                         <select id="subject" class="form-select" name="book[subject_id]">
                             @foreach ($subjects as $subject)
-                                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                <option value="{{ $subject->id }}" @if($subject->id === (int)old('book.subject_id')) selected @endif>{{ $subject->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -32,7 +32,7 @@
                         <label for="type" class="form-label">単元またはページ</label>
                         <select id="type" class="form-select" name="book[type_id]">
                             @foreach ($types as $type)
-                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                <option value="{{ $type->id }}" @if($type->id === (int)old('book.type_id')) selected @endif>{{ $type->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -53,7 +53,7 @@
                         <label for="intarval" class="form-label">学習間隔</label>
                         <select id="intarval" class="form-select" name="book_mgmt[intarval_id]">
                             @foreach ($intarvals as $intarval)
-                                <option value="{{ $intarval->id }}">{{ $intarval->name }}</option>
+                                <option value="{{ $intarval->id }}" @if($intarval->id === (int)old('book_mgmt.intarval_id')) selected @endif>{{ $intarval->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -70,9 +70,6 @@
                         value="{{ old('book_mgmt.next_learn_at', \Carbon\Carbon::today()->format('Y-m-d')) }}">
                     <p class="next_learn_at__error" style="color:red">{{ $errors->first('book_mgmt.next_learn_at') }}
                     </p>
-                </div>
-                <div class="back">
-                    [<a href="{{ route('today') }}">back</a>]
                 </div>
                 <input type="submit" class="form-submit" value="保存" />
             </form>

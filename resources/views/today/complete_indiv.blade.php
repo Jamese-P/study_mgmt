@@ -36,7 +36,7 @@
                         <label for="comprehension" class="form-label">理解度</label>
                         <select id="comprehension" class="form-select" name="log[comprehension_id]">
                             @foreach ($comprehensions as $comprehension)
-                                <option value="{{ $comprehension->id }}">{{ $comprehension->name }}</option>
+                                <option value="{{ $comprehension->id }}" @if($comprehension->id === (int)old('log.comprehension_id')) selected @endif>{{ $comprehension->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -44,7 +44,7 @@
                 <div class="form-element">
                     <div class="comment">
                         <label for="comment" class="form-label">コメント</label>
-                        <textarea id="comment" class="form-textarea" name="log[comment]" placeholder="コメント" value="{{ old('log.comment') }}"></textarea>
+                        <textarea id="comment" class="form-textarea" name="log[comment]" placeholder="コメント">{{ old('log.comment') }}</textarea>
                     </div>
                 </div>
                 <div class="form-element">

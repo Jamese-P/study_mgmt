@@ -14,6 +14,7 @@
             <form action="{{ route('today.comp_log', ['book' => $book->id, 'unit' => $unit]) }}" method="POST" class="form-log">
                 @csrf
                 @method('PUT')
+                <input type="hidden" name="log[book_id]" value="{{ $book->id }}">
                 <div class="form-element">
                     <div class="name">
                         <h1 class="txt-h1">{{ $book->name }} {{ $book->type->name }}{{ $unit }}</h1>

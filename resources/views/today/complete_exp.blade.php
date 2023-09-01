@@ -20,6 +20,7 @@
                         <h1 class="txt-h1">{{ $book->name }} {{ $book->type->name }}{{ $unit }}</h1>
                     </div>
                 </div>
+                <input type="hidden" name="log[book_id]" value="{{ $book->id }}">
                 <input type="hidden" name="log[number]" value="{{ $unit }}">
                 <div class="form-element">
                      <div class="comprehension">

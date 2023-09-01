@@ -9,6 +9,7 @@ use App\Models\Book;
 use App\Models\Book_mgmt;
 use App\Models\Comprehension;
 use App\Models\Log;
+use App\Models\Subject;
 use Carbon\Carbon;
 use DateTimeImmutable;
 use Illuminate\Http\Request;
@@ -95,11 +96,12 @@ class TodayController extends Controller
         return redirect(route('today'));
     }
 
-    public function complete_indiv(Book $book, Comprehension $comprehension)
+    public function complete_indiv(Book $book, Comprehension $comprehension,Subject $subject)
     {
         return view('today.complete_indiv')->with([
             'books' => $book->orderBy('updated_at', 'desc')->get(),
             'comprehensions' => $comprehension->get(),
+            'subjects'=>$subject->get(),
         ]);
     }
 
@@ -114,7 +116,12 @@ class TodayController extends Controller
 
         $log = $book->logs()->whereNull('learned_at')->where('number', $unit)->first();
         if (! $log) {
-            $log = new Log();
+            if($unit>=$book->start && $unit<=$book->max){
+                $log = new Log();
+            }else{
+                return redirect(route('today'));
+            }
+            
         }
 
         $log->fill($input);
@@ -194,7 +201,7 @@ class TodayController extends Controller
         ]);
     }
 
-    public function comp_exp_log(Request $request, Book $book, int $unit)
+    public function comp_exp_log(LogRequest $request, Book $book, int $unit)
     {
         $input = $request['log'];
         $log = $book->logs()->whereNull('learned_at')->whereNotNull('scheduled_at')->where('number', $unit)->first();

@@ -252,6 +252,39 @@
                 </table>
             </div>
         </div>
+        
+        <div id="modal-comp" class="modal-layer">
+            <div class="modal">
+                <div class="modal-inner">
+                    <button type="button" class="modal-btn-close" onclick="closeCompModal()">
+                        <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="px-6 py-6 lg:px-8">
+                        <h3 class="modal-title">予定登録</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="modal-comp-exp" class="modal-layer">
+            <div class="modal">
+                <div class="modal-inner">
+                    <button type="button" class="modal-btn-close" onclick="closeCompExpModal()">
+                        <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="px-6 py-6 lg:px-8">
+                        <h3 class="modal-title">予定登録</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <script>
             function exp(id) {
@@ -275,6 +308,7 @@
                 if (confirm('完了しますか？')) {
                     document.getElementById(`form_${id}_comp_exp`).submit();
                 }
+                document.getElementById('modal-comp-exp').style.display = 'flex';
 
             }
 
@@ -291,6 +325,7 @@
                 if (confirm('完了しますか？')) {
                     document.getElementById(`form_${id}_complete`).submit();
                 }
+                document.getElementById('modal-comp').style.display = 'flex';
 
             }
 

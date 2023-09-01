@@ -14,13 +14,21 @@
             <form action="{{ route('today.comp_indiv_log') }}" method="POST" class="form-log">
                 @csrf
                 <div class="form-element">
+                    <label for="subject" class="form-label">教科</label>
+                    <select id="subject" name="" class="form-select">
+                        <option value="">教科を選択</option>
+                        @foreach ($subjects as $subject)
+                            <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-element">
                     <div class="name">
                         <label for="book" class="form-label">参考書名</label>
                         <select id="book" name="log[book_id]" class="form-select">
-                            @foreach ($books as $book)
-                                <option value="{{ $book->id }}">{{ $book->name }}</option>
-                            @endforeach
+                            <option value="">選択してください</option>
                         </select>
+                        <p class="book_id__error" style="color:red">{{ $errors->first('log.book_id') }}</p>
                     </div>
                 </div>
                 <div class="form-element">
@@ -52,8 +60,30 @@
                 </div>
             </form>
         </div>
-
-
+        
+        <script>
+            const book_data=@json($books);
+            const subjectInput = document.getElementById("subject");
+            var bookSelect = document.getElementById("book");
+            
+            subjectInput.addEventListener('change',function(){
+                bookSelect.textContent=null;
+                const option = document.createElement('option');
+                option.value = "";
+                option.textContent = "選択してください";
+                bookSelect.appendChild(option);
+                
+                book_data.forEach(book=>{
+                    if(subjectInput.value == book.subject_id){
+                        const option = document.createElement('option');
+                        option.value = book.id;
+                        option.textContent = book.name;
+                        bookSelect.appendChild(option);
+                    }
+                });
+            });
+            
+        </script>
     </body>
 
     </html>

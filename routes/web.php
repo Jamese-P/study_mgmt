@@ -47,7 +47,7 @@ Route::controller(LogController::class)->middleware(['auth'])->group(function ()
 
 Route::controller(ScheduleController::class)->middleware(['auth'])->group(function () {
     Route::get('/calendar', function () {
-    return view('calendar.calendar');
+        return view('calendar.calendar');
     })->name('calendar');
     Route::post('/calendar/store', 'store')->name('calendar.store');
     Route::post('/calendar/create', 'create')->name('calendar.create');

@@ -19,16 +19,14 @@ Route::get('/', function () {
 
 Route::controller(TodayController::class)->middleware(['auth'])->group(function () {
     Route::get('/today', 'show')->name('today');
-    Route::get('/today/complete', 'complete_indiv')->name('today.comp_indiv');
-    Route::post('/today/complete', 'complete_indiv_log')->name('today.comp_indiv_log');
+    Route::put('/today/complete', 'complete')->name('today.comp');
+    Route::put('/today/comp_exp', 'comp_exp')->name('today.comp_exp');
+    Route::get('/today/comp_indiv', 'complete_indiv')->name('today.comp_indiv');
+    Route::post('/today/comp_indiv', 'complete_indiv_log')->name('today.comp_indiv_log');
     Route::post('/today/{book}/exp', 'update_exp')->name('today.update_exp');
     Route::put('/today/{book}/no_exp', 'update_no_exp')->name('today.update_no_exp');
     Route::put('/today/{book}/{unit}/pass', 'pass')->name('today.pass');
-    Route::get('/today/{book}/{unit}/complete', 'complete')->name('today.complete');
-    Route::put('/today/{book}/{unit}', 'complete_log')->name('today.comp_log');
     Route::put('/today/{book}/{unit}/pass_exp', 'pass_exp')->name('today.pass_exp');
-    Route::get('/today/{book}/{unit}/comp_exp', 'comp_exp')->name('today.comp_exp');
-    Route::put('/today/{book}/{unit}/exp', 'comp_exp_log')->name('today.comp_exp_log');
 });
 
 Route::controller(BookController::class)->middleware(['auth'])->group(function () {

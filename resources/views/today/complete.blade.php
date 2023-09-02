@@ -43,10 +43,6 @@
                 <div class="form-element">
                     <input type="submit" class="form-submit" value="保存" />
                 </div>
-                
-                    
-                    
-                
             </form>
         </div>
 

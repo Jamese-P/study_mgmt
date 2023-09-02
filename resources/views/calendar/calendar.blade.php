@@ -12,9 +12,7 @@
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         </head>
         <body>
-            <div class="w-full h-auto">
                 <div id='calendar'></div>
-            </div>
 
             <div id="modal-create" class="modal-layer">
                 <div class="modal">

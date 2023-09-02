@@ -9,13 +9,13 @@ use App\Models\Book;
 use App\Models\Book_mgmt;
 use App\Models\Comprehension;
 use App\Models\Log;
+use App\Models\Subject;
 use Carbon\Carbon;
 use DateTimeImmutable;
-use Illuminate\Http\Request;
 
 class TodayController extends Controller
 {
-    public function show(Book_mgmt $book_mgmt)
+    public function show(Book_mgmt $book_mgmt, Comprehension $comprehension)
     {
         $book_mgmts = $book_mgmt->all();
 
@@ -49,6 +49,7 @@ class TodayController extends Controller
             'books_exp' => $book_exp,
             'books_today' => $book_today,
             'books_tomorrow' => $book_tomorrow,
+            'comprehensions' => $comprehension->get(),
         ]);
     }
 
@@ -61,6 +62,7 @@ class TodayController extends Controller
             $log = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', $book_mgmt->next)->first();
             if (! $log) {
                 $log = new Log();
+                $log->book_id = $book->id;
                 $log->number = $book_mgmt->next;
             }
             $log->scheduled_at = $schedule;
@@ -95,11 +97,12 @@ class TodayController extends Controller
         return redirect(route('today'));
     }
 
-    public function complete_indiv(Book $book, Comprehension $comprehension)
+    public function complete_indiv(Book $book, Comprehension $comprehension, Subject $subject)
     {
         return view('today.complete_indiv')->with([
             'books' => $book->orderBy('updated_at', 'desc')->get(),
             'comprehensions' => $comprehension->get(),
+            'subjects' => $subject->get(),
         ]);
     }
 
@@ -114,7 +117,11 @@ class TodayController extends Controller
 
         $log = $book->logs()->whereNull('learned_at')->where('number', $unit)->first();
         if (! $log) {
-            $log = new Log();
+            if ($unit >= $book->start && $unit <= $book->max) {
+                $log = new Log();
+            } else {
+                return redirect(route('today'));
+            }
         }
 
         $log->fill($input);
@@ -125,29 +132,21 @@ class TodayController extends Controller
         return redirect(route('today'));
     }
 
-    public function complete(Book $book, int $unit, Comprehension $comprehension)
-    {
-        return view('today.complete')->with([
-            'book' => $book,
-            'unit' => $unit,
-            'comprehensions' => $comprehension->get(),
-        ]);
-    }
-
-    public function complete_log(LogRequest $request, Book $book, int $unit)
+    public function complete(LogRequest $request)
     {
         $input = $request['log'];
-        $log = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', $unit)->first();
+
+        $book = Book::find($input['book_id']);
+        $book_mgmt = Book_mgmt::where('book_id', $input['book_id'])->first();
+
+        $log = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', $input['number'])->first();
         if (! $log) {
             $log = new Log();
-            $log->book_id = $book->id;
-            $log->number = $unit;
         }
         $log->fill($input);
         $log->learned_at = new DateTimeImmutable();
         $log->save();
 
-        $book_mgmt = $book->book_mgmt()->first();
         $log_next = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->orderBy('number', 'asc')->first();
         if ($log_next) {
             $book_mgmt->next = $log_next->number;
@@ -159,7 +158,7 @@ class TodayController extends Controller
         } else {
             $book_mgmt->finish_flag = 1;
         }
-        $book_mgmt->finished = $unit;
+        $book_mgmt->finished = $input['number'];
         $book_mgmt->save();
 
         return redirect(route('today'));
@@ -185,23 +184,16 @@ class TodayController extends Controller
         return redirect(route('today'));
     }
 
-    public function comp_exp(Book $book, int $unit, Comprehension $comprehension)
-    {
-        return view('today.complete_exp')->with([
-            'book' => $book,
-            'unit' => $unit,
-            'comprehensions' => $comprehension->get(),
-        ]);
-    }
-
-    public function comp_exp_log(Request $request, Book $book, int $unit)
+    public function comp_exp(LogRequest $request)
     {
         $input = $request['log'];
-        $log = $book->logs()->whereNull('learned_at')->whereNotNull('scheduled_at')->where('number', $unit)->first();
+
+        $book = Book::find($input['book_id']);
+        $book_mgmt = Book_mgmt::where('book_id', $input['book_id'])->first();
+
+        $log = $book->logs()->whereNull('learned_at')->whereNotNull('scheduled_at')->where('number', $input['number'])->first();
         if (! $log) {
             $log = new Log();
-            $log->book_id = $book->id;
-            $log->number = $unit;
         }
         $log->fill($input);
         $log->learned_at = new DateTimeImmutable();

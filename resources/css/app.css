@@ -4,182 +4,187 @@
 
 
 
-.link{
+.link {
     @apply font-medium text-blue-600 dark:text-blue-500 hover:underline;
 }
 
-.grid3{
-    @apply grid md:grid-cols-3 md:gap-6 items-start place-items-center content-evenly ;
+.grid3 {
+    @apply grid md:grid-cols-3 md:gap-6 items-start place-items-center content-evenly;
 }
 
-.grid2{
+.grid2 {
     @apply grid md:grid-cols-2 md:gap-6 items-start;
 }
 
-.btn-exp{
+.btn-exp {
     @apply inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20;
 }
 
-.btn-no-exp{
+.btn-no-exp {
     @apply inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10;
 }
 
-.btn-comp{
+.btn-comp {
     @apply inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10;
 }
 
-.btn-pass{
+.btn-pass {
     @apply inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20;
 }
 
-.txt-h1{
+.txt-h1 {
     @apply text-3xl flex justify-center;
 }
 
-.txt-h2{
+.txt-h2 {
     @apply text-xl flex justify-center;
 }
 
-.txt-book-name{
+.txt-book-name {
     @apply text-xl text-left;
 }
 
-.books{
+.books {
     @apply flex flex-col overflow-x-auto sm:-mx-6 lg:-mx-8 inline-block w-auto py-2 sm:px-6 lg:px-8 overflow-hidden;
 }
 
-.book-table{
+.book-table {
     @apply w-auto text-center text-sm font-light;
 }
 
-.book-thead{
+.book-thead {
     @apply border-b font-medium dark:border-neutral-500;
 }
 
-.book-tr{
+.book-tr {
     @apply border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600;
 }
-.book-th{
+
+.book-th {
     @apply px-6 py-4;
 }
-.book-td{
+
+.book-td {
     @apply text-left whitespace-nowrap px-6 py-4;
 }
 
-.logs{
+.logs {
     @apply flex flex-col overflow-x-auto sm:-mx-2 lg:-mx-2 inline-block w-fit py-2 sm:px-2 lg:px-2 overflow-hidden;
 }
 
-.log-table{
+.log-table {
     @apply w-fit text-center text-sm font-light;
 }
 
-.log-thead{
+.log-thead {
     @apply border-b font-medium dark:border-neutral-500;
 }
 
-.log-tr{
+.log-tr {
     @apply border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600;
 }
-.log-th{
+
+.log-th {
     @apply text-left px-2 py-2;
 }
-.log-td{
+
+.log-td {
     @apply text-left whitespace-nowrap px-2 py-2;
 }
 
-.form1{
+.form1 {
     @apply h-screen w-screen flex justify-center;
 }
-.form-book{
+
+.form-book {
     @apply items-center lg:max-w-lg lg:w-full md:w-1/2 w-5/6;
 }
 
-.form-log{
+.form-log {
     @apply items-center lg:max-w-lg lg:w-full md:w-1/2 w-5/6;
 }
 
-.form-element{
+.form-element {
     @apply relative z-0 w-full mb-6;
 }
 
-.form-grid{
+.form-grid {
     @apply grid md:grid-cols-2 md:gap-6;
 }
 
-.form-label{
+.form-label {
     @apply block peer-focus:font-medium text-sm text-gray-700 dark:text-gray-400;
 }
 
-.form-input{
-    @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500;
+.form-input {
+    @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
 
-.form-textarea{
-    @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500;
+.form-textarea {
+    @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
 
-.form-select{
-    @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500
+.form-select {
+    @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500
 }
 
-.form-number{
-    @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500;
+.form-number {
+    @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
 
-.form-date{
-     @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500;
+.form-date {
+    @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
 
-.form-submit{
+.form-submit {
     @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
 }
 
-.subject{
+.subject {
     @apply mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem];
 }
 
-.subject-label{
+.subject-label {
     @apply inline-block pl-[0.15rem] hover:cursor-pointer;
 }
 
-.modal-layer{
+.modal-layer {
     @apply hidden fixed flex flex-col left-0 right-0 top-0 z-10 items-center justify-center h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:inset-0 bg-gray-500/50;
 }
 
-.modal{
+.modal {
     @apply relative h-2/3 w-full max-w-md;
 }
 
-.modal-inner{
-    @apply relative rounded-lg bg-white ;
+.modal-inner {
+    @apply relative rounded-lg bg-white;
 }
 
-.modal-grid{
+.modal-grid {
     @apply grid md:grid-cols-2 md:gap-6;
 }
 
-.modal-element{
+.modal-element {
     @apply relative z-20 w-full mb-6;
 }
 
-.modal-btn-close{
+.modal-btn-close {
     @apply absolute right-2.5 top-3 ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white;
 }
 
-.modal-title{
-    @apply mb-4 text-xl font-medium text-gray-900 ;
+.modal-title {
+    @apply mb-4 text-xl font-medium text-gray-900;
 }
 
-.modal-label{
-   @apply block peer-focus:font-medium text-sm text-gray-700 dark:text-gray-400;
+.modal-label {
+    @apply block peer-focus:font-medium text-sm text-gray-700 dark:text-gray-400;
 }
 
-.modal-input{
+.modal-input {
     @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5;
 }
 
 
-.modal-btn-submit{
+.modal-btn-submit {
     @apply w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 z-50 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
 }

@@ -17,6 +17,7 @@ class LogRequest extends FormRequest
     {
         return [
             'log.number' => 'required|gte:1',
+            'log.book_id' => 'required',
         ];
     }
 }

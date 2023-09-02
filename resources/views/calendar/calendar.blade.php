@@ -32,16 +32,16 @@
                                 <input type="hidden" id="create-id" name="id" value="" />
                                 <div class="form-element">
                                     <label for="create-name" class="modal-label">タイトル</label>
-                                    <input type="text" class="modal-input" name="schedule[name]" id="create-name" value=""/>
+                                    <input type="text" class="modal-input" name="schedule[name]" id="create-name" value="" required/>
                                 </div>
                                 <div class="modal-grid">
                                     <div class="modal-element">
                                         <label for="create-start_date" class="modal-label">開始日</label>
-                                        <input type="date" class="modal-input" id="create-start_date" name="schedule[start_date]" value=""/>
+                                        <input type="date" class="modal-input" id="create-start_date" name="schedule[start_date]" value="" required/>
                                     </div>
                                     <div class="modal-element">
                                         <label for="create-end_date" class="modal-label">終了日</label>
-                                        <input type="date" class="modal-input" id="create-end_date" name="schedule[end_date]" value=""/>
+                                        <input type="date" class="modal-input" id="create-end_date" name="schedule[end_date]" value="" required/>
                                     </div>
                                 </div>
                                 <div class="modal-element">

@@ -25,7 +25,7 @@ class TodayController extends Controller
             $book->percent = round($logs_learn / $logs * 100, 1);
             //終了予定日の再計算
             if ($book->finish_flag == 0) {
-                $rest_times = ceil(($book->book->max - $book->finished) / $book->a_day) - 1;
+                $rest_times = ceil(($book->book->max - $book->next + 1) / $book->a_day) - 1;
                 $book->end_date = Carbon::parse($book->next_learn_at)->addDays($rest_times * $book->intarval->days);
             }
             $book->save();
@@ -158,7 +158,6 @@ class TodayController extends Controller
         } else {
             $book_mgmt->finish_flag = 1;
         }
-        $book_mgmt->finished = $input['number'];
         $book_mgmt->save();
 
         return redirect(route('today'));
@@ -178,7 +177,6 @@ class TodayController extends Controller
         } else {
             $book_mgmt->finish_flag = 1;
         }
-        $book_mgmt->finished = $unit;
         $book_mgmt->save();
 
         return redirect(route('today'));

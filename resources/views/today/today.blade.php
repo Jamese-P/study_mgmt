@@ -1,7 +1,7 @@
-<x-app-layout>
+
     <!DOCTYPE html>
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<x-app-layout>
     <head>
         <meta charset="utf-8">
         <title>Today</title>
@@ -445,6 +445,6 @@
             }
         </script>
     </body>
-
-    </html>
 </x-app-layout>
+    </html>
+

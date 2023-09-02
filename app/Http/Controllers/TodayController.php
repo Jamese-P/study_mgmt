@@ -15,7 +15,7 @@ use DateTimeImmutable;
 
 class TodayController extends Controller
 {
-    public function show(Book_mgmt $book_mgmt, Comprehension $comprehension)
+    public function show(Log $log,Book_mgmt $book_mgmt, Comprehension $comprehension)
     {
         $book_mgmts = $book_mgmt->all();
 
@@ -38,7 +38,7 @@ class TodayController extends Controller
         $book_exp = $book_mgmt->get_exp();
 
         //期限切れのログ検索
-        $log_exp = Log::whereNotNull('scheduled_at')->orderBy('scheduled_at', 'asc')->get();
+        $log_exp = $log->scheduled_logs()->orderBy('scheduled_at', 'asc')->get();
 
         $book_today = $book_mgmt->get_under_progress_byDate($today);
         $tomorrow = Carbon::tomorrow();

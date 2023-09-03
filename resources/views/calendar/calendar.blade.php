@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <x-app-layout>
-        <head>
-            <meta charset="utf-8">
-            <title>Today</title>
-            <!-- Fonts -->
-            <link rel="preconnect" href="https://fonts.bunny.net">
-            <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-            <!-- Scripts -->
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-        </head>
-        <body>
-                <div id='calendar'></div>
+            <div id='calendar'></div>
 
             <div id="modal-create" class="modal-layer">
                 <div class="modal">
@@ -47,11 +34,8 @@
                                 <div class="modal-element">
                                     <input type="submit" class="modal-btn-submit" value="登録">
                                 </div>
-
                             </form>
-
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -97,16 +81,9 @@
                                 <div class="modal-element">
                                     <button type="button" class="modal-btn-submit" onclick="deleteConfirm()">削除</button>
                                 </div>
-
                             </form>
-
                         </div>
-
                     </div>
                 </div>
             </div>
-
-        </body>
-
     </x-app-layout>
-</html>

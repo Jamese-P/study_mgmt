@@ -2,17 +2,6 @@
     <x-slot name="header">
         再学習
     </x-slot>
-    <!DOCTYPE html>
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-    <head>
-        <meta charset="utf-8">
-        <title>再学習</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-
-    <body>
         <div class="form1">
             <form action="/books/{{ $book->id }}/relearn" method="POST" class="form-book">
                 @csrf
@@ -79,9 +68,4 @@
                 <input type="submit" class="form-submit" value="保存" />
             </form>
         </div>
-
-
-    </body>
-
-    </html>
 </x-app-layout>

@@ -2,18 +2,6 @@
     <x-slot name="header">
         {{ $book_mgmt->book->name }}<a href="/books/{{ $book_mgmt->book->id }}/edit" class="btn-comp">edit</a>
     </x-slot>
-    <!DOCTYPE HTML>
-    <html lang="{{ str_replace('_', '_', app()->getLocale()) }}">
-
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>Book</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-
-    <body>
         <table class="book-table">
             <thead class="book-thead">
                 <tr>
@@ -70,7 +58,4 @@
                 </table>
             </div>
         </div>
-    </body>
-
-    </html>
 </x-app-layout>

@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <x-app-layout>
-
-    <head>
-        <meta charset="utf-8">
-        <title>Book</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        
-        <script src="{{ asset('js/app.js') }}"></script>
-    </head>
-
-    <body>
         <div class="form1">
             <form action="/books" method="POST" class="form-book">
                 @csrf
@@ -79,8 +66,4 @@
                 <input type="submit" class="form-submit" value="保存" />
             </form>
         </div>
-
-    </body>
 </x-app-layout>
-
-</html>

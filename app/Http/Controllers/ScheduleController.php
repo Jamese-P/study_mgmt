@@ -43,7 +43,10 @@ class ScheduleController extends Controller
                 'id',
                 'start_date as start',
                 'end_date as end',
-                'name as title'
+                'name as title',
+                'editable',
+                'backgroundColor',
+                'borderColor',
             )
             ->where('user_id',Auth::id())
             // FullCalendarの表示範囲のみ表示
@@ -55,7 +58,9 @@ class ScheduleController extends Controller
     public function create(Schedule $schedule, Request $request)
     {
         $input = $request['schedule'];
-
+        
+        $schedule->backgroundColor="red";
+        $schedule->borderColor="red";
         $schedule->fill($input)->save();
 
         return redirect(route('calendar'));

@@ -45,15 +45,15 @@
                                 <div class="modal-element">
                                     <input type="submit" class="modal-btn-submit" value="登録">
                                 </div>
-                                    
+
                             </form>
-                            
+
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
-            
+
             <div id="modal-edit" class="modal-layer">
                 <div class="modal">
                     <div class="modal-inner">
@@ -87,7 +87,7 @@
                                     <input type="submit" class="modal-btn-submit" value="登録">
                                 </div>
                             </form>
-                            
+
                             <form id="delete-form" action="{{route('calendar.delete')}}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -95,11 +95,11 @@
                                 <div class="modal-element">
                                     <button type="button" class="modal-btn-submit" onclick="deleteConfirm()">削除</button>
                                 </div>
-                                
+
                             </form>
-                            
+
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

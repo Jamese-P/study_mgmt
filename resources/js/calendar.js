@@ -5,12 +5,22 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import axios from 'axios';
 
-function formatDate(date, pos) {
-    var dt = new Date(date);
-    if (pos === "end") {
-        dt.setDate(dt.getDate() - 1);
+function formatDate(dt, pos) {
+    var date = new Date(dt);
+    var year_str = date.getFullYear();
+    //月だけ+1すること
+    var month_str = 1 + date.getMonth();
+    var day_str = date.getDate();
+    if (pos == "end") {
+        day_str--;
     }
-    return dt.getFullYear() + '-' + ('0' + (dt.getMonth() + 1)).slice(-2) + '-' + ('0' + dt.getDate()).slice(-2);
+
+    let format_str = 'YYYY-MM-DD';
+    format_str = format_str.replace(/YYYY/g, year_str);
+    format_str = format_str.replace(/MM/g, ('00' + month_str).slice(-2));
+    format_str = format_str.replace(/DD/g, ('00' + day_str).slice(-2));
+
+    return format_str;
 }
 
 var calendarEl = document.getElementById("calendar");
@@ -47,7 +57,12 @@ let calendar = new Calendar(calendarEl, {
         document.getElementById("create-id").value = "";
         document.getElementById("create-name").value = "";
         document.getElementById("create-start_date").value = formatDate(info.start);
-        document.getElementById("create-end_date").value = formatDate(info.end, "end");
+        if (!info.end) {
+            document.getElementById("create-end_date").value = formatDate(info.start);
+        }
+        else {
+            document.getElementById("create-end_date").value = formatDate(info.end, "end");
+        }
 
         document.getElementById('modal-create').style.display = 'flex';
     },
@@ -76,8 +91,12 @@ let calendar = new Calendar(calendarEl, {
         document.getElementById("delete-id").value = info.event.id;
         document.getElementById("edit-name").value = info.event.title;
         document.getElementById("edit-start_date").value = formatDate(info.event.start);
-        document.getElementById("edit-end_date").value = formatDate(info.event.end, "end");
-
+        if (!info.event.end) {
+            document.getElementById("edit-end_date").value = formatDate(info.event.start);
+        }
+        else {
+            document.getElementById("edit-end_date").value = formatDate(info.event.end, "end");
+        }
         document.getElementById('modal-edit').style.display = 'flex';
     },
 

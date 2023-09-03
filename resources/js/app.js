@@ -1,6 +1,6 @@
 import './bootstrap';
-import './calendar';
 import './today';
+import './calendar';
 
 import Alpine from 'alpinejs';
 

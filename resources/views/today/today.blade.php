@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <x-app-layout>
-    <head>
-        <meta charset="utf-8">
-        <title>Today</title>
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-
-    <body>
         @if (!$books_exp->isEmpty())
             <div class="flex justify-centeritems-center p-4 mb-4 text-sm text-red-600 border border-red-600 rounded-lg bg-red-50 dark:text-red-400 dark:border-red-400"
                 role="alert">
@@ -380,6 +366,14 @@
         </div>
 
         <script>
+            window.onload = function() {
+                if (!@json($books_exp->isEmpty())) {
+                    if (confirm('期限切れがあります。\n処理してください。')) {
+
+                    }
+                }
+            }
+            
             function exp(id) {
                 'use strict'
                 if (confirm('期限切れにしますか？')) {
@@ -418,17 +412,7 @@
             }
 
             function complete(id) {
-                
                 document.getElementById(`modal-comp_${id}`).style.display = 'flex';
-
-            }
-
-            window.onload = function() {
-                if (!@json($books_exp->isEmpty())) {
-                    if (confirm('期限切れがあります。\n処理してください。')) {
-
-                    }
-                }
             }
             
             window.closeCompModal = function(id) {
@@ -442,8 +426,7 @@
             window.closeExpBooksModal = function() {
                 document.getElementById('modal-exp-books').style.display = 'none';
             }
+            
         </script>
-    </body>
     </x-app-layout>
-</html>
 

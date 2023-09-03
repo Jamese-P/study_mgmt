@@ -1,15 +1,4 @@
 <x-app-layout>
-    <!DOCTYPE html>
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-    <head>
-        <meta charset="utf-8">
-        <title>Complete</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-
-    <body>
         <div class="form1">
             <form action="{{ route('today.comp_indiv_log') }}" method="POST" class="form-log">
                 @csrf
@@ -84,7 +73,4 @@
             });
             
         </script>
-    </body>
-
-    </html>
 </x-app-layout>

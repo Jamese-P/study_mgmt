@@ -35,7 +35,7 @@ class LogController extends Controller
             }
         }
 
-        $log = $log->whereNotNull('learned_at')
+        $log = $log->learned_logs()
             ->whereHas('book', function ($query) use ($values) {
                 $query->whereIn('subject_id', $values);
             })

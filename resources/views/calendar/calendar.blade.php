@@ -12,9 +12,7 @@
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         </head>
         <body>
-            <div class="w-full h-auto">
                 <div id='calendar'></div>
-            </div>
 
             <div id="modal-create" class="modal-layer">
                 <div class="modal">
@@ -30,6 +28,7 @@
                             <form action="{{route('calendar.create')}}" method="POST">
                                 @csrf
                                 <input type="hidden" id="create-id" name="id" value="" />
+                                <input type="hidden" id="user_id" name="schedule[user_id]" value="{{Auth::id()}}" />
                                 <div class="form-element">
                                     <label for="create-name" class="modal-label">タイトル</label>
                                     <input type="text" class="modal-input" name="schedule[name]" id="create-name" value="" required/>
@@ -44,18 +43,19 @@
                                         <input type="date" class="modal-input" id="create-end_date" name="schedule[end_date]" value="" required/>
                                     </div>
                                 </div>
+                                <input type="hidden" id="create-editable" name="schedule[editable]" value="1" />
                                 <div class="modal-element">
                                     <input type="submit" class="modal-btn-submit" value="登録">
                                 </div>
-                                    
+
                             </form>
-                            
+
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
-            
+
             <div id="modal-edit" class="modal-layer">
                 <div class="modal">
                     <div class="modal-inner">
@@ -67,7 +67,7 @@
                         </button>
                         <div class="px-6 py-6 lg:px-8">
                             <h3 class="modal-title">予定編集</h3>
-                            <form action="{{route('calendar.update')}}" method="POST">
+                            <form id="form-edit" action="{{route('calendar.update')}}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" id="edit-id" name="id" value="" />
@@ -89,7 +89,7 @@
                                     <input type="submit" class="modal-btn-submit" value="登録">
                                 </div>
                             </form>
-                            
+
                             <form id="delete-form" action="{{route('calendar.delete')}}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -97,11 +97,11 @@
                                 <div class="modal-element">
                                     <button type="button" class="modal-btn-submit" onclick="deleteConfirm()">削除</button>
                                 </div>
-                                
+
                             </form>
-                            
+
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

@@ -1,7 +1,6 @@
-<x-app-layout>
-    <!DOCTYPE html>
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <x-app-layout>
     <head>
         <meta charset="utf-8">
         <title>Today</title>
@@ -131,6 +130,7 @@
                                                                 <h1 class="txt-h2">{{ $log->book->name }} {{ $log->book->type->name }}{{ $log->number }}</h1>
                                                             </div>
                                                         </div>
+                                                        <p class="text-right">予定日：{{$log->scheduled_at}}</p>
                                                         <input type="hidden" name="log[book_id]" value="{{ $log->book->id }}">
                                                         <input type="hidden" name="log[number]" value="{{ $log->number }}">
                                                         <div class="form-element">
@@ -438,8 +438,12 @@
             window.closeCompExpModal = function(id) {
                 document.getElementById(`modal-comp-exp_${id}`).style.display = 'none';
             }
+            
+            window.closeExpBooksModal = function() {
+                document.getElementById('modal-exp-books').style.display = 'none';
+            }
         </script>
     </body>
+    </x-app-layout>
+</html>
 
-    </html>
-</x-app-layout>

@@ -1,12 +1,14 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <x-app-layout>
-    <!DOCTYPE html>
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
     <head>
         <meta charset="utf-8">
         <title>Book</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        
+        <script src="{{ asset('js/app.js') }}"></script>
     </head>
 
     <body>
@@ -24,7 +26,8 @@
                         <label for="subject" class="form-label">教科</label>
                         <select id="subject" class="form-select" name="book[subject_id]">
                             @foreach ($subjects as $subject)
-                                <option value="{{ $subject->id }}" @if($subject->id === (int)old('book.subject_id')) selected @endif>{{ $subject->name }}</option>
+                                <option value="{{ $subject->id }}" @if ($subject->id === (int) old('book.subject_id')) selected @endif>
+                                    {{ $subject->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -32,7 +35,8 @@
                         <label for="type" class="form-label">単元またはページ</label>
                         <select id="type" class="form-select" name="book[type_id]">
                             @foreach ($types as $type)
-                                <option value="{{ $type->id }}" @if($type->id === (int)old('book.type_id')) selected @endif>{{ $type->name }}</option>
+                                <option value="{{ $type->id }}" @if ($type->id === (int) old('book.type_id')) selected @endif>
+                                    {{ $type->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -53,7 +57,8 @@
                         <label for="intarval" class="form-label">学習間隔</label>
                         <select id="intarval" class="form-select" name="book_mgmt[intarval_id]">
                             @foreach ($intarvals as $intarval)
-                                <option value="{{ $intarval->id }}" @if($intarval->id === (int)old('book_mgmt.intarval_id')) selected @endif>{{ $intarval->name }}</option>
+                                <option value="{{ $intarval->id }}" @if ($intarval->id === (int) old('book_mgmt.intarval_id')) selected @endif>
+                                    {{ $intarval->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -76,6 +81,6 @@
         </div>
 
     </body>
-
-    </html>
 </x-app-layout>
+
+</html>

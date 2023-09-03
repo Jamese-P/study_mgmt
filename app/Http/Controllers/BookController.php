@@ -54,7 +54,6 @@ final class BookController extends Controller
         $input = $book_request['book_mgmt'];
         $book_mgmt->fill($input);
         $book_mgmt->user_id = Auth::user()->id;
-        $book_mgmt->finished = $input['next'] - 1;
         $book_mgmt->book_id = $book->id;
         $book_mgmt->next = $book->start;
         $book_mgmt->today_rest = $input['a_day'];
@@ -156,8 +155,6 @@ final class BookController extends Controller
 
         $input = $book_request['book_mgmt'];
         $book_mgmt->fill($input);
-        $book_mgmt->finished = $input['next'] - 1;
-        $book_mgmt->finish_flag = '0';
         $book_mgmt->save();
 
         if ($book->max <= $input['finish']) {
@@ -182,7 +179,7 @@ final class BookController extends Controller
         if ($log_next) {
             $book_mgmt->next = $log_next->number;
         } else {
-            $book_mgmt->finish_flag = 1;
+            $book_mgmt->next = -1;
         }
         $book_mgmt->today_rest = $book_mgmt->a_day;
         $book_mgmt->save();

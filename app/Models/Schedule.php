@@ -12,8 +12,12 @@ class Schedule extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'name',
         'start_date',
         'end_date',
+        'editable',
+        'backgroundColor',
+        'borderColor',
     ];
 }

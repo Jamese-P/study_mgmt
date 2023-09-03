@@ -24,7 +24,7 @@ class TodayController extends Controller
             $logs_learn = $book->book()->first()->logs()->whereNotNull('learned_at')->count();
             $book->percent = round($logs_learn / $logs * 100, 1);
             //終了予定日の再計算
-            if ($book->finish_flag == 0) {
+            if ($book->next != -1) {
                 $rest_times = ceil(($book->book->max - $book->next + 1) / $book->a_day) - 1;
                 $book->end_date = Carbon::parse($book->next_learn_at)->addDays($rest_times * $book->intarval->days);
             }
@@ -72,7 +72,7 @@ class TodayController extends Controller
             if ($log_next) {
                 $book_mgmt->next = $log_next->number;
             } else {
-                $book_mgmt->finish_flag = 1;
+                $book_mgmt->next = -1;
                 break;
             }
 
@@ -156,7 +156,7 @@ class TodayController extends Controller
                 $book_mgmt->today_rest = $book_mgmt->a_day;
             }
         } else {
-            $book_mgmt->finish_flag = 1;
+            $book_mgmt->next = -1;
         }
         $book_mgmt->save();
 
@@ -175,7 +175,7 @@ class TodayController extends Controller
         if ($log_next) {
             $book_mgmt->next = $log_next->number;
         } else {
-            $book_mgmt->finish_flag = 1;
+            $book_mgmt->next = -1;
         }
         $book_mgmt->save();
 

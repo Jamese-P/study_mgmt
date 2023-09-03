@@ -44,23 +44,23 @@ class Book_mgmt extends Model
 
     public function get_under_progress()
     {
-        return $this::where('user_id', Auth::id())->where('finish_flag', '0')->orderBy('next_learn_at', 'asc');
+        return $this::where('user_id', Auth::id())->where('next','!=', '-1')->orderBy('next_learn_at', 'asc');
     }
 
     public function get_under_progress_byDate(Carbon $day)
     {
-        return $this::whereDate('next_learn_at', $day)->where('user_id', Auth::id())->where('finish_flag', '0')->get();
+        return $this::whereDate('next_learn_at', $day)->where('user_id', Auth::id())->where('next','!=', '-1')->get();
     }
 
     public function get_finished()
     {
-        return $this::where('user_id', Auth::id())->where('finish_flag', '1')->orderBy('updated_at', 'desc')->get();
+        return $this::where('user_id', Auth::id())->where('next', '-1')->orderBy('updated_at', 'desc')->get();
     }
 
     public function get_exp()
     {
         $today = Carbon::today();
 
-        return $this::whereDate('next_learn_at', '<', $today)->where('user_id', Auth::id())->where('finish_flag', '0')->get();
+        return $this::whereDate('next_learn_at', '<', $today)->where('user_id', Auth::id())->where('next','!=', '-1')->get();
     }
 }

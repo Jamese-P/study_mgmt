@@ -65,9 +65,10 @@ let calendar = new Calendar(calendarEl, {
                 // カレンダーに読み込み
                 successCallback(response.data);
             })
-            .catch(() => {
+            .catch((err) => {
+                console.log(err);
                 // バリデーションエラーなど
-                alert("登録に失敗しました");
+                alert("読み込みに失敗しました");
             });
     },
 
@@ -76,7 +77,7 @@ let calendar = new Calendar(calendarEl, {
         document.getElementById("delete-id").value = info.event.id;
         document.getElementById("edit-name").value = info.event.title;
         document.getElementById("edit-start_date").value = formatDate(info.event.start);
-        document.getElementById("edit-end_date").value = formatDate(info.event.end, "end");
+        document.getElementById("edit-end_date").value = formatDate(info.event.end);
 
         document.getElementById('modal-edit').style.display = 'flex';
     },

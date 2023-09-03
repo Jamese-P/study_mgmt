@@ -28,6 +28,7 @@
                             <form action="{{route('calendar.create')}}" method="POST">
                                 @csrf
                                 <input type="hidden" id="create-id" name="id" value="" />
+                                <input type="hidden" id="user_id" name="schedule[user_id]" value="{{Auth::id()}}" />
                                 <div class="form-element">
                                     <label for="create-name" class="modal-label">タイトル</label>
                                     <input type="text" class="modal-input" name="schedule[name]" id="create-name" value="" required/>
@@ -42,6 +43,7 @@
                                         <input type="date" class="modal-input" id="create-end_date" name="schedule[end_date]" value="" required/>
                                     </div>
                                 </div>
+                                <input type="hidden" id="create-editable" name="schedule[editable]" value="1" />
                                 <div class="modal-element">
                                     <input type="submit" class="modal-btn-submit" value="登録">
                                 </div>

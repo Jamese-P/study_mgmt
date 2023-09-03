@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ScheduleController extends Controller
 {
@@ -24,7 +25,7 @@ class ScheduleController extends Controller
         $schedule->save();
     }
 
-    public function get(Request $request)
+    public function get(Request $request,Schedule $schedule)
     {
         $request->validate([
             'start_date' => 'required|integer',
@@ -35,14 +36,14 @@ class ScheduleController extends Controller
         $start_date = date('Y-m-d', $request->input('start_date') / 1000);
         $end_date = date('Y-m-d', $request->input('end_date') / 1000);
 
-        // 登録処理
-        return Schedule::query()
+        return $schedule->query()
+            ->where('user_id',Auth::id())
             ->select(
                 // FullCalendarの形式に合わせる
                 'id',
                 'start_date as start',
                 'end_date as end',
-                'name as title'
+                'name as title',
             )
             // FullCalendarの表示範囲のみ表示
             ->where('end_date', '>', $start_date)
@@ -54,7 +55,8 @@ class ScheduleController extends Controller
     {
         $input = $request['schedule'];
 
-        $schedule->fill($input)->save();
+        $schedule->fill($input);
+        $schedule->save();
 
         return redirect(route('calendar'));
     }

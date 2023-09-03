@@ -65,7 +65,7 @@
                         </button>
                         <div class="px-6 py-6 lg:px-8">
                             <h3 class="modal-title">予定編集</h3>
-                            <form action="{{route('calendar.update')}}" method="POST">
+                            <form id="form-edit" action="{{route('calendar.update')}}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" id="edit-id" name="id" value="" />

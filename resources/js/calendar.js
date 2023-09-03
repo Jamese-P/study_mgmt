@@ -101,12 +101,20 @@ let calendar = new Calendar(calendarEl, {
     },
 
     eventDrop: function(info) {
-        axios
-            .put("/calendar/drop", {
-                start_date: info.event.start.valueOf(),
-                end_date: info.event.end.valueOf(),
-                id: info.event.id.valueOf(),
-            });
+        document.getElementById("edit-id").value = info.event.id;
+        document.getElementById("delete-id").value = info.event.id;
+        document.getElementById("edit-name").value = info.event.title;
+        document.getElementById("edit-start_date").value = formatDate(info.event.start);
+        if (!info.event.end) {
+            document.getElementById("edit-end_date").value = formatDate(info.event.start);
+        }
+        else {
+            document.getElementById("edit-end_date").value = formatDate(info.event.end, "end");
+        }
+        
+        var form_edit=document.getElementById("form-edit");
+        form_edit.submit();
+        
     },
 
 });

@@ -21,6 +21,7 @@ function formatDate(dt, pos) {
     return format_str;
 }
 
+
 var calendarEl = document.getElementById("calendar");
 
 let calendar = new Calendar(calendarEl, {
@@ -117,6 +118,5 @@ let calendar = new Calendar(calendarEl, {
     },
 
 });
+
 calendar.render();
-
-

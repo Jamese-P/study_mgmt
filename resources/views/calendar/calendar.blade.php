@@ -103,6 +103,7 @@
                     </div>
                 </div>
             </div>
+            
             <script>
                 window.closeCreateModal = function() {
                     document.getElementById('modal-create').style.display = 'none';

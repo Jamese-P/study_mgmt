@@ -30,6 +30,15 @@
                                         <input type="date" class="modal-input" id="create-end_date" name="schedule[end_date]" value="" required/>
                                     </div>
                                 </div>
+                                <div class="modal-element">
+                                    <label for="create-backgroundColor" class="modal-label">カラー</label>
+                                    <select id="create-backgroundColor" class="modal-input" name="schedule[backgroundColor]" required>
+                                        <option value="" selected>選択してくだい</option>
+                                        <option value="blue" @if ("blue" ===  old('schedule.backgroundColor')) selected @endif>blue</option>
+                                        <option value="red" @if ("red" ===  old('schedule.backgroundColor')) selected @endif>red</option>
+                                        <option value="green" @if ("green" ===  old('schedule.backgroundColor')) selected @endif>green</option>
+                                    </select>
+                                </div>
                                 <input type="hidden" id="create-editable" name="schedule[editable]" value="1" />
                                 <div class="modal-element">
                                     <input type="submit" class="modal-btn-submit" value="登録">
@@ -68,6 +77,14 @@
                                         <label for="edit-end_date" class="modal-label">終了日</label>
                                         <input type="date" class="modal-input" id="edit-end_date" name="schedule[end_date]" value=""/>
                                     </div>
+                                </div>
+                                <div class="modal-element">
+                                    <label for="edit-backgroundColor" class="modal-label">カラー</label>
+                                    <select id="edit-backgroundColor" class="modal-input" name="schedule[backgroundColor]" required>
+                                        <option value="blue" @if ("blue" ===  old('schedule.backgroundColor')) selected @endif>blue</option>
+                                        <option value="red" @if ("red" ===  old('schedule.backgroundColor')) selected @endif>red</option>
+                                        <option value="green" @if ("green" ===  old('schedule.backgroundColor')) selected @endif>green</option>
+                                    </select>
                                 </div>
                                 <div class="modal-element">
                                     <input type="submit" class="modal-btn-submit" value="登録">

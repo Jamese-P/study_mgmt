@@ -97,6 +97,7 @@ let calendar = new Calendar(calendarEl, {
         else {
             document.getElementById("edit-end_date").value = formatDate(info.event.end, "end");
         }
+        document.getElementById("edit-backgroundColor").value = info.event.backgroundColor;
         document.getElementById('modal-edit').style.display = 'flex';
     },
 

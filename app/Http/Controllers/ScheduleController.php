@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ScheduleController extends Controller
 {
@@ -58,8 +59,11 @@ class ScheduleController extends Controller
     public function create(Schedule $schedule, Request $request)
     {
         $input = $request['schedule'];
+        
         $schedule->borderColor=$input['backgroundColor'];
-        $schedule->fill($input)->save();
+        $schedule->fill($input);
+        $schedule->end_date=Carbon::parse($input['end_date'])->addDays(1);
+        $schedule->save();
 
         return redirect(route('calendar'));
     }
@@ -69,7 +73,9 @@ class ScheduleController extends Controller
         $schedule = Schedule::find($request->input('id'));
         $input = $request['schedule'];
         $schedule->borderColor=$input['backgroundColor'];
-        $schedule->fill($input)->save();
+        $schedule->fill($input);
+        $schedule->end_date=Carbon::parse($input['end_date'])->addDays(1);
+        $schedule->save();
 
         return redirect(route('calendar'));
     }

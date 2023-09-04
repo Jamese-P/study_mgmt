@@ -1,8 +1,6 @@
 import { Calendar } from "@fullcalendar/core";
 import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import listPlugin from "@fullcalendar/list";
 import axios from 'axios';
 
 function formatDate(dt, pos) {
@@ -26,7 +24,7 @@ function formatDate(dt, pos) {
 var calendarEl = document.getElementById("calendar");
 
 let calendar = new Calendar(calendarEl, {
-    plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin],
+    plugins: [interactionPlugin, dayGridPlugin],
     initialView: "dayGridMonth",
     customButtons: {
         createEvent: {
@@ -44,7 +42,7 @@ let calendar = new Calendar(calendarEl, {
     headerToolbar: {
         left: "prev,next today createEvent",
         center: "title",
-        right: "dayGridMonth,timeGridWeek,listWeek",
+        right: "dayGridMonth",
     },
 
     // 日付をクリック、または範囲を選択したイベント
@@ -121,20 +119,4 @@ let calendar = new Calendar(calendarEl, {
 });
 calendar.render();
 
-window.closeCreateModal = function() {
-    document.getElementById('modal-create').style.display = 'none';
-}
 
-window.closeEditModal = function() {
-    document.getElementById('modal-edit').style.display = 'none';
-}
-
-window.deleteConfirm = function() {
-    'use strict'
-
-    document.getElementById('modal-edit').style.display = 'none';
-
-    if (confirm('本当に削除しますか？')) {
-        document.getElementById('delete-form').submit();
-    }
-}

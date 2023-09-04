@@ -103,4 +103,23 @@
                     </div>
                 </div>
             </div>
+            <script>
+                window.closeCreateModal = function() {
+                    document.getElementById('modal-create').style.display = 'none';
+                }
+                
+                window.closeEditModal = function() {
+                    document.getElementById('modal-edit').style.display = 'none';
+                }
+                
+                window.deleteConfirm = function() {
+                    'use strict'
+                
+                    document.getElementById('modal-edit').style.display = 'none';
+                
+                    if (confirm('本当に削除しますか？')) {
+                        document.getElementById('delete-form').submit();
+                    }
+                }
+            </script>
     </x-app-layout>

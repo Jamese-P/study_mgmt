@@ -9,14 +9,6 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TodayController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/', function () {
-    return view('home');
-});
-
 Route::controller(TodayController::class)->middleware(['auth'])->group(function () {
     Route::get('/today', 'show')->name('today');
     Route::put('/today/complete', 'complete')->name('today.comp');

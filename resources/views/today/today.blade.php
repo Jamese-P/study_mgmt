@@ -14,56 +14,57 @@
             </div>
         @endif
 
-        <div class="grid3">
-            <div class="exp">
-                @if (!$books_exp->isEmpty())
-                    <h1 class="txt-h1">期限切れの参考書</h1>
-                    <div class="books">
-                        <table class="book-table">
-                            <thead class="book-thead">
-                                <tr>
-                                    <th class="book-th">参考書名</th>
-                                    <th class="book-th">残り</th>
-                                    <th class="book-th"></th>
-                                    <th class="book-th"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($books_exp as $book_mgmt)
-                                    <tr class="book-tr">
-                                        <td class="book-td"><a class="link"
-                                                href="{{ route('book.show', ['book' => $book_mgmt->book_id]) }}">{{ $book_mgmt->book->name }}</a>
-                                        </td>
-                                        <td class="book-td">
-                                            {{ $book_mgmt->today_rest }}{{ $book_mgmt->book->type->name }}</td>
-                                        <td class="book-td">
-                                            <form action="/today/{{ $book_mgmt->book_id }}/exp"
-                                                id="form_{{ $book_mgmt->book_id }}_exp" method="post">
-                                                @csrf
-                                                <button type="button" class="btn-exp"
-                                                    onclick="exp({{ $book_mgmt->book_id }})">期限切れ</button>
-                                            </form>
-                                        </td>
-                                        <td class="book-td">
-                                            <form action="/today/{{ $book_mgmt->book_id }}/no_exp"
-                                                id="form_{{ $book_mgmt->book_id }}_no_exp" method="post">
-                                                @csrf
-                                                @method('PUT')
-                                                <button type="button" class="btn-no-exp"
-                                                    onclick="no_exp({{ $book_mgmt->book_id }})">持ち越し</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <br>
-                @endif
 
-                @if (!$logs_exp->isEmpty())
-                    <h1 class="txt-h1">期限切れ</h1>
-                    <div class="logs">
+        <div class="exp">
+            @if (!$books_exp->isEmpty())
+                <h1 class="txt-h1">期限切れの参考書</h1>
+                <div class="books">
+                    <table class="book-table">
+                        <thead class="book-thead">
+                            <tr>
+                                <th class="book-th">参考書名</th>
+                                <th class="book-th">残り</th>
+                                <th class="book-th"></th>
+                                <th class="book-th"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($books_exp as $book_mgmt)
+                                <tr class="book-tr">
+                                    <td class="book-td"><a class="link"
+                                            href="{{ route('book.show', ['book' => $book_mgmt->book_id]) }}">{{ $book_mgmt->book->name }}</a>
+                                    </td>
+                                    <td class="book-td">
+                                        {{ $book_mgmt->today_rest }}{{ $book_mgmt->book->type->name }}</td>
+                                    <td class="book-td">
+                                        <form action="/today/{{ $book_mgmt->book_id }}/exp"
+                                            id="form_{{ $book_mgmt->book_id }}_exp" method="post">
+                                            @csrf
+                                            <button type="button" class="btn-exp"
+                                                onclick="exp({{ $book_mgmt->book_id }})">期限切れ</button>
+                                        </form>
+                                    </td>
+                                    <td class="book-td">
+                                        <form action="/today/{{ $book_mgmt->book_id }}/no_exp"
+                                            id="form_{{ $book_mgmt->book_id }}_no_exp" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="button" class="btn-no-exp"
+                                                onclick="no_exp({{ $book_mgmt->book_id }})">持ち越し</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+            @endif
+
+            @if (!$logs_exp->isEmpty())
+                <h1 class="txt-h1">期限切れ</h1>
+                <div class="logs">
+                    <div>
                         <table class="log-table">
                             <thead class="log-thead">
                                 <tr>
@@ -85,7 +86,7 @@
                                         <td class="log-td">{{ $log->scheduled_at }}</td>
                                         <td class="log-td">
                                             <button type="button" class="btn-comp"
-                                                    onclick="comp_exp({{ $log->id }})">complete</button>
+                                                onclick="comp_exp({{ $log->id }})">complete</button>
                                         </td>
                                         <td class="log-td">
                                             <form action="/today/{{ $log->book_id }}/{{ $log->number }}/pass_exp"
@@ -97,34 +98,48 @@
                                             </form>
                                         </td>
                                     </tr>
-                                    <div id="modal-comp-exp_{{$log->id}}" class="modal-layer">
+                                    <div id="modal-comp-exp_{{ $log->id }}" class="modal-layer">
                                         <div class="modal">
                                             <div class="modal-inner">
-                                                <button type="button" class="modal-btn-close" onclick="closeCompExpModal({{$log->id}})">
-                                                    <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                <button type="button" class="modal-btn-close"
+                                                    onclick="closeCompExpModal({{ $log->id }})">
+                                                    <svg class="h-3 w-3" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 14 14">
+                                                        <path stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2"
+                                                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                                     </svg>
                                                     <span class="sr-only">Close modal</span>
                                                 </button>
                                                 <div class="px-6 py-6 lg:px-8">
                                                     <h3 class="modal-title">学習登録</h3>
-                                                    <form action="{{ route('today.comp_exp') }}" method="POST" class="form-log">
+                                                    <form action="{{ route('today.comp_exp') }}" method="POST"
+                                                        class="form-log">
                                                         @csrf
                                                         @method('PUT')
                                                         <div class="form-element">
                                                             <div class="name">
-                                                                <h1 class="txt-h2">{{ $log->book->name }} {{ $log->book->type->name }}{{ $log->number }}</h1>
+                                                                <h1 class="txt-h2">{{ $log->book->name }}
+                                                                    {{ $log->book->type->name }}{{ $log->number }}
+                                                                </h1>
                                                             </div>
                                                         </div>
-                                                        <p class="text-right">予定日：{{$log->scheduled_at}}</p>
-                                                        <input type="hidden" name="log[book_id]" value="{{ $log->book->id }}">
-                                                        <input type="hidden" name="log[number]" value="{{ $log->number }}">
+                                                        <p class="text-right">予定日：{{ $log->scheduled_at }}</p>
+                                                        <input type="hidden" name="log[book_id]"
+                                                            value="{{ $log->book->id }}">
+                                                        <input type="hidden" name="log[number]"
+                                                            value="{{ $log->number }}">
                                                         <div class="form-element">
-                                                             <div class="comprehension">
-                                                                <label for="comprehension" class="form-label">理解度</label>
-                                                                <select id="comprehension" class="form-select" name="log[comprehension_id]">
+                                                            <div class="comprehension">
+                                                                <label for="comprehension"
+                                                                    class="form-label">理解度</label>
+                                                                <select id="comprehension" class="form-select"
+                                                                    name="log[comprehension_id]">
                                                                     @foreach ($comprehensions as $comprehension)
-                                                                        <option value="{{ $comprehension->id }}" @if($comprehension->id === (int)old('log.comprehension_id')) selected @endif>{{ $comprehension->name }}</option>
+                                                                        <option value="{{ $comprehension->id }}"
+                                                                            @if ($comprehension->id === (int) old('log.comprehension_id')) selected @endif>
+                                                                            {{ $comprehension->name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
@@ -136,7 +151,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-element">
-                                                            <input type="submit" class="form-submit" value="保存" />
+                                                            <input type="submit" class="form-submit"
+                                                                value="保存" />
                                                         </div>
                                                     </form>
                                                 </div>
@@ -147,14 +163,15 @@
                             </tbody>
                         </table>
                     </div>
-                @endif
-            </div>
-
-            <div class="today">
+                </div>
+            @endif
+        </div>
+        <div class="grid2">
+            <div class="today w-full">
                 <h1 class="txt-h1">Today <div class="text-base flex place-items-end">
                         {{ \Carbon\Carbon::today()->format('Y/m/d') }}</div>
                 </h1>
-                <table>
+                <table class="logs">
                     <tbody>
                         @foreach ($books_today as $book_mgmt)
                             <div class='book'>
@@ -178,7 +195,7 @@
                                                     </td>
                                                     <td class="book-td">
                                                         <button type="button" class="btn-comp"
-                                                                onclick="complete({{ $book_mgmt->book_id }})">complete</button>
+                                                            onclick="complete({{ $book_mgmt->book_id }})">complete</button>
                                                     </td>
                                                     <td class="book-td">
                                                         <form
@@ -196,35 +213,48 @@
                                     </td>
                                 </tr>
                             </div>
-                            
-                            <div id="modal-comp_{{$book_mgmt->book_id}}" class="modal-layer">
+
+                            <div id="modal-comp_{{ $book_mgmt->book_id }}" class="modal-layer">
                                 <div class="modal">
                                     <div class="modal-inner">
-                                        <button type="button" class="modal-btn-close" onclick="closeCompModal({{$book_mgmt->book_id}})">
-                                            <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                        <button type="button" class="modal-btn-close"
+                                            onclick="closeCompModal({{ $book_mgmt->book_id }})">
+                                            <svg class="h-3 w-3" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 14 14">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                             </svg>
                                             <span class="sr-only">Close modal</span>
                                         </button>
                                         <div class="px-6 py-6 lg:px-8">
                                             <h3 class="modal-title">学習登録</h3>
                                             <div class="">
-                                                <form action="{{ route('today.comp') }}" method="POST" class="form-log">
+                                                <form action="{{ route('today.comp') }}" method="POST"
+                                                    class="form-log">
                                                     @csrf
                                                     @method('PUT')
-                                                    <input type="hidden" name="log[book_id]" value="{{ $book_mgmt->book_id }}">
-                                                    <input type="hidden" name="log[number]" value="{{ $book_mgmt->next }}">
+                                                    <input type="hidden" name="log[book_id]"
+                                                        value="{{ $book_mgmt->book_id }}">
+                                                    <input type="hidden" name="log[number]"
+                                                        value="{{ $book_mgmt->next }}">
                                                     <div class="form-element">
                                                         <div class="name">
-                                                            <h1 class="txt-h2">{{ $book_mgmt->book->name }} {{ $book_mgmt->book->type->name }}{{ $book_mgmt->next }}</h1>
+                                                            <h1 class="txt-h2">{{ $book_mgmt->book->name }}
+                                                                {{ $book_mgmt->book->type->name }}{{ $book_mgmt->next }}
+                                                            </h1>
                                                         </div>
                                                     </div>
                                                     <div class="form-element">
                                                         <div class="comprehension">
                                                             <label for="comprehension" class="form-label">理解度</label>
-                                                            <select id="comprehension" class="form-select" name="log[comprehension_id]">
+                                                            <select id="comprehension" class="form-select"
+                                                                name="log[comprehension_id]">
                                                                 @foreach ($comprehensions as $comprehension)
-                                                                    <option value="{{ $comprehension->id }}" @if($comprehension->id === (int)old('log.comprehension_id')) selected @endif>{{ $comprehension->name }}</option>
+                                                                    <option value="{{ $comprehension->id }}"
+                                                                        @if ($comprehension->id === (int) old('log.comprehension_id')) selected @endif>
+                                                                        {{ $comprehension->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -244,18 +274,17 @@
                                     </div>
                                 </div>
                             </div>
-                            
                         @endforeach
                     </tbody>
                 </table>
-                
+
             </div>
 
-            <div class="tomorrow">
+            <div class="tomorrow w-full">
                 <h1 class="txt-h1">Tommorow <div class="text-base flex place-items-end">
                         {{ \Carbon\Carbon::tomorrow()->format('Y/m/d') }}</div>
                 </h1>
-                <table>
+                <table class="logs">
                     <tbody>
                         @foreach ($books_tomorrow as $book_mgmt)
                             <div class='book'>
@@ -279,7 +308,7 @@
                                                     </td>
                                                     <td class="book-td">
                                                         <button type="button" class="btn-comp"
-                                                                onclick="complete({{ $book_mgmt->book_id }})">complete</button>
+                                                            onclick="complete({{ $book_mgmt->book_id }})">complete</button>
                                                     </td>
                                                     <td class="book-td">
                                                         <form
@@ -297,34 +326,47 @@
                                     </td>
                                 </tr>
                             </div>
-                            <div id="modal-comp_{{$book_mgmt->book_id}}" class="modal-layer">
+                            <div id="modal-comp_{{ $book_mgmt->book_id }}" class="modal-layer">
                                 <div class="modal">
                                     <div class="modal-inner">
-                                        <button type="button" class="modal-btn-close" onclick="closeCompModal({{$book_mgmt->book_id}})">
-                                            <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                        <button type="button" class="modal-btn-close"
+                                            onclick="closeCompModal({{ $book_mgmt->book_id }})">
+                                            <svg class="h-3 w-3" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 14 14">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                             </svg>
                                             <span class="sr-only">Close modal</span>
                                         </button>
                                         <div class="px-6 py-6 lg:px-8">
                                             <h3 class="modal-title">学習登録</h3>
                                             <div class="">
-                                                <form action="{{ route('today.comp') }}" method="POST" class="form-log">
+                                                <form action="{{ route('today.comp') }}" method="POST"
+                                                    class="form-log">
                                                     @csrf
                                                     @method('PUT')
-                                                    <input type="hidden" name="log[book_id]" value="{{ $book_mgmt->book_id }}">
-                                                    <input type="hidden" name="log[number]" value="{{ $book_mgmt->next }}">
+                                                    <input type="hidden" name="log[book_id]"
+                                                        value="{{ $book_mgmt->book_id }}">
+                                                    <input type="hidden" name="log[number]"
+                                                        value="{{ $book_mgmt->next }}">
                                                     <div class="form-element">
                                                         <div class="name">
-                                                            <h1 class="txt-h2">{{ $book_mgmt->book->name }} {{ $book_mgmt->book->type->name }}{{ $book_mgmt->next }}</h1>
+                                                            <h1 class="txt-h2">{{ $book_mgmt->book->name }}
+                                                                {{ $book_mgmt->book->type->name }}{{ $book_mgmt->next }}
+                                                            </h1>
                                                         </div>
                                                     </div>
                                                     <div class="form-element">
                                                         <div class="comprehension">
                                                             <label for="comprehension" class="form-label">理解度</label>
-                                                            <select id="comprehension" class="form-select" name="log[comprehension_id]">
+                                                            <select id="comprehension" class="form-select"
+                                                                name="log[comprehension_id]">
                                                                 @foreach ($comprehensions as $comprehension)
-                                                                    <option value="{{ $comprehension->id }}" @if($comprehension->id === (int)old('log.comprehension_id')) selected @endif>{{ $comprehension->name }}</option>
+                                                                    <option value="{{ $comprehension->id }}"
+                                                                        @if ($comprehension->id === (int) old('log.comprehension_id')) selected @endif>
+                                                                        {{ $comprehension->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -373,7 +415,7 @@
                     }
                 }
             }
-            
+
             function exp(id) {
                 'use strict'
                 if (confirm('期限切れにしますか？')) {
@@ -397,7 +439,7 @@
                     document.getElementById(`form_${id}_pass_exp`).submit();
                 }
             }
-            
+
             function pass(id) {
                 'use strict'
 
@@ -405,7 +447,7 @@
                     document.getElementById(`form_${id}_pass`).submit();
                 }
             }
-            
+
             function comp_exp(id) {
                 document.getElementById(`modal-comp-exp_${id}`).style.display = 'flex';
 
@@ -414,19 +456,17 @@
             function complete(id) {
                 document.getElementById(`modal-comp_${id}`).style.display = 'flex';
             }
-            
+
             window.closeCompModal = function(id) {
                 document.getElementById(`modal-comp_${id}`).style.display = 'none';
             }
-            
+
             window.closeCompExpModal = function(id) {
                 document.getElementById(`modal-comp-exp_${id}`).style.display = 'none';
             }
-            
+
             window.closeExpBooksModal = function() {
                 document.getElementById('modal-exp-books').style.display = 'none';
             }
-            
         </script>
     </x-app-layout>
-

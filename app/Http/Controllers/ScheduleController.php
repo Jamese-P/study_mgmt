@@ -58,9 +58,7 @@ class ScheduleController extends Controller
     public function create(Schedule $schedule, Request $request)
     {
         $input = $request['schedule'];
-        
-        $schedule->backgroundColor="red";
-        $schedule->borderColor="red";
+        $schedule->borderColor=$input['backgroundColor'];
         $schedule->fill($input)->save();
 
         return redirect(route('calendar'));
@@ -70,6 +68,7 @@ class ScheduleController extends Controller
     {
         $schedule = Schedule::find($request->input('id'));
         $input = $request['schedule'];
+        $schedule->borderColor=$input['backgroundColor'];
         $schedule->fill($input)->save();
 
         return redirect(route('calendar'));

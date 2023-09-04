@@ -9,18 +9,17 @@
     </head>
     <body>
         @if (Route::has('login'))
-            <div class="flex justify-center">
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            <div class="h-screen w-screen flex justify-center items-center">
+                <div>学習管理アプリ</div>
                     @auth
-                        <h1 class="txt-h1"><a href="{{ url('/today') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Today</a></h1>
+                        <h1 class="txt-h1"><a href="{{ url('/today') }}" class="">Today</a></h1>
                     @else
-                        <h1><a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a></h1>
+                        <h1  class="txt-h1"><a href="{{ route('login') }}" class="">Log in</a></h1>
     
                         @if (Route::has('register'))
-                            <h1><a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a></h1>
+                            <h1  class="txt-h1"><a href="{{ route('register') }}" class="">Register</a></h1>
                         @endif
                     @endauth
-                </div>
             </div>
         @endif
     </body>

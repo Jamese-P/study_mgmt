@@ -13,7 +13,7 @@
                                 <th class="book-th">参考書名</th>
                                 <th class="book-th">教科</th>
                                 <th class="book-th">次回</th>
-                                <th class="book-th">学習スピード</th>
+                                <th class="book-th">学習<br>スピード</th>
                                 <th class="book-th">終了</th>
                                 <th class="book-th">終了予定日</th>
                             </tr>
@@ -76,10 +76,9 @@
                     <table class="book-table">
                         <thead class="book-thead">
                             <tr>
-                                <th class="book-th">進捗</th>
                                 <th class="book-th">参考書名</th>
                                 <th class="book-th">教科</th>
-                                <th class="book-th">学習スピード</th>
+                                <th class="book-th">学習<br>スピード</th>
                                 <th class="book-th">終了</th>
                                 <th class="book-th">終了日</th>
                                 <th class="book-th"></th>
@@ -90,11 +89,6 @@
                             @foreach ($book_finish as $book_mgmt)
                                 <tr class="book-tr">
                                     <div class='book'>
-                                        <td class="book-td">
-                                            <div class="percent">
-                                                {{ $book_mgmt->percent }}%
-                                            </div>
-                                        </td>
                                         <td class="book-td">
                                             <div class="name">
                                                 <a class="link"

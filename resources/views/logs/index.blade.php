@@ -1,5 +1,4 @@
 <x-app-layout>
-        <div class="hidden" id='calendar'></div>
         <div>
             <form action="{{ route('log.index.refine') }}" method="GET">
                 <p class="log-head">表示させる教科を選択してください</p>

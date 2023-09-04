@@ -22,5 +22,5 @@
         "@fullcalendar/interaction": "^6.1.8",
         "@fullcalendar/list": "^6.1.8",
         "@fullcalendar/timegrid": "^6.1.8"
-    },
+    }
 }

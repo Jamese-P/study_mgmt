@@ -1,6 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ $book_mgmt->book->name }}<a href="/books/{{ $book_mgmt->book->id }}/edit" class="btn-comp">edit</a>
+        {{ $book_mgmt->book->name }}
+        <a href="/books/{{ $book_mgmt->book->id }}/edit" class="btn-comp">edit</a>
+        
     </x-slot>
         <table class="book-table">
             <thead class="book-thead">
@@ -31,6 +33,11 @@
         </table>
 
         <br>
+        <form method="POST" action="{{ route('book.destroy', ['book'=>$book_mgmt->book_id]) }}" id="form_destroy">
+            @csrf
+            @method('DELETE')
+            <button type="button" class="btn-pass" onclick="destroy()" >delete</button>
+        </form>
         <br>
 
         <div class="w-fit">
@@ -58,4 +65,13 @@
                 </table>
             </div>
         </div>
+        <script>
+            function destroy() {
+                'use strict'
+                if (confirm('本当に削除しますか？')) {
+                    document.getElementById(`form_destroy`).submit();
+                }
+
+            }
+        </script>
 </x-app-layout>

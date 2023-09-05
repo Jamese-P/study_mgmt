@@ -14,6 +14,7 @@ class Book_mgmt extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'a_day',
         'intarval_id',
         'next',
@@ -34,8 +35,9 @@ class Book_mgmt extends Model
     {
         return $this->belongsTo(Intarval::class);
     }
-    
-    public function schedule(){
+
+    public function schedule()
+    {
         return $this->belongsTo(Schedule::class);
     }
 
@@ -46,12 +48,12 @@ class Book_mgmt extends Model
 
     public function get_under_progress()
     {
-        return $this::where('user_id', Auth::id())->where('next','!=', '-1')->orderBy('next_learn_at', 'asc');
+        return $this::where('user_id', Auth::id())->where('next', '!=', '-1')->orderBy('next_learn_at', 'asc');
     }
 
     public function get_under_progress_byDate(Carbon $day)
     {
-        return $this::whereDate('next_learn_at', $day)->where('user_id', Auth::id())->where('next','!=', '-1')->get();
+        return $this::whereDate('next_learn_at', $day)->where('user_id', Auth::id())->where('next', '!=', '-1')->get();
     }
 
     public function get_finished()
@@ -63,6 +65,6 @@ class Book_mgmt extends Model
     {
         $today = Carbon::today();
 
-        return $this::whereDate('next_learn_at', '<', $today)->where('user_id', Auth::id())->where('next','!=', '-1')->get();
+        return $this::whereDate('next_learn_at', '<', $today)->where('user_id', Auth::id())->where('next', '!=', '-1')->get();
     }
 }

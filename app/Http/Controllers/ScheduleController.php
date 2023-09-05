@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Schedule;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 
 class ScheduleController extends Controller
 {
-    public function get(Request $request,Schedule $schedule)
+    public function get(Request $request, Schedule $schedule)
     {
         $request->validate([
             'start_date' => 'required|integer',
@@ -34,7 +34,7 @@ class ScheduleController extends Controller
                 'backgroundColor',
                 'borderColor',
             )
-            ->where('user_id',Auth::id())
+            ->where('user_id', Auth::id())
             // FullCalendarの表示範囲のみ表示
             ->where('end_date', '>', $start_date)
             ->where('start_date', '<', $end_date)
@@ -44,10 +44,10 @@ class ScheduleController extends Controller
     public function create(Schedule $schedule, Request $request)
     {
         $input = $request['schedule'];
-        
-        $schedule->borderColor=$input['backgroundColor'];
+
+        $schedule->borderColor = $input['backgroundColor'];
         $schedule->fill($input);
-        $schedule->end_date=Carbon::parse($input['end_date'])->addDays(1);
+        $schedule->end_date = Carbon::parse($input['end_date'])->addDays(1);
         $schedule->save();
 
         return redirect(route('calendar'));
@@ -57,9 +57,9 @@ class ScheduleController extends Controller
     {
         $schedule = Schedule::find($request->input('id'));
         $input = $request['schedule'];
-        $schedule->borderColor=$input['backgroundColor'];
+        $schedule->borderColor = $input['backgroundColor'];
         $schedule->fill($input);
-        $schedule->end_date=Carbon::parse($input['end_date'])->addDays(1);
+        $schedule->end_date = Carbon::parse($input['end_date'])->addDays(1);
         $schedule->save();
 
         return redirect(route('calendar'));

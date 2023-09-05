@@ -48,7 +48,7 @@ final class Log extends Model
             $query->where('user_id', Auth::id());
         })->whereNotNull('learned_at');
     }
-    
+
     public function scheduled_logs()
     {
         return $this::whereHas('book', function ($query) {

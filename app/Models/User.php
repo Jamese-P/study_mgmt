@@ -48,8 +48,9 @@ final class User extends Authenticatable
     {
         return $this->hasMany(Book_mgmt::class);
     }
-    
-    public function books(){
+
+    public function books()
+    {
         return $this->hasMany(Book::class);
     }
 }

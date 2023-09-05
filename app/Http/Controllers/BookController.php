@@ -77,7 +77,7 @@ final class BookController extends Controller
         
         $schedule=new Schedule();
         $schedule->user_id = Auth::id();
-        $schedule->name="終了予定日:".$book->name;
+        $schedule->name="終了:".$book->name;
         $schedule->editable=0;
         $schedule->backgroundColor="purple";
         $schedule->borderColor="purple";

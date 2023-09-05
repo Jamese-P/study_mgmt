@@ -11,21 +11,6 @@ use Carbon\Carbon;
 
 class ScheduleController extends Controller
 {
-    public function store(Schedule $schedule, Request $request)
-    {
-        $request->validate([
-            'start_date' => 'required|integer',
-            'end_date' => 'required|integer',
-            'name' => 'required|max:32',
-        ]);
-
-        // 日付に変換。JavaScriptのタイムスタンプはミリ秒なので秒に変換
-        $schedule->start_date = date('Y-m-d', $request->input('start_date') / 1000);
-        $schedule->end_date = date('Y-m-d', $request->input('end_date') / 1000);
-        $schedule->name = $request->input('name');
-        $schedule->save();
-    }
-
     public function get(Request $request,Schedule $schedule)
     {
         $request->validate([
@@ -75,20 +60,6 @@ class ScheduleController extends Controller
         $schedule->borderColor=$input['backgroundColor'];
         $schedule->fill($input);
         $schedule->end_date=Carbon::parse($input['end_date'])->addDays(1);
-        $schedule->save();
-
-        return redirect(route('calendar'));
-    }
-
-    public function drop(Request $request)
-    {
-        $schedule = Schedule::find($request->input('id'));
-
-        $start_date = date('Y-m-d', $request->input('start_date') / 1000);
-        $end_date = date('Y-m-d', $request->input('end_date') / 1000);
-
-        $schedule->start_date = $start_date;
-        $schedule->end_date = $end_date;
         $schedule->save();
 
         return redirect(route('calendar'));

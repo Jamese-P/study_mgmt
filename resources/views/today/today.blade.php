@@ -134,14 +134,15 @@
                                                             <div class="comprehension">
                                                                 <label for="comprehension"
                                                                     class="form-label">理解度</label>
-                                                                <select id="comprehension" class="form-select"
-                                                                    name="log[comprehension_id]">
+                                                                <select id="comprehension" class="form-select" name="log[comprehension_id]"  required>
+                                                                    <option value="" selected>選択してください</option>
                                                                     @foreach ($comprehensions as $comprehension)
                                                                         <option value="{{ $comprehension->id }}"
                                                                             @if ($comprehension->id === (int) old('log.comprehension_id')) selected @endif>
                                                                             {{ $comprehension->name }}</option>
                                                                     @endforeach
                                                                 </select>
+                                                                <p class="comprehension_id__error" style="color:red">{{ $errors->first('log.comprehension_id') }}</p>
                                                             </div>
                                                         </div>
                                                         <div class="form-element">
@@ -167,7 +168,7 @@
             @endif
         </div>
         <div class="grid2">
-            <div class="today w-full">
+            <div class="today w-fit">
                 <h1 class="txt-h1">Today <div class="text-base flex place-items-end">
                         {{ \Carbon\Carbon::today()->format('Y/m/d') }}</div>
                 </h1>
@@ -250,13 +251,15 @@
                                                         <div class="comprehension">
                                                             <label for="comprehension" class="form-label">理解度</label>
                                                             <select id="comprehension" class="form-select"
-                                                                name="log[comprehension_id]">
+                                                                name="log[comprehension_id]" required>
+                                                                <option value="" selected>選択してください</option>
                                                                 @foreach ($comprehensions as $comprehension)
                                                                     <option value="{{ $comprehension->id }}"
                                                                         @if ($comprehension->id === (int) old('log.comprehension_id')) selected @endif>
                                                                         {{ $comprehension->name }}</option>
                                                                 @endforeach
                                                             </select>
+                                                            <p class="comprehension_id__error" style="color:red">{{ $errors->first('log.comprehension_id') }}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-element">
@@ -280,7 +283,7 @@
 
             </div>
 
-            <div class="tomorrow w-full">
+            <div class="tomorrow w-fit">
                 <h1 class="txt-h1">Tommorow <div class="text-base flex place-items-end">
                         {{ \Carbon\Carbon::tomorrow()->format('Y/m/d') }}</div>
                 </h1>
@@ -362,13 +365,15 @@
                                                         <div class="comprehension">
                                                             <label for="comprehension" class="form-label">理解度</label>
                                                             <select id="comprehension" class="form-select"
-                                                                name="log[comprehension_id]">
+                                                                name="log[comprehension_id]" required>
+                                                                <option value="" selected>選択してください</option>
                                                                 @foreach ($comprehensions as $comprehension)
                                                                     <option value="{{ $comprehension->id }}"
                                                                         @if ($comprehension->id === (int) old('log.comprehension_id')) selected @endif>
                                                                         {{ $comprehension->name }}</option>
                                                                 @endforeach
                                                             </select>
+                                                            <p class="comprehension_id__error" style="color:red">{{ $errors->first('log.comprehension_id') }}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-element">

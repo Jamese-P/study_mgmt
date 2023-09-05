@@ -116,7 +116,7 @@ else {
             else {
                 document.getElementById("edit-end_date").value = formatDate(info.event.end, "end");
             }
-
+            document.getElementById("edit-backgroundColor").value = info.event.backgroundColor;
             var form_edit = document.getElementById("form-edit");
             form_edit.submit();
 

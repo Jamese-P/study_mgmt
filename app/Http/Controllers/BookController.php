@@ -93,9 +93,6 @@ final class BookController extends Controller
 
         $this->logs_to_learn($book_mgmt->next, $book->max, $book);
 
-                    
-                    
-
         return redirect('/books/'.$book->id);
     }
 

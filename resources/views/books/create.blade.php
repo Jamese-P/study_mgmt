@@ -2,6 +2,8 @@
         <div class="form1">
             <form action="/books" method="POST" class="form-book">
                 @csrf
+                <input type="hidden" name="book[user_id]" value="{{ Auth::id() }}">
+                <input type="hidden" name="book_mgmt[user_id]" value="{{ Auth::id() }}">
                 <div class="form-element">
                     <label for="name" class="form-label">参考書名</label>
                     <input type="text" name="book[name]" id="name" class="form-input" placeholder="参考書名"

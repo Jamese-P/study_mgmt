@@ -70,7 +70,6 @@ final class BookController extends Controller
     {
         $input = $book_request['book'];
         $book->fill($input);
-        $book->user_id = Auth::id();
         $book->save();
 
         $input = $book_request['book_mgmt'];
@@ -86,7 +85,6 @@ final class BookController extends Controller
         $schedule->save();
         
         $book_mgmt->fill($input);
-        $book_mgmt->user_id = Auth::user()->id;
         $book_mgmt->book_id = $book->id;
         $book_mgmt->next = $book->start;
         $book_mgmt->today_rest = $input['a_day'];

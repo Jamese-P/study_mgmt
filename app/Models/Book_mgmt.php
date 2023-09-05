@@ -14,6 +14,7 @@ class Book_mgmt extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'a_day',
         'intarval_id',
         'next',

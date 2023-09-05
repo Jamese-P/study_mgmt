@@ -53,7 +53,6 @@ else {
 
         // 日付をクリック、または範囲を選択したイベント
         selectable: true,
-        editable: true,
 
         height: "auto",
 
@@ -102,7 +101,10 @@ else {
                 document.getElementById("edit-end_date").value = formatDate(info.event.end, "end");
             }
             document.getElementById("edit-backgroundColor").value = info.event.backgroundColor;
-            document.getElementById('modal-edit').style.display = 'flex';
+            
+            if(info.event.startEditable===true){
+                document.getElementById('modal-edit').style.display = 'flex';
+            }
         },
 
         eventDrop: function(info) {
@@ -116,7 +118,7 @@ else {
             else {
                 document.getElementById("edit-end_date").value = formatDate(info.event.end, "end");
             }
-
+            document.getElementById("edit-backgroundColor").value = info.event.backgroundColor;
             var form_edit = document.getElementById("form-edit");
             form_edit.submit();
 

@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LogRequest;
 use App\Models\Book;
 use App\Models\Book_mgmt;
 use App\Models\Comprehension;
 use App\Models\Log;
 use App\Models\Subject;
+use App\Models\Schedule;
 use Carbon\Carbon;
 use DateTimeImmutable;
 
@@ -17,7 +19,7 @@ class TodayController extends Controller
 {
     public function show(Log $log,Book_mgmt $book_mgmt, Comprehension $comprehension)
     {
-        $book_mgmts = $book_mgmt->all();
+        $book_mgmts = Book_mgmt::where('user_id',Auth::id())->get();
 
         foreach ($book_mgmts as $book) {
             $logs = $book->book()->first()->logs()->count();
@@ -27,6 +29,12 @@ class TodayController extends Controller
             if ($book->next != -1) {
                 $rest_times = ceil(($book->book->max - $book->next + 1) / $book->a_day) - 1;
                 $book->end_date = Carbon::parse($book->next_learn_at)->addDays($rest_times * $book->intarval->days);
+                $book->save();
+                
+                $schedule=$book->schedule()->first();
+                $schedule->start_date=$book->end_date;
+                $schedule->end_date=$book->end_date;
+                $schedule->save();
             }
             $book->save();
         }

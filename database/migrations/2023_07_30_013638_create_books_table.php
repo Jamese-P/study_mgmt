@@ -25,7 +25,6 @@ return new class extends Migration
             $table->integer('max');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate()->nullable();
-            $table->softDeletes();
         });
     }
 

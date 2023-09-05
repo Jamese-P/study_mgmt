@@ -27,6 +27,7 @@ Route::controller(BookController::class)->middleware(['auth'])->group(function (
     Route::get('/books/create', 'create')->name('book.create');
     Route::get('/books/{book}', 'show')->name('book.show');
     Route::put('/books/{book}', 'update')->name('book.update');
+    Route::delete('/books/{book}', 'destroy')->name('book.destroy');
     Route::get('/books/{book}/edit', 'edit')->name('book.edit');
     Route::get('/books/{book}/relearn', 'relearn')->name('book.relearn');
     Route::put('/books/{book}/relearn', 'make_log_relearn')->name('book.make_log_relearn');

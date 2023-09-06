@@ -221,7 +221,9 @@ final class BookController extends Controller
     
     public function destroy(Book $book){
         $book_mgmt=$book->book_mgmt()->first();
+        $schedule=$book_mgmt->schedule()->first();
         $book_mgmt->delete();
+        $schedule->delete();
         
         foreach($book->logs as $log){
             $log->delete();

@@ -65,7 +65,54 @@
                     <p class="next_learn_at__error" style="color:red">{{ $errors->first('book_mgmt.next_learn_at') }}
                     </p>
                 </div>
+                    <div class="form-element text-right">
+                        <p id="end_date"></p>
+                    </div>
                 <input type="submit" class="form-submit" value="保存" />
             </form>
         </div>
+        <script>
+            function inputChange(){
+                let start=document.getElementById('start').value;
+                let finish=document.getElementById('finish').value;
+                let intarval=document.getElementById('intarval').value;
+                let a_day=document.getElementById('a_day').value;
+                let next_learn_at=document.getElementById('next_learn_at').value;
+                let end_date=document.getElementById('end_date');
+                const intarvals=@json($intarvals);
+                
+                if(start != null && start != ""){
+                    if(finish != null && finish != ""){
+                        if(intarval != null && intarval != ""){
+                            
+                            let intarval_days=intarvals[intarval-1]["days"];
+                            
+                            if(a_day != null && a_day != ""){
+                                let rest_times = Math.ceil((finish - start + 1) / a_day) - 1;
+                                let date=new Date(next_learn_at);
+                                date.setDate(date.getDate()+rest_times*intarval_days);
+                                var year_str = date.getFullYear();
+                                //月だけ+1すること
+                                var month_str = 1 + date.getMonth();
+                                var day_str = date.getDate();
+                            
+                                let format_str = 'YYYY-MM-DD';
+                                format_str = format_str.replace(/YYYY/g, year_str);
+                                format_str = format_str.replace(/MM/g, ('00' + month_str).slice(-2));
+                                format_str = format_str.replace(/DD/g, ('00' + day_str).slice(-2));
+                                
+                                end_date.innerHTML="終了予定日:"+format_str;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            start.oninput=inputChange;
+            finish.oninput=inputChange;
+            intarval.oninput=inputChange;
+            a_day.oninput=inputChange;
+            next_learn_at.oninput=inputChange;
+            
+        </script>
 </x-app-layout>

@@ -29,8 +29,9 @@
                 </div>
 
                 <div class="form-element">
-                    <label for="comprehension" class="form-label">学習対象単元の理解度(未満)</label>
-                    <select name="comprehension_id" class="form-select">
+                    <label for="comprehension" class="form-label">学習対象単元の理解度(以下)</label>
+                    <select name="comprehension_id" class="form-select" required>
+                        <option value="">選択してください</option>
                         @foreach ($comprehensions as $comprehension)
                             <option value="{{ $comprehension->id }}">{{ $comprehension->name }}</option>
                         @endforeach
@@ -61,9 +62,6 @@
                         value="{{ old('book_mgmt.next_learn_at', \Carbon\Carbon::today()->format('Y-m-d')) }}">
                     <p class="next_learn_at__error" style="color:red">{{ $errors->first('book_mgmt.next_learn_at') }}
                     </p>
-                </div>
-                <div class="back">
-                    [<a href="{{ route('book.index') }}">back</a>]
                 </div>
                 <input type="submit" class="form-submit" value="保存" />
             </form>

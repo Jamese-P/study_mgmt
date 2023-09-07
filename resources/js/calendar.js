@@ -1,6 +1,7 @@
 import { Calendar } from "@fullcalendar/core";
 import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import listPlugin from "@fullcalendar/list";
 import axios from 'axios';
 
 function formatDate(dt, pos) {
@@ -30,7 +31,7 @@ if (calendarEl === null) {
 else {
 
     let calendar = new Calendar(calendarEl, {
-        plugins: [interactionPlugin, dayGridPlugin],
+        plugins: [interactionPlugin, dayGridPlugin, listPlugin],
         initialView: "dayGridMonth",
         customButtons: {
             createEvent: {
@@ -48,7 +49,7 @@ else {
         headerToolbar: {
             left: "prev,next today createEvent",
             center: "title",
-            right: "dayGridMonth",
+            right: "dayGridMonth,listWeek",
         },
 
         // 日付をクリック、または範囲を選択したイベント
@@ -101,8 +102,8 @@ else {
                 document.getElementById("edit-end_date").value = formatDate(info.event.end, "end");
             }
             document.getElementById("edit-backgroundColor").value = info.event.backgroundColor;
-            
-            if(info.event.startEditable===true){
+
+            if (info.event.startEditable === true) {
                 document.getElementById('modal-edit').style.display = 'flex';
             }
         },

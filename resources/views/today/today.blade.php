@@ -440,7 +440,7 @@
             function pass_exp(id) {
                 'use strict'
 
-                if (confirm('���当にパスしますか？')) {
+                if (confirm('本当にパスしますか？')) {
                     document.getElementById(`form_${id}_pass_exp`).submit();
                 }
             }

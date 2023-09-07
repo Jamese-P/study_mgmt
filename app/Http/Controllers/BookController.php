@@ -74,6 +74,11 @@ final class BookController extends Controller
 
         $input = $book_request['book_mgmt'];
 
+        $book_mgmt->fill($input);
+        $book_mgmt->book_id = $book->id;
+        $book_mgmt->next = $book->start;
+        $book_mgmt->today_rest = $input['a_day'];
+
         $schedule = new Schedule();
         $schedule->user_id = Auth::id();
         $schedule->name = '終了:'.$book->name;
@@ -84,12 +89,14 @@ final class BookController extends Controller
         $schedule->end_date = $input['next_learn_at'];
         $schedule->save();
 
-        $book_mgmt->fill($input);
-        $book_mgmt->book_id = $book->id;
-        $book_mgmt->next = $book->start;
-        $book_mgmt->today_rest = $input['a_day'];
         $book_mgmt->schedule_id = $schedule->id;
+        $rest_times = ceil(($book_mgmt->book->max - $book_mgmt->next + 1) / $book_mgmt->a_day) - 1;
+        $book_mgmt->end_date = Carbon::parse($book_mgmt->next_learn_at)->addDays($rest_times * $book_mgmt->intarval->days);
         $book_mgmt->save();
+
+        $schedule->start_date = $book_mgmt->end_date;
+        $schedule->end_date = $book_mgmt->end_date;
+        $schedule->save();
 
         $this->logs_to_learn($book_mgmt->next, $book->max, $book);
 
@@ -218,19 +225,20 @@ final class BookController extends Controller
 
         return redirect('/books');
     }
-    
-    public function destroy(Book $book){
-        $book_mgmt=$book->book_mgmt()->first();
-        $schedule=$book_mgmt->schedule()->first();
+
+    public function destroy(Book $book)
+    {
+        $book_mgmt = $book->book_mgmt()->first();
+        $schedule = $book_mgmt->schedule()->first();
         $book_mgmt->delete();
         $schedule->delete();
-        
-        foreach($book->logs as $log){
+
+        foreach ($book->logs as $log) {
             $log->delete();
         }
-        
+
         $book->delete();
-        
+
         return redirect(route('book.index'));
     }
 }

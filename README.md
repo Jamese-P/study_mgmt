@@ -5,6 +5,12 @@
 ## 目的・ユースケース
 生徒が自分の学習について管理し、学習記録を残すことが目的である。管理者の存在を作成していないのは生徒の自立力をできるだけ尊重し、育てたいからである。
 
+## 使用技術
+laravel, DB, html, css, tailwind, JavaScript, php
+
+fullcalendar, sortable
+
+
 ## テスト用アカウント
 - mail: test@example.com
 - pass: password
@@ -20,6 +26,7 @@
 - 参考書名
 - 教科
 - ページか単元か
+- 開始ページまたは単元
 - 終了ページまたは単元
 - 一回の学習量
 - 学習間隔

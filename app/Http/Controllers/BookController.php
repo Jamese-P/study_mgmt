@@ -218,19 +218,20 @@ final class BookController extends Controller
 
         return redirect('/books');
     }
-    
-    public function destroy(Book $book){
-        $book_mgmt=$book->book_mgmt()->first();
-        $schedule=$book_mgmt->schedule()->first();
+
+    public function destroy(Book $book)
+    {
+        $book_mgmt = $book->book_mgmt()->first();
+        $schedule = $book_mgmt->schedule()->first();
         $book_mgmt->delete();
         $schedule->delete();
-        
-        foreach($book->logs as $log){
+
+        foreach ($book->logs as $log) {
             $log->delete();
         }
-        
+
         $book->delete();
-        
+
         return redirect(route('book.index'));
     }
 }

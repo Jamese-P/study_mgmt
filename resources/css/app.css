@@ -12,7 +12,7 @@
 }
 
 .grid2 {
-    @apply grid auto-cols-min md:grid-cols-2 md:gap-6  mt-4 items-start;
+    @apply md:grid auto-cols-min md:grid-cols-2 md:gap-6  mt-4 items-start;
 }
 
 .btn-exp {
@@ -44,7 +44,7 @@
 }
 
 .books {
-    @apply flex justify-center overflow-x-auto inline-block w-full py-2 sm:px-6 lg:px-8 m-4 items-center place-items-center;
+    @apply md:flex justify-center overflow-x-auto inline-block w-full md:w-auto py-2 sm:px-6 lg:px-8 m-4 items-center place-items-center;
 }
 
 .book-table {
@@ -68,7 +68,7 @@
 }
 
 .logs {
-    @apply flex justify-center overflow-x-auto inline-block w-full py-2 sm:px-2 lg:px-2 m-4 items-center place-items-center;
+    @apply md:flex justify-center overflow-x-auto inline-block w-full md:w-auto py-2 sm:px-2 lg:px-2 m-4 items-center place-items-center;
 }
 
 .log-table {

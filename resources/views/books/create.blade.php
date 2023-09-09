@@ -1,4 +1,9 @@
 <x-app-layout>
+    <x-slot name="header">
+        <div class="w-full text-center">
+            参考書登録
+        </div>
+    </x-slot>
     <div class="form1">
         <form action="/books" method="POST" class="form-book">
             @csrf

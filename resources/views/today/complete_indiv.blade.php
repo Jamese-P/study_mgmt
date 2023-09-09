@@ -31,7 +31,8 @@
             <div class="form-element">
                 <div class="comprehension">
                     <label for="comprehension" class="form-label">理解度</label>
-                    <select id="comprehension" class="form-select" name="log[comprehension_id]">
+                    <select id="comprehension" class="form-select" name="log[comprehension_id]" required>
+                        <option value="" >選択してください</option>
                         @foreach ($comprehensions as $comprehension)
                             <option value="{{ $comprehension->id }}" @if($comprehension->id === (int)old('log.comprehension_id')) selected @endif>{{ $comprehension->name }}</option>
                         @endforeach

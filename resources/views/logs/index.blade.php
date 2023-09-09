@@ -1,6 +1,10 @@
 <x-app-layout>
-    <div class='logs'>
-        <div class="w-full mb-4 text-center">
+    <x-slot name="header">
+        <div class="w-full text-center">
+            学習履歴
+        </div>
+    </x-slot>
+        <div class="w-full mb-4 text-center items-center">
             <form action="{{ route('log.index.refine') }}" method="GET">
                 <p class="log-head">表示させる教科を選択してください</p>
                 <div class="subject">
@@ -18,7 +22,7 @@
                 </div>
             </form>
         </div>
-
+    <div class='logs'>
         <table class="log-table">
             <thead class="log-thead">
                 <tr>

@@ -1,6 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        再学習
+        <div class="w-full text-center">
+            再学習登録
+        </div>
     </x-slot>
     <div class="form1">
         <form action="/books/{{ $book->id }}/relearn" method="POST" class="form-book">

@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 
-
 .link {
     @apply font-medium text-blue-600 dark:text-blue-500 hover:underline;
 }
@@ -45,7 +44,7 @@
 }
 
 .books {
-    @apply flex flex-col overflow-x-auto inline-block w-fit py-2 sm:px-6 lg:px-8 overflow-hidden m-4 w-full items-center;
+    @apply flex justify-center overflow-x-auto inline-block w-full py-2 sm:px-6 lg:px-8 m-4 items-center place-items-center;
 }
 
 .book-table {
@@ -69,7 +68,7 @@
 }
 
 .logs {
-    @apply flex flex-col overflow-x-auto inline-block py-2 sm:px-2 lg:px-2 overflow-hidden m-4 w-full items-center;
+    @apply flex justify-center overflow-x-auto inline-block w-full py-2 sm:px-2 lg:px-2 m-4 items-center place-items-center;
 }
 
 .log-table {

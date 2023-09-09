@@ -32,11 +32,11 @@
 }
 
 .txt-h1 {
-    @apply text-3xl flex justify-center;
+    @apply text-3xl flex justify-center m-2;
 }
 
 .txt-h2 {
-    @apply text-xl flex justify-center;
+    @apply text-xl flex justify-center m-2;
 }
 
 .txt-book-name {
@@ -92,7 +92,7 @@
 }
 
 .form1 {
-    @apply h-screen w-screen flex justify-center;
+    @apply w-screen flex justify-center;
 }
 
 .form-book {

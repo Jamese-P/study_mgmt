@@ -1,6 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        参考書一覧
+        <div class="w-full text-center">
+            参考書一覧
+        </div>
     </x-slot>
     <div class="grid2">
         <div>

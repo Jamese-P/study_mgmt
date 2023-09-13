@@ -25,11 +25,7 @@ function formatDate(dt, pos) {
 
 var calendarEl = document.getElementById("calendar");
 
-if (calendarEl === null) {
-
-}
-else {
-
+if (calendarEl !== null) {
     let calendar = new Calendar(calendarEl, {
         plugins: [interactionPlugin, dayGridPlugin, listPlugin],
         initialView: "dayGridMonth",

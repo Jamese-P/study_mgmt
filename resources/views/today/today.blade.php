@@ -23,6 +23,7 @@
                         <thead class="book-thead">
                             <tr>
                                 <th class="book-th">参考書名</th>
+                                <th class="book-th">予定日</th>
                                 <th class="book-th">残り</th>
                                 <th class="book-th"></th>
                                 <th class="book-th"></th>
@@ -35,7 +36,11 @@
                                             href="{{ route('book.show', ['book' => $book_mgmt->book_id]) }}">{{ $book_mgmt->book->name }}</a>
                                     </td>
                                     <td class="book-td">
-                                        {{ $book_mgmt->today_rest }}{{ $book_mgmt->book->type->name }}</td>
+                                        {{ $book_mgmt->next_learn_at }}
+                                    </td>
+                                    <td class="book-td">
+                                        {{ $book_mgmt->today_rest }}{{ $book_mgmt->book->type->name }}
+                                    </td>
                                     <td class="book-td">
                                         <form action="/today/{{ $book_mgmt->book_id }}/exp"
                                             id="form_{{ $book_mgmt->book_id }}_exp" method="post">

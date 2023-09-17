@@ -96,11 +96,19 @@ class TodayController extends Controller
     public function update_no_exp(Book $book)
     {
         $book_mgmt = $book->book_mgmt()->first();
-        $schedule = Carbon::parse($book_mgmt->next_learn_at);
-        $book_mgmt->today_rest = $book_mgmt->a_day;
-        $book_mgmt->next_learn_at = $schedule->addDays($book_mgmt->intarval->days);
-        $book_mgmt->save();
-
+        $today=Carbon::today();
+        while(1){
+            $schedule = Carbon::parse($book_mgmt->next_learn_at);
+            $book_mgmt->today_rest = $book_mgmt->a_day;
+            $book_mgmt->next_learn_at = $schedule->addDays($book_mgmt->intarval->days);
+            $book_mgmt->save();
+            $schedule = Carbon::parse($book_mgmt->next_learn_at);
+            
+            if($schedule->gte($today)){
+                break;
+            }
+        }
+        
         return redirect(route('today'));
     }
 

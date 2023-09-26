@@ -153,18 +153,26 @@ final class BookController extends Controller
     public function update_logs(int $start, int $finish, Book $book)
     {
         for ($i = 1; $i < $start; $i++) {
-            $log = $book->logs()->whereNull('learned_at')->whereNotNull('scheduled_at')->where('number', $i)->first();
-            if ($log) {
+            $logs = $book->logs()->whereNull('learned_at')->whereNotNull('scheduled_at')->where('number', $i)->get();
+            foreach ($logs as $log) {
                 $log->delete();
             }
         }
         for ($i = $start; $i <= $finish; $i++) {
-            $log = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', $i)->first();
-            if (! $log) {
+            $logs = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', $i)->get();
+            $count= $logs->count();
+            if (! $logs) {
                 $log = new Log();
                 $log->book_id = $book->id;
                 $log->number = $i;
                 $log->save();
+            }else if($count>1){
+                foreach ($logs as $log) {
+                    if($count>1){
+                        $log->delete();
+                        $count--;
+                    }
+                }
             }
         }
 

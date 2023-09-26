@@ -153,7 +153,7 @@ final class BookController extends Controller
     public function update_logs(int $start, int $finish, Book $book)
     {
         for ($i = 1; $i < $start; $i++) {
-            $logs = $book->logs()->whereNull('learned_at')->whereNotNull('scheduled_at')->where('number', $i)->get();
+            $logs = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', $i)->get();
             foreach ($logs as $log) {
                 $log->delete();
             }
@@ -177,7 +177,7 @@ final class BookController extends Controller
         }
 
         while (1) {
-            if (! $log = $book->logs()->whereNull('learned_at')->whereNotNull('scheduled_at')->where('number', '>', $finish)->first()) {
+            if (! $log = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', '>', $finish)->first()) {
                 break;
             }
             $log->delete();

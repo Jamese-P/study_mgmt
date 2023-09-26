@@ -159,7 +159,7 @@ final class BookController extends Controller
             }
         }
         for ($i = $start; $i <= $finish; $i++) {
-            $log = $book->logs()->whereNull('learned_at')->whereNotNull('scheduled_at')->where('number', $i)->first();
+            $log = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', $i)->first();
             if (! $log) {
                 $log = new Log();
                 $log->book_id = $book->id;

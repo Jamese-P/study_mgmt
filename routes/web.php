@@ -7,6 +7,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TodayController;
+use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(TodayController::class)->middleware(['auth'])->group(function () {
@@ -56,7 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/a',function(){ return view('file');});
+Route::get('/a',[FileController::class,'show']);
 Route::get('/files/最重要文法語法.pdf')->name('file1');
 Route::get('/files/文法整序問題のコピー.xlsm')->name('file2');
 

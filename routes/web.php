@@ -56,4 +56,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/a',function(){ return view('file');});
+Route::get('/files/最重要文法語法.pdf')->name('file1');
+Route::get('/files/文法整序問題のコピー.xlsm')->name('file2');
+
 require __DIR__.'/auth.php';

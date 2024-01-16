@@ -10,10 +10,12 @@
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     </head>
     <body>
-
         @foreach($files as $file)
-        <a href="files/{{$file->getfileName()}}" target="_blank"><p>{{$file->getfileName()}}</p></a>
+            @if($file->getExtension()=="xlsm")
+                <a href="files/{{$file->getfileName()}}" download="{{$file->getfileName()}}"><p>{{$file->getfileName()}}</p></a>
+            @else
+                <a href="files/{{$file->getfileName()}}" target="_blank"><p>{{$file->getfileName()}}</p></a>
+            @endif
         @endforeach
-
     </body>
 </html>

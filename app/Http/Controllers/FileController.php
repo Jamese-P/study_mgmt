@@ -10,7 +10,15 @@ class FileController extends Controller
         $path=public_path('files/');
         $files = \File::files($path);
         natsort($files);
-        return view('file')->with(['files'=>$files]);
+        $path = 'files/';
+        return view('file')->with(['path'=>$path,'files'=>$files]);
+    }
 
+    public function show_high(){
+        $path=public_path('high_science/');
+        $files = \File::files($path);
+        natsort($files);
+        $path = 'high_science/';
+        return view('file')->with(['path'=>$path,'files'=>$files]);
     }
 }

@@ -11,7 +11,7 @@
     </head>
     <body>
         @foreach($files as $file)
-            @if($file->getExtension()=="xlsm" || $file->getExtension()=="pptx")
+            @if($file->getExtension()=="xlsm" || $file->getExtension()=="pptx" || $file->getExtension()=="gslides")
                 <a href="{{$path}}/{{$file->getfileName()}}" download="{{$file->getfileName()}}"><p>{{$file->getfileName()}}</p></a>
             @else
                 <a href="{{$path}}/{{$file->getfileName()}}" target="_blank"><p>{{$file->getfileName()}}</p></a>

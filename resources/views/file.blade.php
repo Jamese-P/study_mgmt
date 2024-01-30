@@ -10,9 +10,12 @@
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     </head>
     <body>
+        @isset($urls)
         @foreach($urls as $url)
             <a href="{{$url}}" target="_blank"><p>{{$url}}</p></a>
         @endforeach
+        @endisset
+
         @foreach($files as $file)
             @if($file->getExtension()=="xlsm" || $file->getExtension()=="pptx" || $file->getExtension()=="gslides")
                 <a href="{{$path}}/{{$file->getfileName()}}" download="{{$file->getfileName()}}"><p>{{$file->getfileName()}}</p></a>

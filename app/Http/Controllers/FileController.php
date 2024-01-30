@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -19,6 +20,8 @@ class FileController extends Controller
         $files = \File::files($path);
         natsort($files);
         $path = 'high_science/';
-        return view('file')->with(['path'=>$path,'files'=>$files]);
+        $text = Storage::get('url.txt');
+        $urls = explode("\n",$text);
+        return view('file')->with(['urls'=>$urls,'path'=>$path,'files'=>$files]);
     }
 }

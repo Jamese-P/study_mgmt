@@ -24,4 +24,12 @@ class FileController extends Controller
         $urls = explode("\n",$text);
         return view('file')->with(['urls'=>$urls,'path'=>$path,'files'=>$files]);
     }
+
+    public function sinken(){
+        $path=public_path('sinken/');
+        $files = \File::files($path);
+        natsort($files);
+        $path = 'sinken/';
+        return view('file')->with(['path'=>$path,'files'=>$files]);
+    }
 }

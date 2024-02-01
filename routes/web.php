@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
 Route::controller(FileController::class)->group(function () {
     Route::get('/a','show');
     Route::get('/high','show_high');
+    Route::get('/shinken','sinken');
 });
 
 require __DIR__.'/auth.php';

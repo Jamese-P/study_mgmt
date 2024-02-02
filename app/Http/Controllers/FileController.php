@@ -38,10 +38,10 @@ class FileController extends Controller
     }
 
     public function eiken(){
-        $path = 'eiken/';
-        $path2=public_path($path);
-        $files = \File::files($path2);
+        $path=public_path('file/eiken/');
+        $files = \File::files($path);
         natsort($files);
+        $path = 'eiken/';
         return view('file.file')->with(['path'=>$path,'files'=>$files]);
     }
 }

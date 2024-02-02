@@ -57,12 +57,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::controller(FileController::class)->prefix('file')->group(function () {
-    Route::get('','index');
-    Route::get('/a','show_base');
-    Route::get('/high','show_high');
-    Route::get('/sinken','sinken');
-    Route::get('/eiken','eiken');
+Route::controller(FileController::class)->prefix('print')->group(function () {
+    Route::get('','index')->name('print.index');
+    Route::get('/a','show_base')->name('print.main');
+    Route::get('/high','show_high')->name('print.high');
+    Route::get('/sinken','sinken')->name('print.sinken');
+    Route::get('/eiken','eiken')->name('print.eiken');
 });
 
 require __DIR__.'/auth.php';

@@ -38,7 +38,7 @@ class FileController extends Controller
     }
 
     public function eiken(){
-        $path=public_path('file/eiken/');
+        $path=public_path('eiken/');
         $files = \File::files($path);
         natsort($files);
         $path = 'eiken/';

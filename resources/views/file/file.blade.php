@@ -10,6 +10,7 @@
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     </head>
     <body>
+        <div style="width:fit-content">
         @isset($urls)
         @foreach($urls as $url)
             <a href="{{$url}}" target="_blank"><p>{{$url}}</p></a>
@@ -23,5 +24,6 @@
                 <a href="/{{$path}}/{{$file->getfileName()}}" target="_blank"><p>{{$file->getfileName()}}</p></a>
             @endif
         @endforeach
+        </div>
     </body>
 </html>

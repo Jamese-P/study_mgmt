@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TodayController;
-use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(TodayController::class)->middleware(['auth'])->group(function () {
@@ -58,11 +58,11 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::controller(FileController::class)->prefix('print')->group(function () {
-    Route::get('','index')->name('print.index');
-    Route::get('/a','show_base')->name('print.main');
-    Route::get('/high','show_high')->name('print.high');
-    Route::get('/sinken','sinken')->name('print.sinken');
-    Route::get('/eiken','eiken')->name('print.eiken');
+    Route::get('', 'index')->name('print.index');
+    Route::get('/a', 'show_base')->name('print.main');
+    Route::get('/high', 'show_high')->name('print.high');
+    Route::get('/sinken', 'sinken')->name('print.sinken');
+    Route::get('/eiken', 'eiken')->name('print.eiken');
 });
 
 require __DIR__.'/auth.php';

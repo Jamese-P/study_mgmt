@@ -160,15 +160,15 @@ final class BookController extends Controller
         }
         for ($i = $start; $i <= $finish; $i++) {
             $logs = $book->logs()->whereNull('learned_at')->whereNull('scheduled_at')->where('number', $i)->get();
-            $count= $logs->count();
+            $count = $logs->count();
             if (! $logs) {
                 $log = new Log();
                 $log->book_id = $book->id;
                 $log->number = $i;
                 $log->save();
-            }else if($count>1){
+            } elseif ($count > 1) {
                 foreach ($logs as $log) {
-                    if($count>1){
+                    if ($count > 1) {
                         $log->delete();
                         $count--;
                     }

@@ -17,8 +17,6 @@
 
 <body>
     <div style="width:fit-content">
-
-
         @foreach ($names as $name)
             <details>
                 <summary>{{ $name[1] }}</summary>

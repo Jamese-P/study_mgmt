@@ -43,9 +43,12 @@
                         @php
                             $file_name = substr($file, 51);
                         @endphp
-                        <a href="/{{ $path }}/{{ $file_name }}" target="_blank">
-                            <li>{{ $file_name }}</li>
+                        <li>
+                             <a href="/{{ $path }}/{{ $file_name }}" target="_blank">
+                            {{ $file_name }}
                         </a>
+                        </li>
+                       
                     @endforeach
                 </lu>
             </details>

@@ -13,37 +13,41 @@
 @endphp
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{$path}}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Fonts -->
-        <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <div style="width:fit-content">
+    <title>{{ $path }}</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div style="width:fit-content">
 
 
-        @foreach($names as $name)
+        @foreach ($names as $name)
             <details>
-                <summary>{{$name[1]}}</summary>
-                    @php
-                        $files = glob(public_path("sinken/".$name[0]."*.*"));
-                    @endphp
+                <summary>{{ $name[1] }}</summary>
+                @php
+                    $files = glob(public_path('sinken/' . $name[0] . '*.*'));
+                @endphp
 
                 <lu>
-                    @foreach($files as $file)
+                    @foreach ($files as $file)
                         @php
-                            $file_name=substr($file,52);
+                            $file_name = substr($file, 52);
                         @endphp
-                        <a href="/{{$path}}/{{$file_name}}" target="_blank"><li>{{$file_name}}</li></a>
-
+                        <a href="/{{ $path }}/{{ $file_name }}" target="_blank">
+                            <li>{{ $file_name }}</li>
+                        </a>
                     @endforeach
                 </lu>
             </details>
         @endforeach
-        </div>
-    </body>
+    </div>
+</body>
+
 </html>

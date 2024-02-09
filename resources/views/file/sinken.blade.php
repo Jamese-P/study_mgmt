@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 @php
-    $names = [
-        ["1- 11","1年11月"],
-        ["1-1","1年1月"],
-        ["2- 7","2年7月"],
-        ["2- 11","2年11月"],
-        ["2-1","2年1月"],
-        ["3- 4","3年4月"],
-        ["3- 7","3年7月"],
-        ["3- 10","3年10月"],
-        ];
+    $names = [['1- 11', '1年11月'], ['1-1', '1年1月'], ['2- 7', '2年7月'], ['2- 11', '2年11月'], ['2-1', '2年1月'], ['3- 4', '3年4月'], ['3- 7', '3年7月'], ['3- 10', '3年10月']];
 @endphp
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -26,7 +17,7 @@
 
 <body>
     <div style="width:fit-content">
-<p><a href="/{{ $path }}/進研模試.pdf" target="_blank">一覧ファイル</a></p>
+        <p><a href="/{{ $path }}/進研模試.pdf" target="_blank">一覧ファイル</a></p>
         @foreach ($names as $name)
             <details>
                 <summary>{{ $name[1] }}</summary>
@@ -41,10 +32,10 @@
                         @php
                             $file_name = substr($file, $path_pre_count);
                         @endphp
-                         <li>
-                             <a href="/{{ $path }}/{{ $file_name }}" target="_blank">
-                            {{ $file_name }}
-                        </a>
+                        <li>
+                            <a href="/{{ $path }}/{{ $file_name }}" target="_blank">
+                                {{ $file_name }}
+                            </a>
                         </li>
                     @endforeach
                 </lu>

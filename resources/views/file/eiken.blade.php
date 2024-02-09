@@ -44,11 +44,10 @@
                             $file_name = substr($file, $path_pre_count);
                         @endphp
                         <li>
-                             <a href="/{{ $path }}/{{ $file_name }}" target="_blank">
-                            {{ $file_name }}
-                        </a>
+                            <a href="/{{ $path }}/{{ $file_name }}" target="_blank">
+                                {{ $file_name }}
+                            </a>
                         </li>
-
                     @endforeach
                 </lu>
             </details>

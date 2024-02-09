@@ -32,13 +32,15 @@
             <details>
                 <summary>{{ $name[1] }}</summary>
                 @php
-                    $files = glob(public_path('sinken/' . $name[0] . '*.*'));
+                    $path_pre = public_path($path);
+                    $path_pre_count = mb_strlen($path_pre);
+                    $files = glob(public_path($path . $name[0] . '*.*'));
                 @endphp
 
                 <lu>
                     @foreach ($files as $file)
                         @php
-                            $file_name = substr($file, 52);
+                            $file_name = substr($file, $path_pre_count);
                         @endphp
                          <li>
                              <a href="/{{ $path }}/{{ $file_name }}" target="_blank">

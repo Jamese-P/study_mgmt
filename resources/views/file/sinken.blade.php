@@ -1,21 +1,9 @@
-<!DOCTYPE html>
 @php
     $names = [['1- 11', '1年11月'], ['1-1', '1年1月'], ['2- 7', '2年7月'], ['2- 11', '2年11月'], ['2-1', '2年1月'], ['3- 4', '3年4月'], ['3- 7', '3年7月'], ['3- 10', '3年10月']];
 @endphp
 
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>{{ $path }}</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-
-<body>
+@extends('layouts.file')
+@section('content')
     <div style="width:fit-content">
         <p><a href="/{{ $path }}/進研模試.pdf" target="_blank">一覧ファイル</a></p>
         @foreach ($names as $name)
@@ -42,6 +30,4 @@
             </details>
         @endforeach
     </div>
-</body>
-
-</html>
+@endsection

@@ -1,21 +1,10 @@
-<!DOCTYPE html>
 @php
     $names = [['-2kyu', '2級'], [['2pkyu', 'p2kyu'], '準2級'], ['3kyu', '3級']];
 @endphp
 
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.file')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>{{ $path }}</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-
-<body>
+@section('content')
     <div style="width:fit-content">
         @foreach ($names as $name)
             <details>
@@ -53,6 +42,4 @@
             </details>
         @endforeach
     </div>
-</body>
-
-</html>
+@endsection

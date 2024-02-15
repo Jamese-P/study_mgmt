@@ -27,7 +27,7 @@
                     }
                     natsort($files);
                 @endphp
-                <lu>
+                <ul>
                     @foreach ($files as $file)
                         @php
                             $file_name = substr($file, $path_pre_count);
@@ -38,7 +38,7 @@
                             </a>
                         </li>
                     @endforeach
-                </lu>
+                </ul>
             </details>
         @endforeach
     </div>

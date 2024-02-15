@@ -10,16 +10,27 @@
             @endforeach
         @endisset
 
+        <div class="file-list">
+            <ul>
+
+
+
         @foreach ($files as $file)
             @if ($file->getExtension() == 'xlsm' || $file->getExtension() == 'pptx' || $file->getExtension() == 'gslides')
+                <li>
                 <a href="/{{ $path }}/{{ $file->getfileName() }}" download="{{ $file->getfileName() }}">
-                    <p>{{ $file->getfileName() }}</p>
+                    {{ $file->getfileName() }}
                 </a>
+                </li>
             @else
+            <li>
                 <a href="/{{ $path }}/{{ $file->getfileName() }}" target="_blank">
-                    <p>{{ $file->getfileName() }}</p>
+                    {{ $file->getfileName() }}
                 </a>
+                </li>
             @endif
         @endforeach
+        </ul>
+        </div>
     </div>
 @endsection

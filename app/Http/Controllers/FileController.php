@@ -47,4 +47,14 @@ class FileController extends Controller
         $path = 'eiken/';
         return view('file.eiken')->with(['path' => $path]);
     }
+
+    public function tmp()
+    {
+        $path = public_path('tmp/');
+        $files = File::files($path);
+        natsort($files);
+        $path = 'tmp/';
+
+        return view('file.file')->with(['path' => $path, 'files' => $files]);
+    }
 }

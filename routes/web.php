@@ -63,6 +63,7 @@ Route::controller(FileController::class)->prefix('print')->group(function () {
     Route::get('/high', 'show_high')->name('print.high');
     Route::get('/sinken', 'sinken')->name('print.sinken');
     Route::get('/eiken', 'eiken')->name('print.eiken');
+     Route::get('/tmp', 'tmp')->name('print.tmp');
 });
 
 require __DIR__.'/auth.php';

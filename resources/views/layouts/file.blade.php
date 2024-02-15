@@ -16,12 +16,12 @@
     </head>
     <body>
         <div class="navigation">
-                <lu>
+                <ul>
                     <li><a href="{{ route('print.main') }}">main</a></li>
                     <li><a href="{{ route('print.high') }}">高校生</a></li>
                     <li><a href="{{ route('print.sinken') }}">進研模試</a></li>
                     <li><a href="{{ route('print.eiken') }}">英検</a></li>
-                </lu>
+                </ul>
         </div>
         @yield('content')
     </body>

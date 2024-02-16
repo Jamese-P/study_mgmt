@@ -1,4 +1,3 @@
-
 @extends('layouts.file')
 @section('content')
 
@@ -28,6 +27,5 @@
             @endif
         @endforeach
         </ul>
-
     </div>
 @endsection

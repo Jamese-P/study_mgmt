@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::controller(FileController::class)->prefix('print')->group(function () {
-    Route::get('', 'index')->name('print.index');
+    Route::get('', 'show_high')->name('print.index');
     Route::get('/a', 'show_base')->name('print.main');
     Route::get('/high', 'show_high')->name('print.high');
     Route::get('/sinken', 'sinken')->name('print.sinken');

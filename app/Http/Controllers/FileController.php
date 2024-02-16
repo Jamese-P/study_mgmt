@@ -31,7 +31,11 @@ class FileController extends Controller
         natsort($files);
         $path = 'high/';
         $text = Storage::get('url.txt');
-        $urls = explode("\n", $text);
+        $text = explode("\n", $text);
+        $urls = [];
+        for ($i = 0; $i < count($text) - 1; $i = $i + 2) {
+            array_push($urls, '<a href="'.$text[$i + 1].'" target="_brank" >'.$text[$i].'</a>');
+        }
 
         return view('file.file')->with(['urls' => $urls, 'path' => $path, 'files' => $files]);
     }
@@ -39,12 +43,14 @@ class FileController extends Controller
     public function sinken()
     {
         $path = 'sinken/';
+
         return view('file.sinken')->with(['path' => $path]);
     }
 
     public function eiken()
     {
         $path = 'eiken/';
+
         return view('file.eiken')->with(['path' => $path]);
     }
 

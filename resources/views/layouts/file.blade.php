@@ -13,9 +13,9 @@
 
         <!-- Scripts -->
         @vite(['resources/css/file.css'])
-    </head>
-    <body>
+
         <div class="navigation">
+            <div class="pc-layout">
                 <ul>
                     <li><a href="{{ route('print.main') }}">main</a></li>
                     <li><a href="{{ route('print.high') }}">高校生</a></li>
@@ -23,7 +23,33 @@
                     <li><a href="{{ route('print.eiken') }}">英検</a></li>
                     <li><a href="{{ route('print.tmp') }}">一時保管</a></li>
                 </ul>
+            </div>
+            <div class="sp-layout">
+                <a class="menu" id="menu" onclick="menu_click();">≡</a>
+
+                <ul class="menubar" id="menubar">
+                    <li><a href="{{ route('print.main') }}">main</a></li>
+                    <li><a href="{{ route('print.high') }}">高校生</a></li>
+                    <li><a href="{{ route('print.sinken') }}">進研模試</a></li>
+                    <li><a href="{{ route('print.eiken') }}">英検</a></li>
+                    <li><a href="{{ route('print.tmp') }}">一時保管</a></li>
+                </ul>
+            </div>
         </div>
+
+    </head>
+    <body>
         @yield('content')
     </body>
 </html>
+<script>
+    const icon =document.getElementById("menu");
+    const menubar =document.getElementById("menubar");
+    function menu_click(){
+        if(menubar.className=="menubar"){
+                menubar.className="menubar open";
+                }else{
+                menubar.className="menubar";
+                }
+    };
+</script>

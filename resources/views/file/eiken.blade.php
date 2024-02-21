@@ -1,5 +1,5 @@
 @php
-    $names = [[['1pkyu', 'p1kyu'], '準1級'],,['-2kyu', '2級'], [['2pkyu', 'p2kyu'], '準2級'], ['3kyu', '3級']];
+    $names = [[['1pkyu', 'p1kyu'], '準1級'],['-2kyu', '2級'], [['2pkyu', 'p2kyu'], '準2級'], ['3kyu', '3級']];
 @endphp
 
 @extends('layouts.file')

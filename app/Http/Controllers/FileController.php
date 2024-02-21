@@ -43,15 +43,19 @@ class FileController extends Controller
     public function sinken()
     {
         $path = 'sinken/';
-
         return view('file.sinken')->with(['path' => $path]);
     }
 
     public function eiken()
     {
         $path = 'eiken/';
-
         return view('file.eiken')->with(['path' => $path]);
+    }
+    
+    public function center()
+    {
+        $path = 'center/';
+        return view('file.center')->with(['path' => $path]);
     }
 
     public function tmp()

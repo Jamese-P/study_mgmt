@@ -20,10 +20,10 @@
             <ul>
                 <li><a href="{{ route('print.main') }}">main</a></li>
                 <li><a href="{{ route('print.high') }}">高校生</a></li>
+                <li><a href="{{ route('print.chemistry') }}">化学一問一答</a></li>
                 <li><a href="{{ route('print.sinken') }}">進研模試</a></li>
                 <li><a href="{{ route('print.eiken') }}">英検</a></li>
                 <li><a href="{{ route('print.center') }}">センター</a></li>
-                <li><a href="{{ route('print.tmp') }}">一時保管</a></li>
             </ul>
         </div>
         <div class="sp-layout">
@@ -32,10 +32,10 @@
             <ul class="menubar" id="menubar">
                 <li><a href="{{ route('print.main') }}">main</a></li>
                 <li><a href="{{ route('print.high') }}">高校生</a></li>
+                <li><a href="{{ route('print.chemistry') }}">化学一問一答</a></li>
                 <li><a href="{{ route('print.sinken') }}">進研模試</a></li>
                 <li><a href="{{ route('print.eiken') }}">英検</a></li>
                 <li><a href="{{ route('print.center') }}">センター</a></li>
-                <li><a href="{{ route('print.tmp') }}">一時保管</a></li>
             </ul>
         </div>
     </div>

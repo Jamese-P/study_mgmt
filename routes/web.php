@@ -61,6 +61,7 @@ Route::controller(FileController::class)->prefix('print')->group(function () {
     Route::get('', 'show_high')->name('print.index');
     Route::get('/a', 'show_base')->name('print.main');
     Route::get('/high', 'show_high')->name('print.high');
+    Route::get('/chemistry', 'chemistry')->name('print.chemistry');
     Route::get('/sinken', 'sinken')->name('print.sinken');
     Route::get('/eiken', 'eiken')->name('print.eiken');
     Route::get('/center', 'center')->name('print.center');

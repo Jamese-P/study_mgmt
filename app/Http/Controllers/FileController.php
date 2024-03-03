@@ -67,4 +67,14 @@ class FileController extends Controller
 
         return view('file.file')->with(['path' => $path, 'files' => $files]);
     }
+
+    public function chemistry()
+    {
+        $path = public_path('chemistry/');
+        $files = File::files($path);
+        natsort($files);
+        $path = 'chemistry/';
+
+        return view('file.file')->with(['path' => $path, 'files' => $files]);
+    }
 }

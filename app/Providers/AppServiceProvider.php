@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use URL;
+use Illuminate\Support\Facades\Blade;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +29,16 @@ final class AppServiceProvider extends ServiceProvider
     {
         URL::forceScheme('https');
         $this->app['request']->server->set('HTTPS', 'on');
+
+        Blade::directive('markdown', function ($expression) {
+
+        $markdown = view(
+            str_replace('\'', '', $expression)
+        )->render();
+
+        $Parsedown = new \Parsedown();
+        return $Parsedown->text($markdown);
+
+    });
     }
 }

@@ -66,6 +66,13 @@ Route::controller(FileController::class)->prefix('print')->group(function () {
     Route::get('/eiken', 'eiken')->name('print.eiken');
     Route::get('/center', 'center')->name('print.center');
     Route::get('/tmp', 'tmp')->name('print.tmp');
+    Route::get('/md/study', 'md_study')->name('md.study');
+});
+
+Route::controller(FileController::class)->prefix('md')->group(function () {
+    Route::get('/study', 'md_study')->name('md.study');
+    Route::get('/murata', 'md_murata')->name('md.murata');
+    Route::get('/shigenobu', 'md_shigenobu')->name('md.shigenobu');
 });
 
 require __DIR__.'/auth.php';

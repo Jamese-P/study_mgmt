@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 
 use File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class FileController extends Controller
 {
@@ -51,7 +53,7 @@ class FileController extends Controller
         $path = 'eiken/';
         return view('file.eiken')->with(['path' => $path]);
     }
-    
+
     public function center()
     {
         $path = 'center/';
@@ -76,5 +78,22 @@ class FileController extends Controller
         $path = 'chemistry/';
 
         return view('file.file')->with(['path' => $path, 'files' => $files]);
+    }
+
+    public function md(string $filename){
+        $html = Str::markdown(file_get_contents(resource_path('mdfiles/'.$filename.'.md')));
+        return view('file.md', ['html' => $html]);
+    }
+
+    public function md_study(){
+         return $this->md('how_to_study');
+    }
+
+    public function md_murata(){
+         return $this->md('murata');
+    }
+
+    public function md_shigenobu(){
+         return $this->md('shigenobu');
     }
 }

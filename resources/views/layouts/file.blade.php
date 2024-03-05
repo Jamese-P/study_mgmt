@@ -19,6 +19,7 @@
         <div class="pc-layout">
             <ul>
                 <li><a href="{{ route('print.main') }}">main</a></li>
+                <li><a href="{{ route('md.study') }}">勉強とは</a></li>
                 <li><a href="{{ route('print.high') }}">高校生</a></li>
                 <li><a href="{{ route('print.chemistry') }}">化学一問一答</a></li>
                 <li><a href="{{ route('print.sinken') }}">進研模試</a></li>
@@ -31,6 +32,7 @@
 
             <ul class="menubar" id="menubar">
                 <li><a href="{{ route('print.main') }}">main</a></li>
+                <li><a href="{{ route('md.study') }}">勉強とは</a></li>
                 <li><a href="{{ route('print.high') }}">高校生</a></li>
                 <li><a href="{{ route('print.chemistry') }}">化学一問一答</a></li>
                 <li><a href="{{ route('print.sinken') }}">進研模試</a></li>

@@ -6,3 +6,16 @@ h2{
     color:gray;
     text-decoration:underline;
 }
+
+table{
+    border-collapse: collapse;
+}
+
+td{
+    border:3px solid #999999;
+
+}
+
+td{
+    padding: 3px;
+}

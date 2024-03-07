@@ -1,0 +1,563 @@
+\newif\ifanswer\answertrue
+\answerfalse
+
+\documentclass[10pt]{jsarticle}
+\usepackage[margin=15truemm]{geometry}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{ascmac} % for screen
+\usepackage{subfigure} % for subfigure
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{here}
+\usepackage{setspace}
+\usetikzlibrary{intersections, calc, arrows.meta}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\ifanswer
+\lhead{英語 中学 解答}
+\else
+\lhead{英語 中学}
+\fi
+\rhead{\number\month\number\day}
+
+\ifanswer
+\newcommand{\answer}[2]{{\color{orange}#2}}
+\newcommand{\page}[1]{#1}
+\newcommand{\question}[2]{{\color{orange}#2}}
+\else
+\newcommand{\answer}[2]{\vspace{#1mm}}
+\newcommand{\page}[1]{}
+\newcommand{\question}[2]{#1}
+\fi%answer
+
+\renewcommand{\thesubsubsection}{(\arabic{subsubsection})}
+%\renewcommand{\baselinestretch}{2}
+
+\begin{document}
+
+
+
+\newpage
+
+\section{助動詞 英語$\rightarrow$ 日本語}
+\begin{itembox}[l]{使い方}
+	\answer{8}{助動詞＋動詞の原形}
+\end{itembox}
+
+\begin{itembox}[l]{意味}
+
+	\begin{itemize}
+		\item can \answer{5}{〜することができる}
+		\item may(2) \answer{5}{〜しても良い、〜かもしれない}
+		\item must(2)\answer{3}{〜しなければならない、〜のはずだ}
+	\end{itemize}
+	\begin{multicols}{2}
+		\begin{itemize}
+			\item have to \answer{5}{〜する必要がある}
+			\item should \answer{5}{〜すべきである}
+			\item Shall we〜? \answer{5}{〜しませんか}
+			\item will \answer{5}{〜でしょう}
+			\item be going to \answer{5}{〜するつもりだ}
+			\item Shall I〜? \answer{5}{〜しましょうか}
+		\end{itemize}
+	\end{multicols}
+
+\end{itembox}
+
+
+\begin{multicols}{2}
+	\begin{itembox}[l]{canの書き換え}
+		\answer{8}{be able to}
+	\end{itembox}
+	\begin{itembox}[l]{willの書き換え}
+		\answer{8}{be going to}
+	\end{itembox}
+	\begin{itembox}[l]{mustの書き換え}
+		\answer{8}{have to}
+	\end{itembox}
+\end{multicols}
+
+
+
+
+\section{不定詞}
+
+\begin{itembox}[l]{不定詞と動名詞の意味と使い方}
+	\answer{8}{
+		\begin{itemize}
+			\item 動名詞 doing 〜すること
+			\item 不定詞 to do 〜すること、〜すべき、〜するため
+			      \begin{description}
+				      \item[〜すること] 基本的に主語や動詞の目的語として使う
+				      \item[〜するべき] 名詞の後ろにひっついて名詞の説明をする
+				      \item[〜するため] なくてもいいもの、理由などを表す
+			      \end{description}
+		\end{itemize}
+	}
+\end{itembox}
+
+\begin{itembox}[l]{不定詞と動名詞の両方を目的語にとれる動詞}
+	\answer{8}{like, start, begin}
+\end{itembox}
+
+\begin{itembox}[l]{不定詞のみを目的語にとれる動詞}
+	\answer{8}{want, try, hope}
+\end{itembox}
+
+\begin{itembox}[l]{動名詞のみを目的語にとれる動詞}
+	\answer{8}{enjoy, finish, give up}
+\end{itembox}
+
+\newpage
+
+\section{助動詞 日本語$\rightarrow$英語}
+
+\begin{itembox}[l]{使い方}
+	\answer{8}{助動詞＋動詞の原形}
+\end{itembox}
+
+\begin{itembox}[l]{単語}
+
+	\begin{multicols}{2}
+		\begin{itemize}
+			\item 〜できる \answer{5}{can}
+			\item 〜かもしれない \answer{5}{may}
+			\item 〜はずである \answer{5}{must}
+			\item 〜の可能性がある \answer{5}{can}
+			\item 〜しても良い \answer{5}{may}
+			\item 〜しなければならない \answer{5}{must}
+			\item 〜する必要がある \answer{5}{have to}
+			\item 〜すべきである \answer{5}{should}
+			\item 〜しませんか \answer{5}{Shall we?}
+			\item 〜でしょう \answer{5}{will}
+			\item 〜するつもりある \answer{5}{be going to}
+			\item 〜しましょうか \answer{5}{Shall I?}
+		\end{itemize}
+	\end{multicols}
+\end{itembox}
+
+
+\begin{multicols}{2}
+	\begin{itembox}[l]{be going toの書き換え}
+		\answer{8}{will}
+	\end{itembox}
+	\begin{itembox}[l]{have toの書き換え}
+		\answer{8}{must}
+	\end{itembox}
+	\begin{itembox}[l]{be able toの書き換え}
+		\answer{8}{can}
+	\end{itembox}
+\end{multicols}
+
+
+
+\section{不定詞}
+
+\begin{itembox}[l]{不定詞と動名詞の意味と使い方}
+	\answer{8}{
+		\begin{itemize}
+			\item 動名詞 doing 〜すること
+			\item 不定詞 to do 〜すること、〜すべき、〜するため
+			      \begin{description}
+				      \item[〜すること] 基本的に主語や動詞の目的語として使う
+				      \item[〜するべき] 名詞の後ろにひっついて名詞の説明をする
+				      \item[〜するため] なくてもいいもの、理由などを表す
+			      \end{description}
+		\end{itemize}
+	}
+\end{itembox}
+
+\begin{itembox}[l]{不定詞と動名詞の両方を目的語にとれる動詞}
+	\answer{8}{like, start, begin}
+\end{itembox}
+
+\begin{itembox}[l]{不定詞のみを目的語にとれる動詞}
+	\answer{8}{want, try, hope}
+\end{itembox}
+
+\begin{itembox}[l]{動名詞のみを目的語にとれる動詞}
+	\answer{8}{enjoy, finish, give up}
+\end{itembox}
+
+
+\newpage
+
+
+\begin{multicols}{2}
+	\subsubsection*{第1文型}
+	\begin{itembox}[l]{形}
+		\answer{8}{SV}
+	\end{itembox}
+
+	\subsubsection*{第3文型}
+	\begin{itembox}[l]{形}
+		\answer{8}{SVO}
+	\end{itembox}
+
+\end{multicols}
+
+\subsubsection*{第2文型}
+\begin{itembox}[l]{形、関係、動詞の例}
+	\answer{8}{SVC、S=C、be動詞や以下}
+\end{itembox}
+
+\begin{itembox}[l]{動詞}
+
+	\begin{multicols}{3}
+		\begin{itemize}
+			\item look \answer{5}{〜のように見える}
+			\item sound \answer{5}{〜のように聞こえる}
+			\item seem \answer{5}{〜のようである}
+			\item taste \answer{5}{〜のような味がする}
+			\item keep \answer{5}{〜に保つ}
+			\item become \answer{5}{〜になる}
+			\item smell \answer{5}{〜になる}
+			\item get \answer{5}{〜になる}
+		\end{itemize}
+	\end{multicols}
+\end{itembox}
+
+
+\subsubsection*{第4文型}
+\begin{itembox}[l]{形、第3文型への書き換え}
+	\answer{8}{SVO1O2、SVO2 to(for) O1}
+\end{itembox}
+
+\begin{itembox}[l]{動詞}
+
+	\begin{multicols}{3}
+		\begin{itemize}
+			\item give \answer{5}{与える}
+			\item buy \answer{5}{買う}
+			\item make \answer{5}{作る}
+			\item show \answer{5}{見せる}
+			\item teach \answer{5}{教える}
+			\item send \answer{5}{送る}
+			\item tell \answer{5}{伝える}
+			\item cook \answer{5}{料理する}
+		\end{itemize}
+	\end{multicols}
+	*書き換える時の前置詞2、どれがどれか
+	\answer{5}{
+		\begin{description}
+			\item[to] give, show, teach, tell, send
+			\item[for] buy, cook, make
+		\end{description}
+		＊目の前に人がいないとその動作ができない時はto、いなくても良い時はfor
+	}
+
+\end{itembox}
+
+\subsubsection*{第5文型}
+\begin{itembox}[l]{形、関係}
+	\answer{8}{SVOC、O=C}
+\end{itembox}
+
+\begin{itembox}[l]{動詞}
+	\begin{multicols}{3}
+		\begin{itemize}
+			\item make \answer{5}{AをBにさせる}
+			\item call \answer{5}{AをBと呼ぶ}
+			\item name \answer{5}{AをBと名付ける}
+			\item find \answer{5}{AがBとわかる}
+			\item paint \answer{5}{AをBに塗る}
+			\item keep \answer{5}{AをBに保つ}
+			\item leave \answer{5}{AをBのままにする}
+		\end{itemize}
+	\end{multicols}
+\end{itembox}
+
+
+\newpage
+
+\begin{itembox}[l]{進行形(意味、表現)}
+	\answer{10}{be doing、〜しているところです、nowやthenを使う\\
+		*doingのみでは進行形ではない、doingは動詞の役割はなくなる}
+\end{itembox}
+
+\begin{itembox}[l]{〜がある(表現、使い分け)}
+	\answer{10}{
+		\begin{itemize}
+			\item There is 単数.
+			\item There are 複数.
+		\end{itemize}
+	}
+\end{itembox}
+\begin{itembox}[l]{感嘆文(意味、表現2、使い分け)}
+	\answer{10}{
+		\begin{itemize}
+			\item How 形容詞 (S V)!
+			\item What a 形容詞 名詞 (S V)!
+		\end{itemize}
+	}
+\end{itembox}
+
+\begin{itembox}[l]{動名詞(意味、表現)}
+	\answer{10}{doing、〜すること}
+\end{itembox}
+
+\begin{itembox}[l]{不定詞の基本(意味3、表現)}
+	\answer{10}{to do、〜すること・〜するべき・〜するため
+		\begin{description}
+			\item[〜すること] 基本的に主語や動詞の目的語として使う
+			\item[〜するべき] 名詞の後ろにひっついて名詞の説明をする
+			\item[〜するため] なくてもいいもの、理由などを表す
+		\end{description}
+	}
+\end{itembox}
+
+\begin{itembox}[l]{比較級(意味、表現、よく使う前置詞とその意味)}
+	\answer{10}{〜より〜だ、more 形容詞/形容詞er、than(〜より)}
+\end{itembox}
+
+\begin{itembox}[l]{最上級(意味、表現、よく使う前置詞と違い)}
+	\answer{10}{一番〜だ、most 形容詞/形容詞est、in 集団/of 数字(〜のなかで)}
+\end{itembox}
+
+\begin{itembox}[l]{比較級・最上級の不規則変化、good/well/many/much/bad/little/few}
+	\begin{multicols}{2}
+		\begin{itemize}
+			\item good/well \answer{5}{better best}
+			\item many/much \answer{5}{more most}
+			\item bad \answer{5}{worse worst}
+			\item little/few \answer{5}{less least}
+		\end{itemize}
+	\end{multicols}
+\end{itembox}
+
+
+\begin{itembox}[l]{同等比較(意味、表現)}
+	\answer{10}{as 原級 as 比較対象、〜と同じくらい〜だ
+		\\not as 原級 as、〜ほど〜ではない}
+\end{itembox}
+
+\begin{itembox}[l]{比較級・最上級の慣用表現}
+	\begin{multicols}{2}
+		\begin{itemize}
+			\item 〜のX倍 \answer{5}{X times as 原級 as}
+			\item だんだん〜 \answer{5}{比較級 and 比較級}
+			\item できる限り(2) \answer{5}{as 原級 as possible, as 原級 as you can}
+			\item どの〜よりも \answer{5}{than any other 名詞}
+		\end{itemize}
+	\end{multicols}
+\end{itembox}
+
+\begin{itembox}[l]{疑問詞+to do(表現5、意味)}
+	\answer{15}{
+		\begin{multicols}{2}
+			\begin{itemize}
+				\item how to do どうやってすべきか
+				\item where to do どこですべきか
+				\item what to do 何をすべきか
+				\item when to do いつすべきか
+				\item which 名詞 to do どれをすべきか
+			\end{itemize}
+		\end{multicols}
+	}
+\end{itembox}
+
+\begin{itembox}[l]{第四文型(それぞれの動詞や表現と意味)}
+	\begin{itemize}
+		\item 語順
+		      \answer{10}{SV 人 物}
+		\item 書き換えとその時の前置詞
+		      \answer{10}{SV 物 to(for) 人}
+		\item 動詞の例(3)
+		      \answer{20}{
+			      \begin{description}
+				      \item[to] give, show, teach, tell, send
+				      \item[for] buy, cook, make
+			      \end{description}
+			      ＊目の前に人がいないとその動作ができない時はto、いなくても良い時はfor
+		      }
+	\end{itemize}
+\end{itembox}
+
+\begin{itembox}[l]{受け身(意味、表現、よく使う前置詞とその意味)}
+	\answer{10}{be 過去分詞、〜される、by(〜によって)\\
+		*過去分詞は動詞の役割はなくなる}
+\end{itembox}
+
+\begin{itembox}[l]{受け身の応用}
+	\begin{multicols}{2}
+		\begin{itemize}
+			\item 〜に興味がある \answer{5}{be interested in}
+			\item 〜に驚く \answer{5}{be surprised at}
+			\item 〜で覆われている \answer{5}{be covered with}
+			\item 〜に話しかけられる \answer{5}{be spoken to by}
+			\item 〜に知られている \answer{5}{be known to 人}
+			\item 〜で知られている \answer{5}{be known to 物}
+			\item 〜に満足する \answer{5}{be satisfied with}
+			\item 〜でいっぱいだ \answer{5}{be filled with}
+		\end{itemize}
+	\end{multicols}
+\end{itembox}
+
+
+\begin{itembox}[l]{現在完了形(表現、意味3、よく使う副詞とその意味9)}
+	\answer{30}{have 過去分詞、〜した、〜したことがある、〜し続けている
+		\begin{description}
+			\item[完了用法 〜した] yet(疑問文：もう、否定文：まだ)、already(すでに)、just(ちょうど)
+			\item[継続用法 〜し続けている] for(〜間)、since(〜から)、How long 疑問文?(どのくらいの間〜)
+			\item[経験用法 〜したことがある] ever(今までに)、never(決してしたことがない)、once,twice, three times, many times(1回、2回、3回、何回も)、How many times 疑問文 ?,How often 疑問文?(何回したことがありますか？)
+		\end{description}
+	}
+\end{itembox}
+
+\begin{itembox}[l]{間接疑問文(表現)}
+	\answer{10}{疑問詞　主語　動詞、who 動詞}
+\end{itembox}
+
+\begin{itembox}[l]{第五文型}
+	\begin{itemize}
+		\item 語順 \answer{10}{S V A B}
+		\item 動詞の例(3)\answer{20}{
+		\begin{multicols}{3}
+		\begin{itemize}
+			\item make \answer{5}{AをBにさせる}
+			\item call \answer{5}{AをBと呼ぶ}
+			\item name \answer{5}{AをBと名付ける}
+		\end{itemize}
+	\end{multicols}
+	}
+	\end{itemize}
+\end{itembox}
+
+\begin{itembox}[l]{不定詞の応用(それぞれの動詞や表現と意味)}
+	\begin{itemize}
+		\item 〜することは〜にとって〜だ \answer{10}{It be動詞 形容詞 for 人 to do}
+		\item 動詞 人 to do(3)\answer{20}{
+		\begin{itemize}
+			\item tell 人 to do 人に〜するように言う、命令文の書き換え
+			\item ask 人 to do 人に〜するように頼む、Pleaseの命令文の書き換え
+						\item want 人 to do 人に〜して欲しい、Shall I?=Do you want me to do?		
+\end{itemize}
+
+}
+\item 動詞 人 do(3)\answer{20}{
+使役動詞 make, let, have 人に〜させる
+
+}
+
+		\item 動詞 人 doでも動詞 人 to doでもいいの \answer{10}{help}
+		\item 〜するには十分〜だ \answer{5}{形容詞 enough to do}
+		\item 〜するには〜すぎる \answer{5}{too 形容詞 to do}
+	\end{itemize}
+\end{itembox}
+
+
+
+\begin{itembox}[l]{分詞(意味2、表現2、使い分け)}
+	\answer{20}{過去分詞(〜される)と現在分詞(〜している)\\
+	分詞のみなら名詞の前、複数語なら名詞の後ろに置く}
+	\end{itembox}
+
+\begin{itembox}[l]{関係代名詞(表現3、使い分け)}
+		\answer{20}{
+		先行詞　関係代名詞　文　*関係代名詞の文は先行詞にあたるものがなくなる。\\
+		関係代名詞の後ろが主語動詞の場合は省略可能
+		\begin{itemize}
+			\item which  ものの時に使う
+			\item who 人の主格に対して使う
+			\item that なんでも使えるがtheなどがついて先行詞が特定されている時にはよく使う
+			\item whom 人の目的格に対して使う
+			\item whose 所有格に対して使う
+		\end{itemize}
+	}
+\end{itembox}
+
+\begin{itembox}[l]{仮定法(意味、表現、違い)}
+	\answer{10}{
+	ありえないことを言う時に使う、あり得る時は現在形で書く。ifの中にwillやwouldは絶対に来ない
+	\begin{itemize}
+	\item If 主語 動詞の過去形 , 主語 would(could) 動詞. もし〜だったら、〜なのになあ
+	\item 主語 wish 主語 動詞の過去形  〜だったらいいのになあ
+	\end{itemize}
+	}
+\end{itembox}
+
+\newpage
+
+\subsubsection*{前置詞}
+\vspace{-5mm}
+{\renewcommand\arraystretch{
+		\ifanswer
+			1.0
+		\else
+			1.8
+		\fi}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|p{2cm}||c|p{2cm}||c|p{2cm}|}
+			\hline
+			意味       & 単語              & 意味           & 単語                & 意味             & 単語                \\ \hline\hline
+			〜の上に   & \answer{0}{on}    & 〜で、〜に     & \answer{0}{at}      & 〜の間に（時間） & \answer{0}{for}     \\ \hline
+			〜の下に   & \answer{0}{under} & 〜といっしょに & \answer{0}{with}    & 〜の間に（時間） & \answer{0}{during}  \\ \hline
+			〜の中に   & \answer{0}{in}    & 〜の           & \answer{0}{of}      & 〜の間に（場所） & \answer{0}{between} \\ \hline
+			〜の中へ   & \answer{0}{into}  & 〜のために     & \answer{0}{for}     & 〜の後に         & \answer{0}{after}   \\ \hline
+			〜の近くに & \answer{0}{near}  & 〜によって     & \answer{0}{by}      & 〜の前に         & \answer{0}{before}  \\ \hline
+			〜のそばに & \answer{0}{by}    & 〜のように     & \answer{0}{like}    & 〜について       & \answer{0}{about}   \\ \hline
+			〜から     & \answer{0}{from}  & 〜にとって     & \answer{0}{for}     & 〜まで           & \answer{0}{until}   \\ \hline
+			〜へ       & \answer{0}{to}    & 〜なしで       & \answer{0}{without} & 〜までに         & \answer{0}{by}      \\ \hline
+			〜以来     & \answer{0}{since} &                &                     &                  &                     \\ \hline
+		\end{tabular}
+	\end{table}
+}
+
+\subsubsection*{接続詞}
+\vspace{-5mm}
+
+{\renewcommand\arraystretch{\ifanswer
+			1.0
+		\else
+			1.8
+		\fi}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|p{2cm}||c|p{2cm}||c|p{2cm}|}
+			\hline
+			意味   & 単語                & 意味         & 単語                & 意味     & 単語               \\ \hline\hline
+			〜と   & \answer{0}{and}     & もし〜ならば & \answer{0}{if}      & 〜の前に & \answer{0}{before} \\ \hline
+			しかし & \answer{0}{but}     & 〜の間に     & \answer{0}{while}   & 〜の後に & \answer{0}{after}  \\ \hline
+			しかし & \answer{0}{however} & 〜の時       & \answer{0}{when}    & 〜ということ   & \answer{0}{that} \\ \hline
+			〜か   & \answer{0}{or}      & なぜなら     & \answer{0}{because} &   だから       &   \answer{0}{so}     \\ \hline
+			〜だが& \answer{0}{though/although}&&\answer{0}{}&&\answer{0}{}\\\hline
+		\end{tabular}
+	\end{table}
+}
+
+\subsubsection*{差がつく前置詞}
+
+{\renewcommand\arraystretch{\ifanswer
+			1.0
+		\else
+			1.8
+		\fi}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|p{2cm}||c|p{2cm}||c|p{2cm}|}
+			\hline
+			意味                 & 単語                & 意味       & 単語             & 意味         & 単語                \\ \hline\hline
+			〜以内に             & \answer{0}{within}  & 〜後に     & \answer{0}{in}   & 〜として     & \answer{0}{as}      \\ \hline
+			〜に反対して         & \answer{0}{against} & 〜賛成して & \answer{0}{for}  & 〜を通して   & \answer{0}{through} \\ \hline
+			〜の間に（三つ以上） & \answer{0}{among}   & 〜の上方に & \answer{0}{over} & 〜を横切って & \answer{0}{across}  \\ \hline
+		\end{tabular}
+	\end{table}
+}
+
+\begin{itembox}[l]{接続詞と前置詞の違い}
+	\answer{10}{
+		\begin{description}
+			\item[接続詞] 後ろにS V
+			\item[前置詞] 後ろに名詞
+		\end{description}
+	}
+\end{itembox}
+
+
+\end{document}

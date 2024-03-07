@@ -17,6 +17,7 @@
                             {{ $file->getfileName() }}
                         </a>
                     </li>
+                @elseif ($file->getExtension() == 'tex' || $file->getExtension() == 'sh')
                 @else
                     <li>
                         <a href="/{{ $path }}/{{ $file->getfileName() }}" target="_blank">

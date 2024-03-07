@@ -1,0 +1,394 @@
+\newif\ifanswer\answertrue
+\answerfalse
+\answerfalse
+
+\documentclass[10pt]{jsarticle}
+\usepackage[margin=15truemm]{geometry}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{ascmac} % for screen
+\usepackage{subfigure} % for subfigure
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{here}
+\usepackage{setspace}
+\usetikzlibrary{intersections, calc, arrows.meta}
+\usepackage{fancyhdr}
+\usepackage{wrapfig}
+\pagestyle{fancy}
+
+\ifanswer
+\lhead{英語 導入 解答}
+\else
+\lhead{英語 導入}
+\fi
+\rhead{\number\month\number\day}
+
+\ifanswer
+\newcommand{\answer}[2]{{\color{orange}#2}}
+\newcommand{\page}[1]{#1}
+\newcommand{\question}[2]{{\color{orange}#2}}
+\else
+\newcommand{\answer}[2]{\vspace{#1mm}}
+\newcommand{\page}[1]{}
+\newcommand{\question}[2]{#1}
+\fi%answer
+
+\renewcommand{\thesubsubsection}{(\arabic{subsubsection})}
+%\renewcommand{\baselinestretch}{2}
+
+\begin{document}
+
+
+
+\section{英語の語順}
+\begin{screen}
+  \vspace{1cm}
+\end{screen}
+
+\section{動詞の変化について}
+\begin{itembox}[l]{be動詞5、使い分け}
+  \begin{multicols}{5}
+    \begin{itemize}
+      \item  \item \item \item \item
+    \end{itemize}
+  \end{multicols}
+  \vspace{3mm}
+  \begin{itemize}
+    \item 肯定文 \answer{5}{}
+    \item 疑問文 \answer{5}{}
+    \item 否定文 \answer{5}{}
+  \end{itemize}
+\end{itembox}
+
+\begin{itembox}[l]{一般動詞}
+
+  \begin{itemize}
+    \item 肯定文 \answer{5}{}
+    \item 疑問文 \answer{5}{}
+    \item 否定文 \answer{5}{}
+  \end{itemize}
+  時制や主語による変化とそれに対するdoの変化
+  \begin{multicols}{3}
+    \begin{itemize}
+      \item 原形 do
+      \item \answer{5}{}
+      \item \answer{5}{}
+    \end{itemize}
+  \end{multicols}
+\end{itembox}
+
+\section{助動詞}
+\begin{itembox}[l]{基本形}
+  \vspace{1cm}
+\end{itembox}
+\begin{itembox}[l]{例}
+  \begin{multicols}{3}
+    \begin{itemize}
+      \item \vspace{10mm}
+      \item \vspace{10mm}
+      \item \vspace{10mm}
+    \end{itemize}
+  \end{multicols}
+  \vspace{10mm}
+\end{itembox}
+
+\newpage
+
+\section{人称代名詞}
+ {\renewcommand\arraystretch{2}
+  \begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+      \hline
+                 & 主格 & 所有格 & 目的格 & 所有代名詞 \\
+      \hline
+      意味       &      &        &        &            \\
+      \hline
+      使う場面   &      &        &        &            \\
+      \hline
+      \hline
+      私         &      &        &        &            \\
+      \hline
+      あなた     &      &        &        &            \\
+      \hline
+      彼         &      &        &        &            \\
+      \hline
+      彼女       &      &        &        &            \\
+      \hline
+      それ       &      &        &        & なし       \\
+      \hline
+      私たち     &      &        &        &            \\
+      \hline
+      あなたたち &      &        &        &            \\
+      \hline
+      彼ら       &      &        &        &            \\
+      \hline
+    \end{tabular}
+  \end{table}
+ }
+
+\section{数字}
+\begin{screen}
+  \begin{multicols}{4}
+    \begin{itemize}
+      \item 1 \answer{5}{one}
+      \item 2 \answer{5}{two}
+      \item 3 \answer{5}{three}
+      \item 4 \answer{5}{four}
+      \item 5 \answer{5}{five}
+      \item 6 \answer{5}{six}
+      \item 7 \answer{5}{seven}
+      \item 8 \answer{5}{eight}
+      \item 9 \answer{5}{nine}
+      \item 10 \answer{5}{ten}
+      \item 11 \answer{5}{eleven}
+      \item 12 \answer{5}{twelve}
+      \item 13 \answer{5}{thirteen}
+      \item 14 \answer{5}{fourteen}
+      \item 15 \answer{5}{fifteen}
+      \item 16 \answer{5}{sixteen}
+      \item 17 \answer{5}{seventeen}
+      \item 18 \answer{5}{eighteen}
+      \item 19 \answer{5}{nineteen}
+      \item 20 \answer{5}{twenty}
+      \item 21 \answer{5}{twenty-one}
+      \item 30 \answer{5}{thirty}
+      \item 40 \answer{5}{forty}
+      \item 50 \answer{5}{fifty}
+      \item 60 \answer{5}{sixty}
+      \item 70 \answer{5}{seventy}
+      \item 80 \answer{5}{eighty}
+      \item 90 \answer{5}{ninety}
+      \item 100 \answer{5}{one hundred}
+      \item 1000 \answer{5}{one thousand}
+    \end{itemize}
+  \end{multicols}
+\end{screen}
+
+
+\newpage
+
+\section{序数}
+\begin{screen}
+  \begin{multicols}{4}
+    \begin{itemize}
+      \item 1番目 \answer{5}{first}
+      \item 2番目 \answer{5}{second}
+      \item 3番目 \answer{5}{third}
+      \item 4番目 \answer{5}{fourth}
+      \item 5番目 \answer{5}{fifth}
+      \item 6番目 \answer{5}{sixth}
+      \item 7番目 \answer{5}{seventh}
+      \item 8番目 \answer{5}{eighth}
+      \item 9番目 \answer{5}{ninth}
+      \item 10番目 \answer{5}{tenth}
+      \item 11番目 \answer{5}{eleventh}
+      \item 12番目 \answer{5}{twelfth}
+      \item 13番目 \answer{5}{thirteenth}
+      \item 20番目 \answer{5}{twentieth\\}
+      \item 21番目 \answer{5}{\\twenty-first}
+      \item 30番目 \answer{5}{thirtieth}
+    \end{itemize}
+  \end{multicols}
+\end{screen}
+
+\section{季節}
+\begin{screen}
+  \begin{multicols}{4}
+    \begin{itemize}
+      \item 春 \answer{5}{spring}
+      \item 夏 \answer{5}{summer}
+      \item 秋 \answer{5}{fall}
+      \item 冬 \answer{5}{winter}
+    \end{itemize}
+  \end{multicols}
+\end{screen}
+
+\section{月}
+\begin{screen}
+  \begin{multicols}{4}
+    \begin{itemize}
+      \item 1月 \answer{5}{January}
+      \item 2月 \answer{5}{February}
+      \item 3月 \answer{5}{March}
+      \item 4月 \answer{5}{April}
+      \item 5月 \answer{5}{May}
+      \item 6月 \answer{5}{June}
+      \item 7月 \answer{5}{July}
+      \item 8月 \answer{5}{August}
+      \item 9月 \answer{5}{September}
+      \item 10月 \answer{5}{October}
+      \item 11月 \answer{5}{November}
+      \item 12月 \answer{5}{December}
+    \end{itemize}
+  \end{multicols}
+\end{screen}
+
+
+\section{曜日}
+\begin{screen}
+  \begin{multicols}{4}
+    \begin{itemize}
+      \item 月曜日 \answer{5}{Monday}
+      \item 火曜日 \answer{5}{Tuesday}
+      \item 水曜日 \answer{5}{Wednesday}
+      \item 木曜日 \answer{5}{Thursday}
+      \item 金曜日 \answer{5}{Friday}
+      \item 土曜日 \answer{5}{Saturday}
+      \item 日曜日 \answer{5}{Sunday}
+    \end{itemize}
+  \end{multicols}
+\end{screen}
+
+\section{日・週・月・年}
+\begin{screen}
+  \begin{multicols}{4}
+    \begin{itemize}
+      \item 今日 \answer{5}{today}
+      \item 昨日 \answer{5}{yesterday}
+      \item 明日 \answer{5}{tomorrow}
+      \item 今週 \answer{5}{this week}
+      \item 先週 \answer{5}{last week}
+      \item 来週 \answer{5}{next week}
+      \item 今月 \answer{5}{this month}
+      \item 先月 \answer{5}{last month}
+      \item 来月 \answer{5}{next month}
+      \item 今年 \answer{5}{this year}
+      \item 去年 \answer{5}{last year}
+      \item 来年 \answer{5}{next year}
+    \end{itemize}
+  \end{multicols}
+\end{screen}
+
+\section{日付・時間}
+\begin{screen}
+  \begin{itemize}
+    \item 今何時ですか？ \answer{5}{}
+    \item 10時です。 \answer{5}{}
+    \item あなたは何時に起きますか？ \answer{5}{}
+    \item 6時に起きます。 \answer{5}{}
+    \item 今日は何月何日ですか？ \answer{5}{}
+    \item 10月11日です。 \answer{5}{}
+    \item 今日は何曜日ですか？ \answer{5}{}
+    \item 木曜日です。 \answer{5}{}
+  \end{itemize}
+\end{screen}
+
+\section{天気}
+\begin{itembox}[l]{天気}
+  \begin{multicols}{4}
+    \begin{itemize}
+      \item 晴れの \answer{5}{}
+      \item くもりの \answer{5}{}
+      \item 雨の \answer{5}{}
+      \item 雪の \answer{5}{}
+    \end{itemize}
+  \end{multicols}
+\end{itembox}
+\begin{itembox}[l]{寒暖}
+  \begin{multicols}{4}
+    \begin{itemize}
+      \item 寒い \answer{5}{}
+      \item 涼しい \answer{5}{}
+      \item 暖かい \answer{5}{}
+      \item 暑い \answer{5}{}
+    \end{itemize}
+  \end{multicols}
+\end{itembox}
+\begin{itembox}[l]{特殊なit}
+  \begin{itemize}
+    \item 今日は雨である。(降っているかわからない) \answer{5}{}
+    \item 雨が降っている。(2)
+    \item  \answer{5}{}
+  \end{itemize}
+\end{itembox}
+
+\section{命令文}
+\begin{screen}
+  \begin{itemize}
+    \item 基本形 \answer{5}{}
+    \item 〜するな \answer{5}{}
+    \item 〜してください \answer{5}{}
+    \item 〜しましょう \answer{5}{}
+    \item ex.親切にしなさい \answer{5}{}
+  \end{itemize}
+\end{screen}
+\section{感嘆文}
+\begin{screen}
+  \begin{itemize}
+    \item  \answer{5}{}
+    \item  \answer{5}{}
+  \end{itemize}
+\end{screen}
+\section{疑問詞}
+\begin{screen}
+  \begin{multicols}{4}
+    \begin{itemize}
+      \item  \answer{5}{}
+      \item  \answer{5}{}
+      \item  \answer{5}{}
+      \item  \answer{5}{}
+      \item  \answer{5}{}
+      \item  \answer{5}{}
+      \item  \answer{5}{}
+      \item  \answer{5}{}
+    \end{itemize}
+  \end{multicols}
+  ex.
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item どのバス \answer{5}{}
+      \item なんの食べ物 \answer{5}{}
+    \end{itemize}
+  \end{multicols}
+\end{screen}
+
+\newpage
+
+\subsubsection*{前置詞}
+
+{\renewcommand\arraystretch{1.8}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|c|p{2cm}||c|p{2cm}||c|p{2cm}|}
+      \hline
+      意味       & 単語 & 意味           & 単語 & 意味             & 単語 \\ \hline\hline
+      〜の上に   &      & 〜で、〜に     &      & 〜の間に（時間） &      \\ \hline
+      〜の下に   &      & 〜といっしょに &      & 〜の間に（時間） &      \\ \hline
+      〜の中に   &      & 〜の           &      & 〜の間に（場所） &      \\ \hline
+      〜の中へ   &      & 〜のために     &      & 〜の後に         &      \\ \hline
+      〜の近くに &      & 〜によって     &      & 〜の前に         &      \\ \hline
+      〜のそばに &      & 〜のように     &      & 〜について       &      \\ \hline
+      〜から     &      & 〜にとって     &      & 〜まで           &      \\ \hline
+      〜へ       &      & 〜なしで       &      & 〜までに         &      \\ \hline
+    \end{tabular}
+  \end{table}
+}
+
+\subsubsection*{接続詞}
+
+
+{\renewcommand\arraystretch{1.8}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|c|p{2cm}||c|p{2cm}||c|p{2cm}|}
+      \hline
+      意味   & 単語 & 意味         & 単語 & 意味     & 単語 \\ \hline\hline
+      〜と   &      & もし〜ならば &      & 〜の前に &      \\ \hline
+      しかし &      & 〜の間に     &      & 〜の後に &      \\ \hline
+      しかし &      & 〜の時       &      & 〜だが   &      \\ \hline
+      〜か   &      & なぜなら     &      &          &      \\ \hline
+    \end{tabular}
+  \end{table}
+}
+
+\begin{itembox}[l]{接続詞と前置詞の違い}
+  \vspace{1cm}
+\end{itembox}
+
+
+\end{document}

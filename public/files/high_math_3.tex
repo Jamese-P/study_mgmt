@@ -1,0 +1,236 @@
+
+\newif\ifanswer\answertrue
+%\answerfalse
+
+\documentclass[10pt,dvipdfmx]{jsarticle}
+\usepackage[margin=15truemm]{geometry}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{wrapfig}
+\usepackage[dvipdfmx]{color}
+\usepackage{ascmac} % for scree
+\usepackage{subfigure} % for subfigure
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage{diagbox}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{here}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{intersections, calc, arrows.meta}
+\pagestyle{fancy}
+\ifanswer
+\lhead{数3 解答}
+\else
+\lhead{数3}
+\fi
+\rhead{\number\month\number\day}
+
+\ifanswer
+\newcommand{\answer}[2]{{\color{orange}#2}}
+\newcommand{\page}[2]{#1}
+\newcommand{\question}[2]{{\color{orange}#2}}
+\else
+\newcommand{\answer}[2]{\vspace{#1mm}}
+\newcommand{\page}[2]{#2}
+\newcommand{\question}[2]{#1}
+\fi%answer
+
+\begin{document}
+
+\subsection*{極限}
+
+\newpage
+\subsection*{二次曲線}
+\subsubsection*{放物線}
+\begin{itembox}[l]{定義}
+  \vspace{8mm}
+\end{itembox}
+
+\begin{multicols}{2}
+  \begin{minipage}{0.45\textwidth}
+    \begin{itembox}[l]{$x$軸が軸}
+      標準形(焦点、準線)：\\
+      \begin{center}
+        \begin{tikzpicture}
+          \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+          \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+        \end{tikzpicture}
+      \end{center}
+    \end{itembox}
+
+  \end{minipage}
+  \begin{minipage}{0.45\textwidth}
+    \begin{itembox}[l]{$y$軸が軸}
+      標準形(焦点、準線)：\\
+      \begin{center}
+        \begin{tikzpicture}
+          \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+          \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+        \end{tikzpicture}
+      \end{center}
+
+    \end{itembox}
+  \end{minipage}
+\end{multicols}
+
+
+\subsubsection*{楕円}
+\begin{itembox}[l]{定義、標準形、焦点、長軸、短軸、円との関係}
+  \vspace{20mm}
+\end{itembox}
+
+\begin{multicols}{2}
+  \begin{minipage}{0.45\textwidth}
+    \begin{itembox}[l]{\hspace{3cm}}
+      \begin{center}
+        \begin{tikzpicture}
+          \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+          \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+        \end{tikzpicture}
+      \end{center}
+    \end{itembox}
+
+  \end{minipage}
+  \begin{minipage}{0.45\textwidth}
+    \begin{itembox}[l]{\hspace{3cm}}
+      \begin{center}
+        \begin{tikzpicture}
+          \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+          \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+        \end{tikzpicture}
+      \end{center}
+    \end{itembox}
+  \end{minipage}
+\end{multicols}
+
+
+\subsubsection*{双曲線}
+\begin{itembox}[l]{定義、標準形、焦点、漸近線}
+  \vspace{20mm}
+\end{itembox}
+\begin{multicols}{2}
+  \begin{minipage}{0.45\textwidth}
+    \begin{itembox}[l]{\hspace{3cm}}
+      \begin{center}
+        \begin{tikzpicture}
+          \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+          \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+        \end{tikzpicture}
+      \end{center}
+    \end{itembox}
+
+  \end{minipage}
+  \begin{minipage}{0.45\textwidth}
+    \begin{itembox}[l]{\hspace{3cm}}
+      \begin{center}
+        \begin{tikzpicture}
+          \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+          \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+        \end{tikzpicture}
+      \end{center}
+    \end{itembox}
+  \end{minipage}
+\end{multicols}
+
+
+\subsubsection*{離心率}
+\begin{itembox}[l]{定義}
+  \vspace{8mm}
+\end{itembox}
+\begin{itemize}
+  \item \item \item
+\end{itemize}
+
+\subsubsection*{極座標}
+
+\begin{itembox}[l]{直行座標と極座標の関係}
+  \begin{multicols}{2}
+    \begin{minipage}{0.45\textwidth}
+      $(x,y)と(r,\theta)$
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+      \begin{tikzpicture}
+        \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+        \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+      \end{tikzpicture}
+    \end{minipage}
+
+
+  \end{multicols}
+\end{itembox}
+
+
+\newpage
+\subsection*{微分}
+公式
+\begin{large}
+  \begin{enumerate}
+    \item $y=x^n$
+    \item $y=\cfrac{1}{x^n}$
+    \item $y=f(x)g(x)$
+    \item $y=\cfrac{f(x)}{g(x)}$
+    \item $y=f(g(x))$
+  \end{enumerate}
+\end{large}
+
+\begin{itembox}[l]{例題}
+  \begin{large}
+    \begin{enumerate}
+      \item $y=\cfrac{1}{x\sqrt{x}}$
+      \item $y=\sqrt{2x^2-3x}$
+      \item $y=\cfrac{1}{\sqrt[3]{x^2-1}}$
+    \end{enumerate}
+  \end{large}
+\end{itembox}
+
+\begin{itembox}[l]{例題}
+  $\cfrac{dy}{dx}$を$x,y$で表せ
+  \begin{large}
+    \begin{enumerate}
+      \item $xy=3$
+      \item $x^2+y^2=9$
+    \end{enumerate}
+  \end{large}
+\end{itembox}
+
+\begin{itembox}[l]{例題}
+  $\cfrac{dy}{dx}$を$t$で表せ
+  \begin{large}
+    \begin{enumerate}
+      \item $x=t+2, y=2t^2-3t$
+      \item $x=\sqrt{t-1}, y=(3t-1)^2$
+    \end{enumerate}
+  \end{large}
+\end{itembox}
+
+三角関数の微分
+\begin{itemize}
+  \item $y=\sin x$
+  \item $y=\cos x$
+  \item $y=\tan x$
+\end{itemize}
+
+対数関数の微分
+\begin{itemize}
+  \item $y=\log_a x$
+  \item $y=\log x$
+\end{itemize}
+
+\begin{itembox}[l]{例題}
+  \begin{large}
+    \begin{enumerate}
+      \item $y=x^x$
+    \end{enumerate}
+  \end{large}
+\end{itembox}
+
+指数関数の微分
+\begin{itemize}
+  \item $y=a^x$
+  \item $y=e^x$
+\end{itemize}
+
+\subsection*{積分}
+\end{document}

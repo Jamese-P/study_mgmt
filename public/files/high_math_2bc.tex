@@ -206,13 +206,204 @@ $(x_1,y_1), (x_2,y_2), (x_3,y_3)$の重心
 一般式
 \vspace{10mm}
 
-
+\subsubsection*{領域}
+\begin{itembox}[l]{例題}
+  \begin{large}
+    \begin{enumerate}
+      \item $y>x^2$
+      \item $y\leqq3x+1$
+    \end{enumerate}
+  \end{large}
+\end{itembox}
 
 
 
 
 \newpage
 \subsection*{三角関数}
+\subsubsection*{弧度法}
+{\renewcommand\arraystretch{2}
+  \begin{table}[H]
+    \begin{tabular}{|c||p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+      \hline
+      度数法 & 0 & 30 & 60 & 90 & 120 & 150 & 180 \\
+      \hline
+      弧度法 &   &    &    &    &     &     &     \\
+      \hline
+      sin    &   &    &    &    &     &     &     \\
+      \hline
+      cos    &   &    &    &    &     &     &     \\
+      \hline
+      tan    &   &    &    &    &     &     &     \\
+      \hline
+    \end{tabular}
+  \end{table}
+}
+
+\begin{table}[H]
+  \begin{minipage}{0.75\linewidth}
+    {\renewcommand\arraystretch{2}
+      \begin{table}[H]
+        \begin{tabular}{|c||p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+          \hline
+          度数法 & 210 & 240 & 270 & 300 & 330 \\
+          \hline
+          弧度法 &     &     &     &     &     \\
+          \hline
+          sin    &     &     &     &     &     \\
+          \hline
+          cos    &     &     &     &     &     \\
+          \hline
+          tan    &     &     &     &     &     \\
+          \hline
+        \end{tabular}
+      \end{table}
+    }
+  \end{minipage}
+  \begin{minipage}{0.2\linewidth}
+    \begin{center}
+      \begin{tikzpicture}
+        \draw[->] (-2,0) -- (2,0) node[right] {$x$};
+        \draw[->] (0,-2) -- (0,2) node[above] {$y$};
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}
+\end{table}
+
+\subsubsection*{相互関係の公式}
+\begin{multicols}{3}
+  \begin{LARGE}
+    \begin{itemize}
+      \item
+      \item
+      \item
+    \end{itemize}
+  \end{LARGE}
+\end{multicols}
+
+\subsubsection*{三角関数の性質}
+\begin{multicols}{3}
+  \begin{itemize}
+    \item $-\theta$
+          \begin{itemize}
+            \item $\sin(-\theta)$
+            \item $\cos(-\theta)$
+            \item $\tan(-\theta)$
+          \end{itemize}
+    \item $\pi-\theta$
+          \begin{itemize}
+            \item $\sin(\pi-\theta)$
+            \item $\cos(\pi-\theta)$
+            \item $\tan(\pi-\theta)$
+          \end{itemize}
+    \item $\pi+\theta$
+          \begin{itemize}
+            \item $\sin(\pi+\theta)$
+            \item $\cos(\pi+\theta)$
+            \item $\tan(\pi+\theta)$
+          \end{itemize}
+  \end{itemize}
+\end{multicols}
+\begin{multicols}{2}
+  \begin{itemize}
+    \item $\frac{\pi}{2}-\theta$
+          \begin{itemize}
+            \item $\sin(\frac{\pi}{2}-\theta)$
+            \item $\cos(\frac{\pi}{2}-\theta)$
+            \item $\tan(\frac{\pi}{2}-\theta)$
+          \end{itemize}
+    \item $\frac{\pi}{2}+\theta$
+          \begin{itemize}
+            \item $\sin(\frac{\pi}{2}+\theta)$
+            \item $\cos(\frac{\pi}{2}+\theta)$
+            \item $\tan(\frac{\pi}{2}+\theta)$
+          \end{itemize}
+  \end{itemize}
+
+\end{multicols}
+
+\subsubsection*{グラフ}
+\begin{table}[H]
+  \begin{minipage}{0.33\linewidth}
+    $y=\sin\theta$
+    \begin{center}
+      \begin{tikzpicture}
+        \draw[->] (-2,0) -- (2,0) node[right] {$x$};
+        \draw[->] (0,-2) -- (0,2) node[above] {$y$};
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}
+  \begin{minipage}{0.33\linewidth}
+    $y=\cos\theta$
+    \begin{center}
+      \begin{tikzpicture}
+        \draw[->] (-2,0) -- (2,0) node[right] {$x$};
+        \draw[->] (0,-2) -- (0,2) node[above] {$y$};
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}
+  \begin{minipage}{0.33\linewidth}
+    $y=\tan\theta$
+    \begin{center}
+      \begin{tikzpicture}
+        \draw[->] (-2,0) -- (2,0) node[right] {$x$};
+        \draw[->] (0,-2) -- (0,2) node[above] {$y$};
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}
+\end{table}
+
+\begin{itembox}[l]{縦幅の変化と周期の変化}
+  \vspace{10mm}
+\end{itembox}
+
+\subsubsection*{加法定理}
+\begin{large}
+  \begin{itemize}
+    \item $\sin(\alpha+\beta)=$
+    \item $\sin(\alpha-\beta)=$
+    \item $\cos(\alpha+\beta)=$
+    \item $\cos(\alpha-\beta)=$
+    \item $\tan(\alpha+\beta)=$
+    \item $\tan(\alpha-\beta)=$
+  \end{itemize}
+\end{large}
+
+\begin{multicols}{2}
+
+
+  \subsubsection*{2倍角の公式}
+  \begin{large}
+    \begin{itemize}
+      \item $\sin2\alpha=$
+      \item $\cos2\alpha=$
+      \item $\tan2\alpha=$
+    \end{itemize}
+  \end{large}
+
+  \subsubsection*{半角の公式}
+  \begin{large}
+    \begin{itemize}
+      \item $\sin\frac{\alpha}{2}=$
+      \item $\cos\frac{\alpha}{2}=$
+      \item $\tan\frac{\alpha}{2}=$
+    \end{itemize}
+  \end{large}
+
+\end{multicols}
+
+\subsubsection*{三角関数の合成}
+$a\sin x+b\cos x$\vspace{10mm}
+\begin{itembox}[l]{例題}
+  \begin{large}
+    \begin{enumerate}
+      \item $\sin +\sqrt{3}\cos x$
+      \item $\sqrt{3}\sin +\cos x$
+    \end{enumerate}
+  \end{large}
+\end{itembox}
+
+\newpage
 \subsection*{指数関数}
 \subsection*{対数関数}
 \subsection*{微分}

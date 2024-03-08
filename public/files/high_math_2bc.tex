@@ -405,10 +405,313 @@ $a\sin x+b\cos x$\vspace{10mm}
 
 \newpage
 \subsection*{指数関数}
-\subsection*{対数関数}
-\subsection*{微分}
-\subsection*{積分}
+\subsubsection*{基本の計算}
+\begin{multicols}{3}
+  \begin{Large}
+    \begin{itemize}
+      \item $a^0$
+      \item $a^{-3}a^5$
+      \item $(a^{-3})^5$
+    \end{itemize}
+  \end{Large}
+\end{multicols}
 
+\subsubsection*{累乗根}
+\begin{multicols}{3}
+  \begin{Large}
+    \begin{itemize}
+      \item $\sqrt[5]{32}$
+      \item $\sqrt[3]{0.001}$
+      \item $\sqrt[3]{-27}$
+      \item $\sqrt[3]{4}\times\sqrt[3]{2}$
+      \item $\sqrt[4]{243}\div\sqrt[4]{3}$
+      \item $\sqrt[3]{16}+\sqrt[3]{54}$
+    \end{itemize}
+  \end{Large}
+\end{multicols}
+
+\subsubsection*{指数法則}
+\begin{multicols}{3}
+  \begin{Large}
+    \begin{itemize}
+      \item $(\sqrt[3]{t})^{-4}$
+      \item $\sqrt{\sqrt[3]{t^{-4}}}$
+      \item $8^{\frac{2}{3}}$
+      \item $9^{-\frac{1}{2}}$
+      \item $(\sqrt[6]{49})^3$
+      \item $\sqrt[5]{\sqrt[]{1024}}$
+    \end{itemize}
+  \end{Large}
+\end{multicols}
+
+\subsubsection*{グラフ}
+
+\begin{table}[H]
+  \begin{minipage}{0.5\linewidth}
+    $y=3^x$
+    \begin{center}
+      \begin{tikzpicture}
+        \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+        \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}
+  \begin{minipage}{0.5\linewidth}
+    $y=(\frac{1}{3})^x$
+    \begin{center}
+      \begin{tikzpicture}
+        \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+        \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}
+\end{table}
+
+\subsection*{対数関数}
+\begin{itembox}[l]{定義}
+  \begin{multicols}{3}
+    \begin{large}
+      \begin{itemize}
+        \item $\log_{10}100$
+        \item $\log_{7}1$
+        \item $\log_{6}6$
+        \item $\log_{3}\frac{1}{9}$
+        \item $\log_{2}\sqrt{32}$
+      \end{itemize}
+    \end{large}
+  \end{multicols}
+\end{itembox}
+
+\begin{itembox}[l]{計算}
+  \begin{multicols}{3}
+    \begin{large}
+      \begin{itemize}
+        \item $\log_{4}8+\log_{4}2$
+        \item $\log_{2}24-\frac{1}{2}\log_{2}9$
+        \item $2\log_{2}27-\log_{2}9\log_{2}\sqrt{3}$
+      \end{itemize}
+    \end{large}
+  \end{multicols}
+\end{itembox}
+
+\subsubsection*{底変換}
+定義 $\log_{a}b$
+\vspace{8mm}
+\begin{itembox}[l]{例題}
+  \begin{multicols}{3}
+    \begin{large}
+      \begin{enumerate}
+        \item $\log_{9}27$
+        \item $\log_{\frac{1}{2}}32$
+        \item $\log_{8}2$
+        \item $2\log_{3}6-\log_{9}16$
+        \item $\log_{8}3\cdot\log_{9}25\cdot\log_{5}4$
+      \end{enumerate}
+    \end{large}
+  \end{multicols}
+\end{itembox}
+
+\begin{itembox}[l]{対数関数の式の値}
+  $a=\log_{10}2, b=\log_{10}3$
+  \begin{multicols}{3}
+    \begin{large}
+      \begin{enumerate}
+        \item $\log_{10}24$
+        \item $\log_{10}5$
+        \item $\log_{2}3$
+      \end{enumerate}
+    \end{large}
+  \end{multicols}
+\end{itembox}
+
+\subsubsection*{グラフ}
+
+\begin{table}[H]
+  \begin{minipage}{0.5\linewidth}
+    $y=\log_{2}x$
+    \begin{center}
+      \begin{tikzpicture}
+        \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+        \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}
+  \begin{minipage}{0.5\linewidth}
+    $y=\log_{\frac{1}{2}}x$
+    \begin{center}
+      \begin{tikzpicture}
+        \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+        \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}
+\end{table}
+
+\subsubsection*{常用対数}
+\begin{itembox}[l]{例題}
+  $\log_{10}2=0.3010, \log_{10}3=0.4771$
+  \begin{large}
+    \begin{enumerate}
+      \item $2^{50}は何桁か$
+      \item $0.3^{50}は小数第何位で初めて0でないか$
+    \end{enumerate}
+  \end{large}
+\end{itembox}
+
+\newpage
+\subsection*{微分}
+\subsubsection*{極限値}
+\begin{itembox}[l]{例題}
+  \begin{large}
+    \begin{multicols}{2}
+      \begin{enumerate}
+        \item $\lim_{x\rightarrow2}(2x-1)$
+        \item $\lim_{x\rightarrow-1}(3x^2+5x)$
+      \end{enumerate}
+    \end{multicols}
+  \end{large}
+\end{itembox}
+
+
+\subsubsection*{微分の定義}
+定義 $f(x)のx=aにおける微分係数$
+\vspace{8mm}
+\begin{itembox}[l]{例題}
+  $f(x)=2x^2-3$の$x=2$における微分係数
+\end{itembox}
+
+\subsubsection*{導関数}
+定義 $f(x)$
+\vspace{8mm}
+\begin{itembox}[l]{定義に従って導関数を求めよ}
+  \begin{multicols}{2}
+    \begin{large}
+      \begin{enumerate}
+        \item $f(x)=3x+1$
+        \item $f(x)=2x^2$
+      \end{enumerate}
+    \end{large}
+  \end{multicols}
+\end{itembox}
+
+\begin{itembox}[l]{微分せよ}
+  \begin{large}
+    \begin{multicols}{2}
+      \begin{enumerate}
+        \item $y=x^3-2x^2+5x-5$
+        \item $y=(3x-1)^2$
+      \end{enumerate}
+    \end{multicols}
+  \end{large}
+\end{itembox}
+
+\begin{itembox}[l]{微分係数とは何を表すか}
+  \vspace{8mm}
+\end{itembox}
+
+\subsubsection*{接線}
+\begin{itembox}[l]{例題}
+  \begin{large}
+    \begin{enumerate}
+      \item $y=x^3-2x^2+5x+1上の点(2,11)における接線$
+      \item $y=x^2-2x+3の接線で点(-1,-3)を通る接線$
+      \item $y=-x^2+4x+3の傾きが6の接線$
+    \end{enumerate}
+  \end{large}
+\end{itembox}
+
+
+\subsubsection*{3次関数のグラフ}
+\begin{itembox}[l]{微分と増減表、概形}
+  \vspace{10mm}
+\end{itembox}
+
+\begin{itembox}[l]{例題}
+  増減表とグラフの概形を書け
+  \begin{large}
+    \begin{enumerate}
+      \item $y=x^3-6x^2+9x$\vspace{15mm}
+      \item $y=-x^3+\frac{3}{2}x^2+6x-2$\vspace{15mm}
+      \item $y=-2x^3+6x^2-6x+1$\vspace{15mm}
+      \item $y=x^3+5x$\vspace{15mm}
+    \end{enumerate}
+  \end{large}
+\end{itembox}
+
+\subsubsection*{4次関数のグラフ}
+\begin{itembox}[l]{例題}
+  増減表とグラフの概形を書け
+  \begin{large}
+    \begin{enumerate}
+      \item $y=x^4-4x^3+4x^2$\vspace{15mm}
+      \item $y=-x^4+4x^3-5$\vspace{15mm}
+    \end{enumerate}
+  \end{large}
+\end{itembox}
+
+
+\newpage
+\subsection*{積分}
+\begin{itembox}[l]{積分とは}
+  \vspace{10mm}
+\end{itembox}
+\subsubsection*{不定積分}
+定義
+\begin{LARGE}
+  $\int x^ndx$
+\end{LARGE}
+\vspace{8mm}
+
+\begin{itembox}[l]{例題}
+  \begin{large}
+    \begin{enumerate}
+      \item $\int (3x^2+7x-3) dx$
+      \item $\int (3x-2)^2dx$
+    \end{enumerate}
+  \end{large}
+\end{itembox}
+
+\subsubsection*{定積分}
+性質
+\begin{LARGE}
+  \begin{itemize}
+    \item $\int_{a}^{a}f(x)dx$
+    \item $-\int_{a}^{b}f(x)dx$
+    \item $\int_{a}^{c}f(x)dx+\int_{c}^{b}f(x)dx$
+  \end{itemize}
+\end{LARGE}
+
+\begin{itembox}[l]{例題}
+  \begin{large}
+    \begin{enumerate}
+      \item $\int_{-2}^{1}(x^2+5x-1)dx$
+      \item $\int_{-1}^{2}(x-2)^2dx$
+      \item $\int_{-1}^{1}x^2dx-\int_{2}^{1}x^2dx$
+    \end{enumerate}
+  \end{large}
+\end{itembox}
+
+
+\subsubsection*{面積}
+\begin{itembox}[l]{例題}
+  次の曲線とx軸で囲まれた面積
+  \begin{large}
+    \begin{enumerate}
+      \item $y=x^2+x+2$
+      \item $y=x^2-2x$
+    \end{enumerate}
+  \end{large}
+\end{itembox}
+
+\begin{itembox}[l]{例題}
+  次の関数で囲まれた面積
+  \begin{large}
+    \begin{enumerate}
+      \item $y=x^2+x-5, y=2x+1$
+      \item $y=x^2+4x-5, y=-x^2-2x+3$
+    \end{enumerate}
+  \end{large}
+\end{itembox}
 
 \newpage
 \section*{B}

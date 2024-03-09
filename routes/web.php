@@ -71,8 +71,7 @@ Route::controller(FileController::class)->prefix('print')->group(function () {
 
 Route::controller(FileController::class)->prefix('md')->group(function () {
     Route::get('/study', 'md_study')->name('md.study');
-    Route::get('/murata', 'md_murata')->name('md.murata');
-    Route::get('/shigenobu', 'md_shigenobu')->name('md.shigenobu');
+    Route::get('/{file_name}', 'md');
 });
 
 require __DIR__.'/auth.php';

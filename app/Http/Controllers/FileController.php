@@ -80,8 +80,8 @@ class FileController extends Controller
         return view('file.file')->with(['path' => $path, 'files' => $files]);
     }
 
-    public function md(string $filename){
-        $html = Str::markdown(file_get_contents(resource_path('mdfiles/'.$filename.'.md')));
+    public function md(string $file_name){
+        $html = Str::markdown(file_get_contents(resource_path('mdfiles/'.$file_name.'.md')));
         return view('file.md', ['html' => $html]);
     }
 

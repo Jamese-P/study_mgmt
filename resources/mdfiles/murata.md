@@ -69,7 +69,7 @@
 
 <!-- 
 
-<details><summary>雛形</summary>
+<details><summary>/</summary>
 
 - 英語
 - 数学

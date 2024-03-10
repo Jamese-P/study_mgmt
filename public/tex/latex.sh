@@ -15,13 +15,11 @@ else
     exit 1
 fi
 
-# sed '2d' $1.tex > out/${1}_answer.tex
-
 gsed '2a \\\answerfalse' ${file_name}.tex > out/${file_name}.tex
 platex -output-directory=out -halt-on-error out/${file_name}.tex
 dvipdfmx out/${file_name}.dvi
 
-mv ${file_name}.pdf ../files
+cp ${file_name}.pdf ../files
 
 if [ $1 = "-a" ]; then
     gsed '2a \\\answertrue' ${file_name}.tex > out/${file_name}_answer.tex

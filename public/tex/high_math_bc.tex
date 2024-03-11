@@ -54,15 +54,17 @@
 \end{itemize}
 
 \subsubsection*{和の記号シグマ$\sum$}
-\begin{LARGE}
-  \begin{itemize}
-    \item $\sum_{k=1}^{n}c$
-    \item $\sum_{k=1}^{n}k$
-    \item $\sum_{k=1}^{n}k^2$
-    \item $\sum_{k=1}^{n}k^3$
-    \item $\sum_{k=1}^{n}r^k$
-  \end{itemize}
-\end{LARGE}
+\begin{multicols}{2}
+  \begin{large}
+    \begin{itemize}
+      \item $\sum_{k=1}^{n}c$
+      \item $\sum_{k=1}^{n}k$
+      \item $\sum_{k=1}^{n}k^2$
+      \item $\sum_{k=1}^{n}k^3$
+      \item $\sum_{k=1}^{n}r^k$
+    \end{itemize}
+  \end{large}
+\end{multicols}
 
 \begin{itembox}[l]{例題}
   \begin{large}
@@ -74,24 +76,175 @@
 
 \subsubsection*{分数数列の和}
 \begin{itembox}[l]{例題}
-  \begin{LARGE}
+  \begin{Large}
     \begin{enumerate}
       \item $\sum_{k=1}^{n}\frac{1}{k(k+1)}$
       \item $\sum_{k=1}^{n}\frac{1}{(2k-1)(2k+1)}$
     \end{enumerate}
-  \end{LARGE}
+  \end{Large}
 \end{itembox}
 
 \subsubsection*{等差数列$\times$等比数列}
 \begin{itembox}[l]{例題}
   $S=1+2\cdot2+3\cdot2^2+\dots+n\cdot2^{n-1}$
-  \vspace{20mm}
+  \vspace{15mm}
 \end{itembox}
 
 \subsubsection*{階差数列}
+数列$a_n$は階差$b_n$を持つとき。
+\vspace{8mm}
+
+\subsubsection*{漸化式}
+\begin{multicols}{3}
+  \begin{large}
+    \begin{itemize}
+      \item $a_{n+1}=a_n+d$
+      \item $a_{n+1}=ra_n$
+      \item $a_{n+1}=a_n+f(n)$
+    \end{itemize}
+  \end{large}
+\end{multicols}
+\vspace{8mm}
+$a_{n+1}=pa_n+q$のとき
 
 
-\section*{C}
+
+
+\newpage
 \subsection*{ベクトル}
+平行四辺形OACBにおいて$\vec{OA}=\vec{a}, \vec{OB}=\vec{b}$とする
+\begin{multicols}{3}
+  \begin{itemize}
+    \item $\vec{OC}$
+    \item $\vec{AB}$
+    \item $\vec{AC}$
+  \end{itemize}
+\end{multicols}
+
+\subsubsection*{ベクトルの内積}
+\vspace{10mm}
+
+\subsubsection*{三角形の面積}
+\vspace{10mm}
+
+\subsubsection*{内分, 外分}
+2点A($\vec{a}$),B($\vec{b}$)を$m:n$に内分または外分する点
+\vspace{10mm}
+
+\subsubsection*{直線上にある}
+2点A($\vec{a}$),B($\vec{b}$)を結ぶ直線上にある点P($\vec{p}$)
+\vspace{10mm}
+
+
+\newpage
 \subsection*{複素数平面}
+\subsubsection*{共役な複素数}
+\begin{itemize}
+  \item $z=\bar{z}$ならば
+  \item $z=-\bar{z}かつz\not=0$ならば
+\end{itemize}
+
+\subsubsection*{複素数平面}
+\begin{multicols}{2}
+  \begin{itembox}[l]{$z=a+bi$を平面上に表せ}
+    \begin{tikzpicture}
+      \draw[->] (-1,0)--(2,0) node[right]{$x$};
+      \draw[->] (0,-1)--(0,2) node[above]{$y$};
+    \end{tikzpicture}
+
+    $|z|=$\\
+    $|z\bar{z}|=$
+  \end{itembox}
+  \begin{itembox}[l]{和・差・実数倍}
+    $\alpha,\beta$に対して$\alpha+\beta, \alpha-\beta, k\alpha$\\
+    \begin{tikzpicture}
+      \draw[->] (-1,0)--(3,0) node[right]{$x$};
+      \draw[->] (0,-1)--(0,3) node[above]{$y$};
+      \draw[->] (0,0)--(2,1) node[above]{$\alpha$};
+      \draw[->] (0,0)--(1,2) node[above]{$\beta$};
+    \end{tikzpicture}
+  \end{itembox}
+\end{multicols}
+
+\subsubsection*{極形式}
+\begin{LARGE}
+  $z=$\\
+\end{LARGE}
+$z_1=r_1(\cos\theta_1+i\sin\theta_1), z_2=r_2(\cos\theta_2+i\sin\theta_2)$の時(絶対値、偏角)
+\begin{Large}
+  \begin{itemize}
+    \item $z_1z_2=$
+    \item $\frac{z_1}{z_2}=$
+  \end{itemize}
+\end{Large}
+
+\subsubsection*{ド・モアブルの定理}
+\begin{large}
+  $(\cos\theta+i\sin\theta)^n=$
+\end{large}\\
+
+\begin{itembox}[l]{例題}
+  $z^6=1$
+  \vspace{15mm}
+\end{itembox}
+
+\newpage
+\begin{itembox}[l]{複素数平面と図形のポイント}
+  \vspace{10mm}
+\end{itembox}
+
+\subsubsection*{点のまわりの回転}
+\begin{large}
+  \begin{itemize}
+    \item $z$を原点中心に$\theta$回転させた点$w$
+    \item $z_1$を中心に$z_2$を$\theta$回転させた点$\gamma$
+  \end{itemize}
+\end{large}
+
+\subsubsection*{半直線のなす角}
+\begin{table}[H]
+  \begin{minipage}{0.7\textwidth}
+    右図で、C($\gamma$)はB($\gamma$)を点A($\alpha$)を中心に$\theta$回転させて$k$倍した点とする。このとき成り立つ等式
+
+    \vspace{15mm}
+
+    また、$\angle BAC=$
+
+    \vspace{10mm}
+
+    A,B,Cが一直線上ならば
+
+    \vspace{10mm}
+
+    ABとACが垂直ならば
+
+    \vspace{10mm}
+  \end{minipage}
+  \begin{minipage}{0.3\textwidth}
+    \begin{tikzpicture}
+      \draw[->] (-1,0)--(5,0) node[right]{$x$};
+      \draw[->] (0,-1)--(0,5) node[above]{$y$};
+      \draw (0.5,0.5) node[below]{$\alpha$};
+      \draw[->] (0.5,0.5)--(3,1) node[above]{$\beta$};
+      \draw[->] (0.5,0.5)--(2,4) node[above]{$\gamma$};
+    \end{tikzpicture}
+
+  \end{minipage}
+\end{table}
+
+\subsubsection*{複素数と図形}
+\begin{itemize}
+  \item 直線
+        \begin{itemize}
+          \item 原点と点mを結ぶ直線に平行で、点$\alpha$を通る直線\vspace{10mm}
+          \item 原点と点mを結ぶ直線に垂直で、点$\alpha$を通る直線\vspace{10mm}
+          \item 異なる点$\alpha,\beta$を通る直線上の点$z$\vspace{10mm}
+        \end{itemize}
+  \item 円
+        \begin{itemize}
+          \item 定点$\alpha$を中心とする半径rの円\vspace{10mm}
+          \item 定点$\alpha, \beta$を直径とする円\vspace{10mm}
+        \end{itemize}
+\end{itemize}
+
 \end{document}

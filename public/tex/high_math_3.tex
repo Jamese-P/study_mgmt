@@ -1,6 +1,6 @@
 
 \newif\ifanswer\answertrue
-%\answerfalse
+\answerfalse
 
 \documentclass[10pt,dvipdfmx]{jsarticle}
 \usepackage[margin=15truemm]{geometry}
@@ -39,7 +39,132 @@
 
 \begin{document}
 
+\subsection*{関数}
+\subsubsection*{分数関数}
+基本形、漸近線、定義域、値域
+\begin{table}[h]
+  \begin{minipage}{0.5\textwidth}
+    \begin{tikzpicture}
+      \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+      \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+    \end{tikzpicture}
+  \end{minipage}
+  \begin{minipage}{0.5\textwidth}
+    \begin{tikzpicture}
+      \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+      \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+    \end{tikzpicture}
+  \end{minipage}
+\end{table}
+
+\subsubsection*{無理関数}
+式、定義域、値域
+
+\begin{tikzpicture}
+  \draw[->] (-7,0) -- (7,0) node[right] {$x$};
+  \draw[->] (0,-3) -- (0,3) node[above] {$y$};
+\end{tikzpicture}
+
+\subsubsection*{逆関数}
+求め方
+\begin{Large}
+  \begin{itemize}
+    \item \item \item
+  \end{itemize}
+\end{Large}
+性質
+\vspace{10mm}
+
+\newpage
 \subsection*{極限}
+
+\subsubsection*{無限等比数列}
+$\lim_{n\rightarrow\infty}r^n$
+\begin{Large}
+  \begin{itemize}
+    \item \item \item \item
+  \end{itemize}
+\end{Large}
+*$\lim_{n\rightarrow\infty}ar^n$の収束条件は?
+
+\subsubsection*{無限等比級数}
+$\sum_{k=1}^{\infty}ar^k$
+\begin{Large}
+  \begin{itemize}
+    \item \item \item
+  \end{itemize}
+\end{Large}
+
+\begin{itembox}[l]{不定形となる時}
+  \begin{Large}
+    \begin{itemize}
+      \item \item \item
+    \end{itemize}
+  \end{Large}
+\end{itembox}
+
+\subsubsection*{片側極限}
+\begin{itembox}[l]{ポイント}
+  \vspace{15mm}
+\end{itembox}
+
+\subsubsection*{指数関数}
+$\lim_{x\rightarrow\infty}a^x$, $\lim_{x\rightarrow-\infty}a^x$
+\begin{Large}
+  \begin{itemize}
+    \item \item
+  \end{itemize}
+\end{Large}
+
+\subsubsection*{対数関数}
+$\lim_{n\rightarrow\infty}\log_{a}x$, $\lim_{n\rightarrow+0}\log_{a}x$
+\begin{Large}
+  \begin{itemize}
+    \item \item
+  \end{itemize}
+\end{Large}
+
+\subsubsection*{三角関数}
+\begin{Large}
+  \begin{itemize}
+    \item $\lim_{x\rightarrow0}\cfrac{\sin x}{x}$
+    \item $\lim_{x\rightarrow0}\cfrac{x}{\sin x}$
+    \item $\lim_{x\rightarrow0}\cfrac{\tan x}{x}$
+    \item $\lim_{x\rightarrow0}\cfrac{1-\cos x}{x^2}$
+  \end{itemize}
+\end{Large}
+
+\begin{itembox}[l]{三角関数の極限2}
+  \begin{Large}
+    \begin{itemize}
+      \item \item
+    \end{itemize}
+  \end{Large}
+\end{itembox}
+
+\subsubsection*{関数の点連続性}
+関数$f(x)$が$x=a$で連続であるための条件
+\vspace{15mm}
+
+\subsubsection*{微分係数の利用で指数関数や対数関数}
+\begin{Large}
+  \begin{itemize}
+    % \item $\lim_{x\rightarrow0}\cfrac{e^x-1}{x}$
+    % \item $\lim_{x\rightarrow1}\cfrac{\log x}{x-1}$
+    \item \item
+  \end{itemize}
+\end{Large}
+
+\subsubsection*{自然対数の利用}
+\begin{Large}
+  \begin{itemize}
+    \item
+    \item
+  \end{itemize}
+\end{Large}
+
+\subsubsection*{定積分の定義の利用}
+\vspace{15mm}
 
 \newpage
 \subsection*{二次曲線}
@@ -161,19 +286,73 @@
   \end{multicols}
 \end{itembox}
 
+\subsubsection*{媒介変数表示}
+\begin{multicols}{2}
+  \begin{description}
+    \item[放物線$y^2=4px$]\vspace{30mm}
+    \item[円$x^2+y^2=r^2$]\vspace{30mm}
+    \item[円$(x-a)^2+(y-b)^2=r^2$]\vspace{30mm}
+    \item[楕円$\cfrac{x^2}{a^2}+\cfrac{y^2}{b^2}=1$]\vspace{30mm}
+    \item[双曲線$\cfrac{x^2}{a^2}-\cfrac{y^2}{b^2}=1$]\vspace{30mm}
+    \item[サイクロイド]\vspace{30mm}
+  \end{description}
+\end{multicols}
+
+
 
 \newpage
 \subsection*{微分}
+\begin{multicols}{2}
+  \begin{Large}
+    \begin{itemize}
+      \item $y=x^n$
+      \item $y=\cfrac{1}{x^n}$
+    \end{itemize}
+  \end{Large}
+\end{multicols}
+三角関数の微分
+\begin{multicols}{2}
+  \begin{Large}
+    \begin{itemize}
+      \item $y=\sin x$
+      \item $y=\cos x$
+      \item $y=\tan x$
+      \item $y=\cfrac{1}{\tan x}$
+    \end{itemize}
+  \end{Large}
+\end{multicols}
+
+対数関数の微分
+\begin{multicols}{2}
+  \begin{Large}
+    \begin{itemize}
+      \item $y=\log_a x$
+      \item $y=\log x$
+    \end{itemize}
+  \end{Large}
+\end{multicols}
+
+指数関数の微分
+\begin{multicols}{2}
+  \begin{Large}
+    \begin{itemize}
+      \item $y=a^x$
+      \item $y=e^x$
+    \end{itemize}
+  \end{Large}
+\end{multicols}
+
 公式
-\begin{large}
-  \begin{enumerate}
-    \item $y=x^n$
-    \item $y=\cfrac{1}{x^n}$
-    \item $y=f(x)g(x)$
-    \item $y=\cfrac{f(x)}{g(x)}$
-    \item $y=f(g(x))$
-  \end{enumerate}
-\end{large}
+\begin{multicols}{2}
+  \begin{Large}
+    \begin{itemize}
+      \item $y=f(x)g(x)$
+      \item $y=\cfrac{f(x)}{g(x)}$
+      \item $y=\cfrac{1}{g(x)}$
+      \item $y=f(g(x))$
+    \end{itemize}
+  \end{Large}
+\end{multicols}
 
 \begin{itembox}[l]{例題}
   \begin{large}
@@ -205,19 +384,6 @@
   \end{large}
 \end{itembox}
 
-三角関数の微分
-\begin{itemize}
-  \item $y=\sin x$
-  \item $y=\cos x$
-  \item $y=\tan x$
-\end{itemize}
-
-対数関数の微分
-\begin{itemize}
-  \item $y=\log_a x$
-  \item $y=\log x$
-\end{itemize}
-
 \begin{itembox}[l]{例題}
   \begin{large}
     \begin{enumerate}
@@ -226,11 +392,117 @@
   \end{large}
 \end{itembox}
 
-指数関数の微分
-\begin{itemize}
-  \item $y=a^x$
-  \item $y=e^x$
-\end{itemize}
 
+\newpage
 \subsection*{積分}
+\begin{multicols}{2}
+  \begin{Large}
+    \begin{itemize}
+      \item $\int x^n dx$
+      \item $\int \cfrac{1}{x^n} dx$
+    \end{itemize}
+  \end{Large}
+\end{multicols}
+
+三角関数
+\begin{multicols}{2}
+  \begin{Large}
+    \begin{itemize}
+      \item $\int \sin x dx$
+      \item $\int \cfrac{1}{\cos^2 x} dx$
+      \item $\int \cos x dx$
+      \item $\int \cfrac{1}{\sin^2 x} dx$
+    \end{itemize}
+  \end{Large}
+\end{multicols}
+指数関数
+\begin{multicols}{2}
+  \begin{Large}
+    \begin{itemize}
+      \item $\int e^x dx$
+      \item $\int a^x dx$
+    \end{itemize}
+  \end{Large}
+\end{multicols}
+対数関数
+\begin{multicols}{2}
+  \begin{Large}
+    \begin{itemize}
+      \item $\int \log_a x dx$
+    \end{itemize}
+  \end{Large}
+\end{multicols}
+
+\subsubsection*{三角関数の相互関係}
+\begin{multicols}{3}
+  \begin{Large}
+    \begin{itemize}
+      \item \item \item
+    \end{itemize}
+  \end{Large}
+\end{multicols}
+
+\subsubsection*{倍角}
+\begin{multicols}{2}
+  2倍角の公式
+  \begin{Large}
+    \begin{itemize}
+      \item $\sin x\cos x$
+      \item $\sin^2 x$
+      \item $\cos^2 x$
+    \end{itemize}
+  \end{Large}
+
+  3倍角の公式
+  \begin{Large}
+    \begin{itemize}
+      \item $\sin^3 x$
+      \item $\cos^3 x$
+    \end{itemize}
+  \end{Large}
+\end{multicols}
+
+\subsubsection*{積和の公式}
+\begin{multicols}{2}
+  \begin{Large}
+    \begin{itemize}
+      \item $\sin \alpha\sin \beta$
+      \item $\cos \alpha\cos \beta$
+      \item $\sin \alpha\cos \beta$
+      \item $\cos \alpha\sin \beta$
+    \end{itemize}
+  \end{Large}
+\end{multicols}
+
+\subsubsection*{置換積分}
+\begin{itembox}[l]{ポイント}
+  \vspace{15mm}
+\end{itembox}
+
+\subsubsection*{部分積分}
+\begin{Large}
+  $\int f(x)g(x)' dx=$
+\end{Large}
+
+
+\begin{itembox}[l]{例題}
+  \begin{large}
+    \begin{enumerate}
+      \item $\int \cfrac{x}{x^2+1}dx$\vspace{10mm}
+      \item $\int x(x-1)^5dx$\vspace{10mm}
+      \item $\int xe^{2x}dx$\vspace{10mm}
+      \item $\int x\sin xdx$\vspace{10mm}
+      \item $\int x^2\log xdx$\vspace{10mm}
+      \item $\int \log(x+1)dx$\vspace{10mm}
+      \item $\int (\log x)^2dx$\vspace{10mm}
+      \item $\int e^{-x}\sin 2xdx$\vspace{10mm}
+      \item $\int \cfrac{x^3+x^2-1}{x^2-1}dx$\vspace{10mm}
+      \item $\int \cfrac{x-3}{x^2-3x+2}dx$\vspace{10mm}
+      \item $\int \cfrac{x}{\sqrt{2x+3}-\sqrt{3}}dx$\vspace{10mm}
+      \item $\int \sqrt{4-x^2}dx$\vspace{10mm}
+      \item $\int \cfrac{1}{x^2+4}dx$\vspace{10mm}
+    \end{enumerate}
+  \end{large}
+\end{itembox}
+
 \end{document}

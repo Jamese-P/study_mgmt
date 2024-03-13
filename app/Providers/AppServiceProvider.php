@@ -27,18 +27,23 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        URL::forceScheme('https');
+
+
+        if (env('APP_ENV') === 'local_mac') {
+            URL::forceScheme('http');
+        } else {
+            URL::forceScheme('https');
+        }
         $this->app['request']->server->set('HTTPS', 'on');
 
         Blade::directive('markdown', function ($expression) {
 
-        $markdown = view(
-            str_replace('\'', '', $expression)
-        )->render();
+            $markdown = view(
+                str_replace('\'', '', $expression)
+            )->render();
 
-        $Parsedown = new \Parsedown();
-        return $Parsedown->text($markdown);
-
-    });
+            $Parsedown = new \Parsedown();
+            return $Parsedown->text($markdown);
+        });
     }
 }

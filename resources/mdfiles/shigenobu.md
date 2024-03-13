@@ -50,7 +50,7 @@
 
 <!-- 
 
-<details><summary>雛形</summary>
+<details><summary>/</summary>
 
 - 英語
 - 数学
@@ -59,6 +59,18 @@
 </details> 
 
 -->
+
+<details><summary>3/12</summary>
+
+- 真面目にやらないと授業しないよ
+- もう少しがんばろ
+- 力抜いているのが目立つ
+- 切り替えが雑魚
+- 進研の記述をもっと書きなさい
+- 丸つけしなさい
+- 整序問題を増やすか、vintage
+
+</details> 
 
 <details><summary>3/9</summary>
 

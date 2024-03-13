@@ -114,8 +114,11 @@ class TodayController extends Controller
 
     public function complete_indiv(Book $book, Comprehension $comprehension, Subject $subject)
     {
+        $book=Book_mgmt::where('book_mgmts.user_id', Auth::id())->join('books','book_mgmts.book_id','=','books.id')->orderBy('book_mgmts.updated_at', 'desc')->get();
+
+
         return view('today.complete_indiv')->with([
-            'books' => $book->orderBy('updated_at', 'desc')->get(),
+            'books' => $book,
             'comprehensions' => $comprehension->get(),
             'subjects' => $subject->get(),
         ]);

@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/css/file.css',
                 'resources/css/md.css',
+                'resources/css/book.css',
             ],
             refresh: true,
         }),

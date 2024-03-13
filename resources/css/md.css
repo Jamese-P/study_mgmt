@@ -1,21 +1,21 @@
-code{
+code {
     color: orange;
 }
 
-h2{
-    color:gray;
-    text-decoration:underline;
+h2 {
+    color: gray;
+    text-decoration: underline;
 }
 
-table{
+table {
     border-collapse: collapse;
 }
 
-td{
-    border:3px solid #999999;
+td {
+    border: 3px solid #999999;
 
 }
 
-td{
+td {
     padding: 3px;
 }

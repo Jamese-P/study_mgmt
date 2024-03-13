@@ -1,31 +1,31 @@
-@media screen and (min-width:767px){
-.sp-layout{
-    display: none;
-}
+@media screen and (min-width:767px) {
+    .sp-layout {
+        display: none;
+    }
 
 }
 
 
-@media screen and (max-width:767px){
+@media screen and (max-width:767px) {
     .pc-layout {
         display: none;
     }
 
-    hr{
+    hr {
         border-top: 1px solid #aaa;
-	border-bottom: 1px solid #fff;
+        border-bottom: 1px solid #fff;
     }
 
-    .sp-layout .book{
+    .sp-layout .book {
         margin: 1em;
     }
 
-    .sp-layout .name{
+    .sp-layout .name {
         font-size: x-large;
         color: blue;
     }
 
-    .date{
+    .date {
         color: red;
     }
 

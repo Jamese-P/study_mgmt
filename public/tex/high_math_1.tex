@@ -1,5 +1,5 @@
 \newif\ifanswer\answertrue
-%\answerfalse
+% \answerfalse
 
 \documentclass[10pt,dvipdfmx]{jsarticle}
 \usepackage[margin=15truemm]{geometry}
@@ -63,10 +63,10 @@
 \begin{itembox}[l]{因数分解の手順}
   \begin{Large}
     \begin{enumerate}
-      \item %降べきの順
-      \item %共通因数
-      \item %公式
-      \item %襷掛け
+      \item \answer{0}{降べきの順に並べる}
+      \item \answer{0}{共通因数をくくる}%共通因数
+      \item \answer{0}{公式} %公式
+      \item \answer{0}{襷掛け} %襷掛け
     \end{enumerate}
   \end{Large}
 \end{itembox}
@@ -129,7 +129,7 @@
 
 \subsubsection*{一次不等式}
 \begin{itembox}[l]{ポイント}
-  \vspace{8mm}
+  \answer{8}{負の数で割るときに不等号を逆向きにする。それ以外は普通の方程式}
 
 \end{itembox}
 \begin{itembox}[l]{例題}
@@ -145,7 +145,8 @@
 \begin{itembox}[l]{ポイント}
   \begin{Large}
     \begin{itemize}
-      \item \item
+      \item \answer{0}{絶対値の外に文字がない時は$\pm$}
+      \item \answer{0}{絶対値の外に文字がある時は場合分け}
     \end{itemize}
   \end{Large}
 \end{itembox}
@@ -168,23 +169,27 @@
 \subsubsection*{一般式(2)　グラフをかけ}
 \begin{large}
   \begin{itemize}
-    \item
-    \item
+    \item \answer{0}{平方完成のパターン、頂点や軸がわかる}
+    \item \answer{0}{展開のパターン、y切片がわかる}
   \end{itemize}
 \end{large}
 
 \begin{itembox}[l]{ポイント}
-  \vspace{8mm}
+  \answer{8}{必ずグラフを書く}
 \end{itembox}
 
 
 
-\subsubsection*{最大最小}
+\subsubsection*{文字を含む最大最小}
 \begin{itembox}[l]{場合分けの仕方(下に凸の場合)}
+  \answer{0}{軸がどの位置にあるかで場合わけを行う\\}
   最小値
-  \vspace{5cm}
+  \answer{50}{
+    軸が範囲の外か中か
+  }
 
-  最大値\vspace{5cm}
+  最大値
+  \answer{50}{軸が範囲の中央か左右か}
 
 
 \end{itembox}
@@ -353,11 +358,12 @@ $ax^2+bx+c=0$の解を$\alpha,\beta$とする
 \end{Large}
 
 \begin{itembox}[l]{正弦定理と余弦定理の使い分け}
-  \vspace{8mm}
+  \answer{8}{角度が二箇所わかっていれば正弦定理、全ての辺か二つの辺と角がわかっているなら余弦定理}
 \end{itembox}
 
 
 \subsubsection*{面積の求め方}
+\answer{0}{sinを使うのと内接円}
 \begin{multicols}{2}
   \begin{Large}
     \begin{itemize}
@@ -366,6 +372,7 @@ $ax^2+bx+c=0$の解を$\alpha,\beta$とする
   \end{Large}
 \end{multicols}
 
+\newpage
 
 \subsection*{データ}
 \subsubsection*{用語}

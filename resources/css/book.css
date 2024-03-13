@@ -1,0 +1,43 @@
+@media screen and (min-width:767px){
+.sp-layout{
+    display: none;
+}
+
+}
+
+
+@media screen and (max-width:767px){
+    .pc-layout {
+        display: none;
+    }
+
+    hr{
+        border-top: 1px solid #aaa;
+	border-bottom: 1px solid #fff;
+    }
+
+    .sp-layout .book{
+        margin: 1em;
+    }
+
+    .sp-layout .name{
+        font-size: x-large;
+        color: blue;
+    }
+
+    .date{
+        color: red;
+    }
+
+
+}
+
+details {
+    margin: 1em;
+    cursor: pointer;
+}
+
+.file-list li {
+    list-style-type: none;
+    margin: 0.5em;
+}

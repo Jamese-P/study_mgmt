@@ -14,8 +14,11 @@
             <div class="form-element">
                 <div class="name">
                     <label for="book" class="form-label">参考書名</label>
-                    <select id="book" name="log[book_id]" class="form-select">
+                    <select id="book" name="log[book_id]" class="form-select" required>
                         <option value="">選択してください</option>
+                        @foreach ($books as $book)
+                        <option value="{{ $book->id }}">{{ $book->name }}</option>
+                    @endforeach
                     </select>
                     <p class="book_id__error" style="color:red">{{ $errors->first('log.book_id') }}</p>
                 </div>
@@ -50,28 +53,36 @@
             </div>
         </form>
     </div>
-    
+
     <script>
         const book_data=@json($books);
         const subjectInput = document.getElementById("subject");
         var bookSelect = document.getElementById("book");
-        
+
         subjectInput.addEventListener('change',function(){
             bookSelect.textContent=null;
             const option = document.createElement('option');
             option.value = "";
             option.textContent = "選択してください";
             bookSelect.appendChild(option);
-            
+
             book_data.forEach(book=>{
-                if(subjectInput.value == book.subject_id){
+                if(!subjectInput.value ){
                     const option = document.createElement('option');
                     option.value = book.id;
                     option.textContent = book.name;
                     bookSelect.appendChild(option);
                 }
+                else if(subjectInput.value == book.subject_id){
+                    const option = document.createElement('option');
+                    option.value = book.id;
+                    option.textContent = book.name;
+                    bookSelect.appendChild(option);
+
+                }
+
             });
         });
-        
+
     </script>
 </x-app-layout>

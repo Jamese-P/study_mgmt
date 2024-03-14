@@ -74,4 +74,4 @@ Route::controller(FileController::class)->prefix('md')->group(function () {
     Route::get('/{file_name}', 'md');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

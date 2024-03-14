@@ -32,13 +32,12 @@ final class AppServiceProvider extends ServiceProvider
 
         Blade::directive('markdown', function ($expression) {
 
-        $markdown = view(
-            str_replace('\'', '', $expression)
-        )->render();
+            $markdown = view(
+                str_replace('\'', '', $expression)
+            )->render();
 
-        $Parsedown = new \Parsedown();
-        return $Parsedown->text($markdown);
-
-    });
+            $Parsedown = new \Parsedown();
+            return $Parsedown->text($markdown);
+        });
     }
 }

@@ -66,7 +66,8 @@
                 </div>
                 <input type="submit" class="form-submit" value="保存" />
             </form>
-            <form method="POST" action="{{ route('book.destroy', ['book' => $book_mgmt->book_id]) }}" id="form_destroy">
+            <form method="POST" action="{{ route('book.destroy', ['book' => $book_mgmt->book_id]) }}"
+                id="form_destroy">
                 @csrf
                 @method('DELETE')
                 <div class="form-element my-4">

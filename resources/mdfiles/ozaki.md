@@ -37,6 +37,16 @@
 
 -->
 
+<details><summary>3/17</summary>
+
+- 英語
+  - 解釈ができていると本人・大坪くんは言っているがどこまでかが未知数
+- 数学
+- 国語
+  - 雑魚
+
+</details> 
+
 <details><summary>3/13</summary>
 
 - 英語

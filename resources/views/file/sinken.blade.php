@@ -14,7 +14,7 @@
 @extends('layouts.file')
 @section('content')
     <div style="width:fit-content">
-        <p><a href="/{{ $path }}/進研模試.pdf" target="_blank">一覧ファイル</a></p>
+        <p><a href="/md/shinken" target="_blank">一覧ファイル</a></p>
         @foreach ($names as $name)
             <details>
                 <summary>{{ $name[1] }}</summary>

@@ -71,6 +71,7 @@ Route::controller(FileController::class)->prefix('print')->group(function () {
 
 Route::controller(FileController::class)->prefix('md')->group(function () {
     Route::get('/study', 'md_study')->name('md.study');
+    Route::get('/root', 'md_root')->name('md.root');
     Route::get('/{file_name}', 'md');
 });
 

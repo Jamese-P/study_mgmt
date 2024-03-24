@@ -85,15 +85,11 @@ class FileController extends Controller
         return view('file.md', ['html' => $html]);
     }
 
-    public function md_study(){
-         return $this->md('how_to_study');
-    }
+    public function md_root(){
+        $path = resource_path('mdfiles/');
+        $files = File::files($path);
+        natsort($files);
+        return view('file.md_root')->with(['files' => $files]);
 
-    public function md_murata(){
-         return $this->md('murata');
-    }
-
-    public function md_shigenobu(){
-         return $this->md('shigenobu');
     }
 }
